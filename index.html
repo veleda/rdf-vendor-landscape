@@ -138,8 +138,8 @@
   .vendor-card { position: relative; }
 
   /* Compare floating bar */
-  .compare-bar { position: fixed; bottom: -80px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; padding: 14px 28px; border-radius: 16px; display: flex; align-items: center; gap: 16px; box-shadow: 0 8px 32px rgba(79,108,247,0.35); z-index: 1000; transition: bottom 0.35s cubic-bezier(0.4,0,0.2,1); font-size: 0.92rem; font-weight: 600; }
-  .compare-bar.visible { bottom: 28px; }
+  .compare-bar { position: fixed; bottom: -80px; left: 0; right: 0; width: fit-content; margin: 0 auto; background: var(--accent); color: #fff; padding: 14px 28px; border-radius: 16px; display: flex; align-items: center; gap: 16px; box-shadow: 0 8px 32px rgba(79,108,247,0.35); z-index: 9999; transition: bottom 0.35s cubic-bezier(0.4,0,0.2,1); font-size: 0.92rem; font-weight: 600; }
+  .compare-bar.visible { bottom: 36px; }
   .compare-bar button { padding: 8px 20px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; font-size: 0.88rem; transition: all 0.2s; }
   .compare-bar .btn-compare { background: #fff; color: var(--accent); }
   .compare-bar .btn-compare:hover { background: #eef1ff; }
@@ -220,6 +220,40 @@
   footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.85rem; }
   footer a { color: var(--accent); text-decoration: none; }
 
+  /* SPARQL Editor */
+  .sparql-section { max-width: 1100px; margin: 0 auto; padding: 24px 20px 60px; }
+  .sparql-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
+  .sparql-header h2 { font-size: 1.2rem; margin: 0; }
+  .sparql-status { font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+  .sparql-status .dot-ok { width: 8px; height: 8px; border-radius: 50%; background: #1D9E75; display: inline-block; }
+  .sparql-status .dot-loading { width: 8px; height: 8px; border-radius: 50%; background: #E8A317; display: inline-block; animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .sparql-examples { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .sparql-examples button { padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); font-size: 0.75rem; cursor: pointer; color: var(--text-muted); transition: all 0.15s; }
+  .sparql-examples button:hover { border-color: var(--accent); color: var(--accent); }
+  .sparql-editor-wrap { position: relative; }
+  .sparql-editor { width: 100%; min-height: 180px; font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; font-size: 0.85rem; line-height: 1.55; padding: 16px; border: 1px solid var(--border); border-radius: 10px; background: #1e1e2e; color: #cdd6f4; resize: vertical; tab-size: 2; box-sizing: border-box; }
+  .sparql-editor:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,108,247,0.15); }
+  .sparql-actions { display: flex; gap: 8px; margin-top: 10px; align-items: center; }
+  .sparql-run { padding: 9px 24px; border-radius: 8px; border: none; background: var(--accent); color: #fff; font-weight: 600; font-size: 0.88rem; cursor: pointer; transition: all 0.2s; }
+  .sparql-run:hover { background: #3b5bdb; }
+  .sparql-run:disabled { opacity: 0.5; cursor: not-allowed; }
+  .sparql-time { font-size: 0.78rem; color: var(--text-muted); margin-left: auto; }
+  .sparql-results { margin-top: 20px; }
+  .sparql-results table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .sparql-results th { text-align: left; padding: 8px 12px; background: var(--bg); font-weight: 600; color: var(--text-dim); border-bottom: 2px solid var(--border); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; position: sticky; top: 0; }
+  .sparql-results td { padding: 7px 12px; border-bottom: 1px solid var(--border); color: var(--text); word-break: break-word; }
+  .sparql-results tr:hover td { background: var(--accent-light); }
+  .sparql-results-wrap { max-height: 420px; overflow: auto; border: 1px solid var(--border); border-radius: 10px; }
+  .sparql-results .iri { color: var(--accent); font-size: 0.8rem; }
+  .sparql-results .literal { color: #2b8a3e; }
+  .sparql-error { background: #fff5f5; border: 1px solid #ffc9c9; border-radius: 10px; padding: 14px 18px; color: #c92a2a; font-size: 0.85rem; margin-top: 16px; font-family: monospace; white-space: pre-wrap; }
+  .sparql-count { font-size: 0.8rem; color: var(--text-muted); margin-top: 8px; }
+  .sparql-autocomplete { position: absolute; background: #fff; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); max-height: 200px; overflow-y: auto; z-index: 500; font-size: 0.82rem; display: none; }
+  .sparql-autocomplete div { padding: 6px 12px; cursor: pointer; display: flex; justify-content: space-between; gap: 12px; }
+  .sparql-autocomplete div:hover, .sparql-autocomplete div.active { background: var(--accent-light); color: var(--accent); }
+  .sparql-autocomplete .ac-type { font-size: 0.7rem; color: var(--text-dim); }
+
   /* Responsive */
   @media (max-width: 768px) {
     .hero h1 { font-size: 1.8rem; }
@@ -241,10 +275,10 @@
   <h1>RDF Vendor Landscape</h1>
   <p>Structured knowledge for a world that needs machines to understand meaning, not just store data.</p>
   <div class="stats-bar">
-    <div class="stat"><div class="stat-num" id="stat-total">65</div><div class="stat-label">Vendors</div></div>
+    <div class="stat"><div class="stat-num" id="stat-total">66</div><div class="stat-label">Vendors</div></div>
     <div class="stat"><div class="stat-num" id="stat-db">19</div><div class="stat-label">Databases</div></div>
     <div class="stat"><div class="stat-num" id="stat-fw">23</div><div class="stat-label">Frameworks</div></div>
-    <div class="stat"><div class="stat-num" id="stat-tool">23</div><div class="stat-label">Tools</div></div>
+    <div class="stat"><div class="stat-num" id="stat-tool">24</div><div class="stat-label">Tools</div></div>
     <div class="stat"><div class="stat-num">11</div><div class="stat-label">Benchmarked</div></div>
   </div>
 </div>
@@ -292,9 +326,9 @@
       <div class="bigtech-card">
         <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="Microsoft">
         <div class="bt-info">
-          <div class="bt-name">Microsoft Azure</div>
-          <div class="bt-desc">Cosmos DB offers property graph only (Gremlin API). No native RDF/SPARQL service. You can self-host Fuseki on Azure VMs.</div>
-          <span class="bt-verdict bt-no-rdf">No native RDF support</span>
+          <div class="bt-name">Microsoft Azure / Fabric</div>
+          <div class="bt-desc">Cosmos DB offers property graph only (Gremlin API). Fabric IQ (preview) adds an ontology layer with RDF/XML import/export and OWL class modeling, but queries use GQL/KQL, not SPARQL. No native RDF triple store or SPARQL endpoint.</div>
+          <span class="bt-verdict bt-no-rdf">RDF-adjacent (import/export only)</span>
         </div>
       </div>
       <div class="bigtech-card">
@@ -390,6 +424,7 @@
   <button class="nav-tab" data-section="framework">Frameworks</button>
   <button class="nav-tab" data-section="tool">Tools</button>
   <button class="nav-tab" data-section="benchmark">Benchmark</button>
+  <button class="nav-tab" data-section="sparql">SPARQL</button>
 </div>
 
 <div class="container">
@@ -440,9 +475,10 @@
         <button class="chip" data-std="SPARQL 1.1">SPARQL</button>
         <button class="chip" data-std="OWL 2">OWL 2</button>
         <button class="chip" data-std="SHACL">SHACL</button>
-        <button class="chip" data-std="RDF-star">RDF-star</button>
+        <button class="chip" data-std="RDF 1.2">RDF 1.2</button>
         <button class="chip" data-std="JSON-LD">JSON-LD</button>
         <button class="chip" data-std="LDP">LDP</button>
+        <button class="chip" data-std="Datalog">Datalog</button>
       </div>
     </div>
     <div class="controls">
@@ -508,9 +544,30 @@
   </div>
 </div>
 
+<!-- SPARQL Editor -->
+<div id="sparql-listing" class="hidden">
+  <div class="sparql-section">
+    <div class="sparql-header">
+      <h2>SPARQL Query Editor</h2>
+      <div class="sparql-status" id="sparql-status"><span class="dot-loading"></span> Loading engine...</div>
+    </div>
+    <p style="font-size:0.88rem;color:var(--text-muted);margin:0 0 16px;">Query the vendor landscape data as RDF. The dataset uses <code style="font-size:0.82rem;background:var(--bg);padding:2px 6px;border-radius:4px;">http://data.veronahe.no/</code> as base namespace.</p>
+    <div class="sparql-examples" id="sparql-examples"></div>
+    <div class="sparql-editor-wrap">
+      <textarea class="sparql-editor" id="sparql-editor" spellcheck="false"></textarea>
+      <div class="sparql-autocomplete" id="sparql-ac"></div>
+    </div>
+    <div class="sparql-actions">
+      <button class="sparql-run" id="sparql-run" onclick="runSparql()" disabled>Run Query</button>
+      <span class="sparql-time" id="sparql-time"></span>
+    </div>
+    <div class="sparql-results" id="sparql-results"></div>
+  </div>
+</div>
+
 <footer>
-  <p>RDF Vendor Landscape &middot; Last updated May 2025 &middot; Benchmark data from <a href="https://github.com/">rdf-benchmark</a></p>
-  <p style="margin-top:8px;">Have a correction or want to add a vendor? <a href="mailto:veronika.heim@gmail.com">Get in touch</a></p>
+  <p>RDF Vendor Landscape &middot; Last updated May 2025 &middot; Benchmark data from <a href="https://github.com/DataTreehouse/trainmarks" target="_blank">trainmarks</a></p>
+  <p style="margin-top:8px;">Have a correction or want to add a vendor? <a href="https://github.com/veleda/rdf-vendor-landscape/issues" target="_blank">Get in touch</a></p>
 </footer>
 
 <!-- Compare bar & overlay -->
@@ -531,17 +588,17 @@
 const VENDORS = [
   {"name": "AllegroGraph", "category": "database", "subcategory": "Triple Store", "language": "Common Lisp / Java", "license": "Proprietary (Free Edition available)", "pricing": "Free Edition + Commercial Enterprise", "website": "https://allegrograph.com/", "github": "", "description": "High-performance persistent graph database by Franz Inc. with RDF, SPARQL, RDFS++, Prolog reasoning, and federated queries", "hasDemo": true, "demoUrl": "https://allegrograph.com/agraph/agraph-gruff.html", "hasBenchmark": false, "logoHint": "AllegroGraph Franz Inc logo", "logoUrl": "https://www.google.com/s2/favicons?domain=allegrograph.com&sz=64", "focusAreas": ["Federated queries", "Geospatial", "Prolog reasoning", "SPARQL", "Temporal reasoning"], "speedNote": "Solid performance especially for complex reasoning queries. Geospatial and temporal indexing are fast", "scaleNote": "Handles billions of triples. Multi-master replication for horizontal scaling", "standards": ["JSON-LD", "LDP", "OWL 2", "RDF 1.1", "SHACL", "SPARQL 1.1"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "fast", "scaleTier": "large"},
   {"name": "Amazon Neptune", "category": "database", "subcategory": "Managed Graph Database", "language": "Managed Service", "license": "Proprietary (Cloud Service)", "pricing": "Pay-per-use (from ~$0.348/instance-hour)", "website": "https://aws.amazon.com/neptune/", "github": "", "description": "Fully managed AWS graph database supporting RDF/SPARQL and property graphs with TinkerPop/Gremlin and openCypher", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Amazon Neptune AWS logo", "logoUrl": "https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=64", "focusAreas": ["Gremlin", "Managed cloud service", "SPARQL", "Serverless option", "openCypher"], "speedNote": "Managed service - performance depends on instance size. Competitive but not the fastest per dollar", "scaleNote": "Scales via AWS infrastructure. Serverless option auto-scales. No upper limit on data size", "standards": ["RDF 1.1", "SPARQL 1.1"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "moderate", "scaleTier": "large"},
-  {"name": "AnzoGraph", "category": "database", "subcategory": "Analytical Graph Database", "language": "C++", "license": "Proprietary (Free Edition up to 16GB)", "pricing": "Free Edition (8-16 GB) + Commercial Enterprise", "website": "https://cambridgesemantics.com/", "github": "", "description": "In-memory analytical graph database (originally by Cambridge Semantics, now part of Altair/Siemens) supporting RDF/SPARQL with high-speed analytics on massive datasets. Also known as Altair Graph Studio.", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "AnzoGraph Cambridge Semantics logo", "logoUrl": "https://www.google.com/s2/favicons?domain=cambridgesemantics.com&sz=64", "focusAreas": ["Data integration", "In-memory", "OLAP on graphs", "SPARQL analytics"], "speedNote": "Very fast for analytical/aggregation queries - designed for OLAP-style workloads on graph data", "scaleNote": "In-memory architecture. Free edition limited to 16GB. Scales via distributed memory in enterprise", "standards": ["OWL 2", "RDF 1.1", "RDF-star", "SPARQL 1.1", "SPARQL-star"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "fast", "scaleTier": "large"},
+  {"name": "AnzoGraph", "category": "database", "subcategory": "Analytical Graph Database", "language": "C++", "license": "Proprietary (Free Edition up to 16GB)", "pricing": "Free Edition (8-16 GB) + Commercial Enterprise", "website": "https://cambridgesemantics.com/", "github": "", "description": "In-memory analytical graph database (originally by Cambridge Semantics, now part of Altair/Siemens) supporting RDF/SPARQL with high-speed analytics on massive datasets. Also known as Altair Graph Studio.", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "AnzoGraph Cambridge Semantics logo", "logoUrl": "https://www.google.com/s2/favicons?domain=cambridgesemantics.com&sz=64", "focusAreas": ["Data integration", "In-memory", "OLAP on graphs", "SPARQL analytics"], "speedNote": "Very fast for analytical/aggregation queries - designed for OLAP-style workloads on graph data", "scaleNote": "In-memory architecture. Free edition limited to 16GB. Scales via distributed memory in enterprise", "standards": ["OWL 2", "RDF 1.1", "RDF 1.2", "SPARQL 1.1", "SPARQL 1.2"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "fast", "scaleTier": "large"},
   {"name": "Apache Commons RDF", "category": "framework", "subcategory": "Java Library", "language": "Java", "license": "Apache 2.0", "pricing": "Open Source", "website": "https://commons.apache.org/proper/commons-rdf/", "github": "https://github.com/apache/commons-rdf", "description": "Common Java interfaces for RDF 1.1 providing a type-safe API with implementations for Jena, RDF4J, and JSON-LD. Effectively dormant since 2017, though not formally retired.", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Apache Commons RDF logo", "logoUrl": "https://github.com/apache.png?size=64", "focusAreas": ["Jena/RDF4J interop", "RDF API abstraction", "Type-safe interfaces"], "speedNote": "API layer only - performance depends entirely on the backing implementation (Jena, RDF4J, etc.)", "scaleNote": "No storage - delegates to backing implementation", "standards": ["RDF 1.1"], "region": "Global", "country": "Global", "flag": "🌐", "speedTier": "varies", "scaleTier": "varies"},
-  {"name": "Apache Jena", "category": "framework", "subcategory": "Java Framework", "language": "Java", "license": "Apache 2.0", "pricing": "Open Source", "website": "https://jena.apache.org/", "github": "https://github.com/apache/jena", "description": "Comprehensive Java framework for building Semantic Web and Linked Data applications, with RDF API, SPARQL engine, and OWL reasoning", "hasDemo": false, "demoUrl": null, "hasBenchmark": true, "logoHint": "Apache Jena logo", "logoUrl": "https://github.com/apache.png?size=64", "focusAreas": ["Fuseki server", "OWL reasoning", "RDF API", "SPARQL 1.1", "TDB storage"], "speedNote": "Solid Java performance for I/O and queries. JVM warmup cost but good sustained throughput", "scaleNote": "Mature and proven at scale with TDB2. Handles hundreds of millions of triples in production", "standards": ["JSON-LD", "OWL 2", "RDF 1.1", "RDF-star", "SHACL", "SPARQL 1.1", "SPARQL-star"], "region": "Europe", "country": "UK", "flag": "🇬🇧", "speedTier": "moderate", "scaleTier": "medium"},
-  {"name": "Apache Jena Fuseki", "category": "database", "subcategory": "SPARQL Server", "language": "Java", "license": "Apache 2.0", "pricing": "Open Source", "website": "https://jena.apache.org/documentation/fuseki2/", "github": "https://github.com/apache/jena", "description": "SPARQL server providing RDF data over HTTP with SPARQL 1.1 query/update protocols, integrated with Jena TDB persistent store", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Apache Jena Fuseki logo", "logoUrl": "https://github.com/apache.png?size=64", "focusAreas": ["Graph Store Protocol", "HTTP endpoint", "SPARQL server", "TDB2 storage"], "speedNote": "Same engine as Jena, with HTTP overhead. TDB2 backend gives good persistent storage performance", "scaleNote": "Production-proven with TDB2. Handles hundreds of millions of triples", "standards": ["JSON-LD", "OWL 2", "RDF 1.1", "RDF-star", "SHACL", "SPARQL 1.1", "SPARQL-star"], "region": "Europe", "country": "UK", "flag": "🇬🇧", "speedTier": "moderate", "scaleTier": "large"},
+  {"name": "Apache Jena", "category": "framework", "subcategory": "Java Framework", "language": "Java", "license": "Apache 2.0", "pricing": "Open Source", "website": "https://jena.apache.org/", "github": "https://github.com/apache/jena", "description": "Comprehensive Java framework for building Semantic Web and Linked Data applications, with RDF API, SPARQL engine, and OWL reasoning", "hasDemo": false, "demoUrl": null, "hasBenchmark": true, "logoHint": "Apache Jena logo", "logoUrl": "https://github.com/apache.png?size=64", "focusAreas": ["Fuseki server", "OWL reasoning", "RDF API", "SPARQL 1.1", "TDB storage"], "speedNote": "Solid Java performance for I/O and queries. JVM warmup cost but good sustained throughput", "scaleNote": "Mature and proven at scale with TDB2. Handles hundreds of millions of triples in production", "standards": ["JSON-LD", "OWL 2", "RDF 1.1", "RDF 1.2", "SHACL", "SPARQL 1.1", "SPARQL 1.2"], "region": "Europe", "country": "UK", "flag": "🇬🇧", "speedTier": "moderate", "scaleTier": "medium"},
+  {"name": "Apache Jena Fuseki", "category": "database", "subcategory": "SPARQL Server", "language": "Java", "license": "Apache 2.0", "pricing": "Open Source", "website": "https://jena.apache.org/documentation/fuseki2/", "github": "https://github.com/apache/jena", "description": "SPARQL server providing RDF data over HTTP with SPARQL 1.1 query/update protocols, integrated with Jena TDB persistent store", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Apache Jena Fuseki logo", "logoUrl": "https://github.com/apache.png?size=64", "focusAreas": ["Graph Store Protocol", "HTTP endpoint", "SPARQL server", "TDB2 storage"], "speedNote": "Same engine as Jena, with HTTP overhead. TDB2 backend gives good persistent storage performance", "scaleNote": "Production-proven with TDB2. Handles hundreds of millions of triples", "standards": ["JSON-LD", "OWL 2", "RDF 1.1", "RDF 1.2", "SHACL", "SPARQL 1.1", "SPARQL 1.2"], "region": "Europe", "country": "UK", "flag": "🇬🇧", "speedTier": "moderate", "scaleTier": "large"},
   {"name": "ARC2", "category": "framework", "subcategory": "PHP Library", "language": "PHP", "license": "W3C / GPL", "pricing": "Open Source", "website": "https://github.com/semsol/arc2", "github": "https://github.com/semsol/arc2", "description": "PHP library for working with RDF data including parsing, serializing, storing, and SPARQL querying", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "ARC2 PHP RDF logo", "logoUrl": "https://github.com/semsol.png?size=64", "focusAreas": ["Legacy PHP projects", "MySQL storage", "PHP RDF", "SPARQL"], "speedNote": "Slow by modern standards. PHP + MySQL overhead. Largely superseded by other tools", "scaleNote": "MySQL-backed, limited by PHP memory. Suitable for small datasets only", "standards": ["RDF 1.1", "SPARQL 1.1"], "region": "Europe", "country": "Germany", "flag": "🇩🇪", "speedTier": "slow", "scaleTier": "small"},
-  {"name": "Blazegraph", "category": "database", "subcategory": "Triple Store", "language": "Java", "license": "GPL v2", "pricing": "Open Source (unmaintained since 2020)", "website": "https://blazegraph.com/", "github": "https://github.com/blazegraph/database", "description": "High-performance graph database supporting RDF/SPARQL; powers the Wikidata Query Service. No longer actively maintained (archived 2026).", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Blazegraph logo", "logoUrl": "https://github.com/blazegraph.png?size=64", "focusAreas": ["Full-text search", "High availability", "SPARQL 1.1", "Wikidata"], "speedNote": "Good performance - powers Wikidata Query Service. Optimized for read-heavy workloads", "scaleNote": "Handles billions of triples (proven by Wikidata). Unmaintained since 2020 - no future improvements", "standards": ["RDF 1.1", "RDF-star", "SPARQL 1.1"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "fast", "scaleTier": "large"},
-  {"name": "Comunica", "category": "framework", "subcategory": "JavaScript Query Engine", "language": "TypeScript", "license": "MIT", "pricing": "Open Source", "website": "https://comunica.dev/", "github": "https://github.com/comunica/comunica", "description": "Highly modular meta SPARQL query engine for the Web, querying over heterogeneous Linked Data interfaces", "hasDemo": true, "demoUrl": "https://comunica.dev/docs/query/getting_started/query_browser_app/", "hasBenchmark": false, "logoHint": "Comunica SPARQL query engine logo", "logoUrl": "https://github.com/comunica.png?size=64", "focusAreas": ["Browser-ready", "Federated queries", "Linked Data", "Modular architecture", "SPARQL querying"], "speedNote": "Moderate - JS/TS overhead vs. native engines. Strength is querying heterogeneous sources, not raw speed", "scaleNote": "Designed for federated querying across many small sources, not for querying a single massive dataset", "standards": ["JSON-LD", "LDP", "RDF 1.1", "RDF-star", "SPARQL 1.1", "SPARQL-star"], "region": "Europe", "country": "Belgium", "flag": "🇧🇪", "speedTier": "moderate", "scaleTier": "medium"},
-  {"name": "dotNetRDF", "category": "framework", "subcategory": "C# / .NET Library", "language": "C#", "license": "MIT", "pricing": "Open Source", "website": "https://dotnetrdf.org/", "github": "https://github.com/dotnetrdf/dotnetrdf", "description": "Complete .NET library for parsing, managing, querying, and writing RDF, with SPARQL support and connectors to major triple stores", "hasDemo": false, "demoUrl": null, "hasBenchmark": true, "logoHint": "dotNetRDF logo", "logoUrl": "https://github.com/dotnetrdf.png?size=64", "focusAreas": [".NET ecosystem", "RDF API", "SPARQL", "Triple store connectors"], "speedNote": "Moderate for .NET - pure managed code. I/O is reasonable but SPARQL is slower than Java alternatives", "scaleNote": "In-memory store struggles above ~5M triples. Best as a client library connecting to external stores", "standards": ["JSON-LD", "LDP", "OWL 2", "RDF 1.1", "SPARQL 1.1"], "region": "Europe", "country": "UK", "flag": "🇬🇧", "speedTier": "moderate", "scaleTier": "small"},
+  {"name": "Blazegraph", "category": "database", "subcategory": "Triple Store", "language": "Java", "license": "GPL v2", "pricing": "Open Source (unmaintained since 2020)", "website": "https://blazegraph.com/", "github": "https://github.com/blazegraph/database", "description": "High-performance graph database supporting RDF/SPARQL; powers the Wikidata Query Service. No longer actively maintained (archived 2026).", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Blazegraph logo", "logoUrl": "https://github.com/blazegraph.png?size=64", "focusAreas": ["Full-text search", "High availability", "SPARQL 1.1", "Wikidata"], "speedNote": "Good performance - powers Wikidata Query Service. Optimized for read-heavy workloads", "scaleNote": "Handles billions of triples (proven by Wikidata). Unmaintained since 2020 - no future improvements", "standards": ["RDF 1.1", "SPARQL 1.1"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "fast", "scaleTier": "large"},
+  {"name": "Comunica", "category": "framework", "subcategory": "JavaScript Query Engine", "language": "TypeScript", "license": "MIT", "pricing": "Open Source", "website": "https://comunica.dev/", "github": "https://github.com/comunica/comunica", "description": "Highly modular meta SPARQL query engine for the Web, querying over heterogeneous Linked Data interfaces", "hasDemo": true, "demoUrl": "https://comunica.dev/docs/query/getting_started/query_browser_app/", "hasBenchmark": false, "logoHint": "Comunica SPARQL query engine logo", "logoUrl": "https://github.com/comunica.png?size=64", "focusAreas": ["Browser-ready", "Federated queries", "Linked Data", "Modular architecture", "SPARQL querying"], "speedNote": "Moderate - JS/TS overhead vs. native engines. Strength is querying heterogeneous sources, not raw speed", "scaleNote": "Designed for federated querying across many small sources, not for querying a single massive dataset", "standards": ["JSON-LD", "LDP", "RDF 1.1", "RDF 1.2", "SPARQL 1.1", "SPARQL 1.2"], "region": "Europe", "country": "Belgium", "flag": "🇧🇪", "speedTier": "moderate", "scaleTier": "medium"},
+  {"name": "dotNetRDF", "category": "framework", "subcategory": "C# / .NET Library", "language": "C#", "license": "MIT", "pricing": "Open Source", "website": "https://dotnetrdf.org/", "github": "https://github.com/dotnetrdf/dotnetrdf", "description": "Complete .NET library for parsing, managing, querying, and writing RDF, with SPARQL support and connectors to major triple stores", "hasDemo": false, "demoUrl": null, "hasBenchmark": true, "logoHint": "dotNetRDF logo", "logoUrl": "https://github.com/dotnetrdf.png?size=64", "focusAreas": [".NET ecosystem", "RDF API", "SPARQL", "Triple store connectors"], "speedNote": "Moderate for .NET - pure managed code. I/O is reasonable but SPARQL is slower than Java alternatives", "scaleNote": "In-memory store struggles above ~5M triples. Best as a client library connecting to external stores", "standards": ["JSON-LD", "LDP", "RDF 1.1", "SPARQL 1.1"], "region": "Europe", "country": "UK", "flag": "🇬🇧", "speedTier": "moderate", "scaleTier": "small"},
   {"name": "EasyRdf", "category": "framework", "subcategory": "PHP Library", "language": "PHP", "license": "BSD-3-Clause", "pricing": "Open Source", "website": "https://www.easyrdf.org/", "github": "https://github.com/easyrdf/easyrdf", "description": "PHP library designed to make it easy to consume and produce RDF, with support for multiple serialization formats", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "EasyRdf PHP RDF logo", "logoUrl": "https://github.com/easyrdf.png?size=64", "focusAreas": ["Linked Data consumption", "PHP RDF", "Simple API", "Web development"], "speedNote": "Adequate for PHP web applications. Not performance-oriented", "scaleNote": "Designed for consuming small amounts of Linked Data in web apps, not bulk processing", "standards": ["JSON-LD", "RDF 1.1", "SPARQL 1.1"], "region": "Europe", "country": "UK", "flag": "🇬🇧", "speedTier": "moderate", "scaleTier": "small"},
-  {"name": "Eclipse RDF4J", "category": "framework", "subcategory": "Java Framework", "language": "Java", "license": "Eclipse Public License 2.0", "pricing": "Open Source", "website": "https://rdf4j.org/", "github": "https://github.com/eclipse-rdf4j/rdf4j", "description": "Eclipse framework for processing and handling RDF data, with parsers, triple stores (memory, native, LMDB), SPARQL query engine, and reasoning", "hasDemo": false, "demoUrl": null, "hasBenchmark": true, "logoHint": "Eclipse RDF4J logo", "logoUrl": "https://github.com/eclipse-rdf4j.png?size=64", "focusAreas": ["LMDB backend", "RDF storage", "Reasoning", "SAIL API", "SPARQL 1.1"], "speedNote": "Comparable to Jena for most operations. LMDB store mode improves disk performance significantly", "scaleNote": "Production-grade. LMDB native store handles large datasets well. Used by GraphDB under the hood", "standards": ["JSON-LD", "LDP", "OWL 2", "RDF 1.1", "RDF-star", "SHACL", "SPARQL 1.1", "SPARQL-star"], "region": "Europe", "country": "Netherlands", "flag": "🇳🇱", "speedTier": "moderate", "scaleTier": "medium"},
-  {"name": "GraphDB", "category": "database", "subcategory": "Triple Store", "language": "Java", "license": "Proprietary (Free Edition available)", "pricing": "Free Edition + Commercial Enterprise", "website": "https://www.ontotext.com/products/graphdb/", "github": "", "description": "Enterprise RDF graph database by Ontotext with reasoning, SPARQL support, and a visual workbench; free edition available with limited concurrency", "hasDemo": true, "demoUrl": "https://graphdb.ontotext.com/", "hasBenchmark": true, "logoHint": "Ontotext GraphDB logo", "logoUrl": "https://www.google.com/s2/favicons?domain=ontotext.com&sz=64", "focusAreas": ["Connectors", "Enterprise RDF", "OWL/RDFS reasoning", "SPARQL 1.1", "Visual workbench"], "speedNote": "Moderate - reasoning overhead slows it vs. pure stores. Good for enterprise workloads with inference", "scaleNote": "Enterprise-grade. Handles billions of triples in cluster mode. Free edition limited to single-node", "standards": ["JSON-LD", "LDP", "OWL 2", "RDF 1.1", "RDF-star", "SHACL", "SPARQL 1.1", "SPARQL-star"], "region": "Europe", "country": "Bulgaria", "flag": "🇧🇬", "speedTier": "moderate", "scaleTier": "large"},
+  {"name": "Eclipse RDF4J", "category": "framework", "subcategory": "Java Framework", "language": "Java", "license": "Eclipse Public License 2.0", "pricing": "Open Source", "website": "https://rdf4j.org/", "github": "https://github.com/eclipse-rdf4j/rdf4j", "description": "Eclipse framework for processing and handling RDF data, with parsers, triple stores (memory, native, LMDB), SPARQL query engine, and reasoning", "hasDemo": false, "demoUrl": null, "hasBenchmark": true, "logoHint": "Eclipse RDF4J logo", "logoUrl": "https://github.com/eclipse-rdf4j.png?size=64", "focusAreas": ["LMDB backend", "RDF storage", "Reasoning", "SAIL API", "SPARQL 1.1"], "speedNote": "Comparable to Jena for most operations. LMDB store mode improves disk performance significantly", "scaleNote": "Production-grade. LMDB native store handles large datasets well. Used by GraphDB under the hood", "standards": ["JSON-LD", "LDP", "OWL 2", "RDF 1.1", "RDF 1.2", "SHACL", "SPARQL 1.1", "SPARQL 1.2"], "region": "Europe", "country": "Netherlands", "flag": "🇳🇱", "speedTier": "moderate", "scaleTier": "medium"},
+  {"name": "GraphDB", "category": "database", "subcategory": "Triple Store", "language": "Java", "license": "Proprietary (Free Edition available)", "pricing": "Free Edition + Commercial Enterprise", "website": "https://www.ontotext.com/products/graphdb/", "github": "", "description": "Enterprise RDF graph database by Ontotext with reasoning, SPARQL support, and a visual workbench; free edition available with limited concurrency", "hasDemo": true, "demoUrl": "https://graphdb.ontotext.com/", "hasBenchmark": true, "logoHint": "Ontotext GraphDB logo", "logoUrl": "https://www.google.com/s2/favicons?domain=ontotext.com&sz=64", "focusAreas": ["Connectors", "Enterprise RDF", "OWL/RDFS reasoning", "SPARQL 1.1", "Visual workbench"], "speedNote": "Moderate - reasoning overhead slows it vs. pure stores. Good for enterprise workloads with inference", "scaleNote": "Enterprise-grade. Handles billions of triples in cluster mode. Free edition limited to single-node", "standards": ["JSON-LD", "LDP", "OWL 2", "RDF 1.1", "RDF 1.2", "SHACL", "SPARQL 1.1", "SPARQL 1.2"], "region": "Europe", "country": "Bulgaria", "flag": "🇧🇬", "speedTier": "moderate", "scaleTier": "large"},
   {"name": "graphy.js", "category": "framework", "subcategory": "JavaScript Library", "language": "JavaScript", "license": "ISC", "pricing": "Open Source", "website": "https://graphy.link/", "github": "https://github.com/blake-regalia/graphy.js", "description": "High-performance collection of RDF libraries for JavaScript with streaming parsers/writers for Turtle, N-Triples, N-Quads, and TriG", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "graphy.js JavaScript RDF logo", "logoUrl": "https://www.google.com/s2/favicons?domain=graphy.link&sz=64", "focusAreas": ["RDF parsing", "Streaming I/O", "Turtle/N-Triples/N-Quads/TriG"], "speedNote": "High-performance streaming parser for JavaScript. Claims fastest JS RDF throughput", "scaleNote": "Streaming architecture handles arbitrarily large files. Parser only - no query engine", "standards": ["N3", "RDF 1.1"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "fast", "scaleTier": "medium"},
   {"name": "Gruff", "category": "tool", "subcategory": "Graph Visualization", "language": "Common Lisp", "license": "Proprietary (Free with AllegroGraph)", "pricing": "Free with AllegroGraph", "website": "https://allegrograph.com/products/gruff/", "github": "", "description": "Visual RDF graph browser and query builder by Franz Inc. for exploring and visualizing knowledge graphs stored in AllegroGraph", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Gruff AllegroGraph Franz graph visualization", "logoUrl": "https://www.google.com/s2/favicons?domain=allegrograph.com&sz=64", "focusAreas": ["AllegroGraph integration", "Exploration", "Graph visualization", "Query builder"], "speedNote": "Desktop visualization tool - performance tied to AllegroGraph backend", "scaleNote": "Visualizes subsets of larger graphs - not designed to render millions of nodes", "standards": ["RDF 1.1", "SPARQL 1.1"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "varies", "scaleTier": "varies"},
   {"name": "HDT (Header-Dictionary-Triples)", "category": "framework", "subcategory": "C++ / Java Library", "language": "C++ / Java", "license": "LGPL", "pricing": "Open Source", "website": "https://www.rdfhdt.org/", "github": "https://github.com/rdfhdt", "description": "Compact binary serialization format for RDF that supports efficient storage and triple-pattern querying without decompression", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "HDT RDF compressed format logo", "logoUrl": "https://github.com/rdfhdt.png?size=64", "focusAreas": ["Archival", "Compressed RDF", "Linked Data publishing", "Triple-pattern queries"], "speedNote": "Extremely fast triple-pattern lookups on compressed data. 5-10x smaller than raw Turtle/NT", "scaleNote": "Handles billions of triples in compressed form. Read-only - no updates without rebuilding", "standards": ["RDF 1.1"], "region": "Europe", "country": "Spain", "flag": "🇪🇸", "speedTier": "fast", "scaleTier": "large"},
@@ -549,21 +606,22 @@ const VENDORS = [
   {"name": "isSemantic RDF Visualizer", "category": "tool", "subcategory": "RDF Visualization / Validator", "language": "Web", "license": "Free (Web Service)", "pricing": "Free", "website": "https://issemantic.net/rdf-visualizer", "github": "", "description": "Online RDF graph visualizer supporting Turtle, JSON-LD, TriG, and RDF-star with validation, conversion, and generation features", "hasDemo": true, "demoUrl": "https://issemantic.net/rdf-visualizer", "hasBenchmark": false, "logoHint": "isSemantic RDF visualizer logo", "logoUrl": "https://www.google.com/s2/favicons?domain=issemantic.net&sz=64", "focusAreas": ["Format conversion", "RDF visualization", "RDF-star support", "Validation"], "speedNote": "Browser-based - handles small to medium RDF documents for visualization and validation", "scaleNote": "Client-side tool - suitable for individual documents, not large datasets", "standards": ["RDF 1.1"], "region": "Europe", "country": "Germany", "flag": "🇩🇪", "speedTier": "varies", "scaleTier": "small"},
   {"name": "JSON-LD Playground", "category": "tool", "subcategory": "JSON-LD Editor / Validator", "language": "JavaScript / Web", "license": "BSD-3-Clause", "pricing": "Free (Web Service)", "website": "https://json-ld.org/playground/", "github": "https://github.com/json-ld/json-ld.org", "description": "Interactive online tool for testing JSON-LD documents with expansion, compaction, flattening, framing, and RDF conversion", "hasDemo": true, "demoUrl": "https://json-ld.org/playground/", "hasBenchmark": false, "logoHint": "JSON-LD playground logo", "logoUrl": "https://github.com/json-ld.png?size=64", "focusAreas": ["Expansion/compaction", "Framing", "JSON-LD testing", "RDF conversion"], "speedNote": "Browser-based - instant processing for individual JSON-LD documents", "scaleNote": "Testing tool - not for bulk processing", "standards": ["JSON-LD", "RDF 1.1"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "varies", "scaleTier": "small"},
   {"name": "jsonld.js", "category": "framework", "subcategory": "JavaScript Library", "language": "JavaScript", "license": "BSD-3-Clause", "pricing": "Open Source", "website": "https://json-ld.org/", "github": "https://github.com/digitalbazaar/jsonld.js", "description": "JSON-LD 1.1 processor and API implementation for JavaScript (Node.js and browser)", "hasDemo": true, "demoUrl": "https://json-ld.org/playground/", "hasBenchmark": false, "logoHint": "JSON-LD logo", "logoUrl": "https://github.com/digitalbazaar.png?size=64", "focusAreas": ["Expansion/compaction", "Framing", "JSON-LD processing", "RDF conversion"], "speedNote": "Adequate for JSON-LD operations. Not designed for high-throughput RDF processing", "scaleNote": "Processes individual JSON-LD documents - not a bulk data tool", "standards": ["JSON-LD", "RDF 1.1"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "moderate", "scaleTier": "small"},
-  {"name": "Kolibrie", "category": "database", "subcategory": "SPARQL Database / RDF Stream Engine", "language": "Rust", "license": "MPL 2.0", "pricing": "Open Source", "website": "https://github.com/StreamIntelligenceLab/Kolibrie", "github": "https://github.com/StreamIntelligenceLab/Kolibrie", "description": "SPARQL database, RDF Stream Processing engine, and RDF toolkit with rule-based inference and backward chaining from KU Leuven", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Kolibrie RDF logo", "logoUrl": "https://github.com/StreamIntelligenceLab.png?size=64", "focusAreas": ["Backward chaining", "RDF streaming", "Rule-based reasoning", "SPARQL"], "speedNote": "Very fast I/O and queries - Rust-based. Among the quickest for parsing and simple SPARQL", "scaleNote": "Early-stage project. Performance is promising but production-readiness is still developing", "standards": ["RDF 1.1", "RDF-star", "SPARQL 1.1", "SPARQL-star"], "region": "Europe", "country": "Belgium", "flag": "🇧🇪", "speedTier": "fast", "scaleTier": "medium"},
+  {"name": "Kolibrie", "category": "database", "subcategory": "SPARQL Database / RDF Stream Engine", "language": "Rust", "license": "MPL 2.0", "pricing": "Open Source", "website": "https://github.com/StreamIntelligenceLab/Kolibrie", "github": "https://github.com/StreamIntelligenceLab/Kolibrie", "description": "SPARQL database, RDF Stream Processing engine, and RDF toolkit with rule-based inference and backward chaining from KU Leuven", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Kolibrie RDF logo", "logoUrl": "https://github.com/StreamIntelligenceLab.png?size=64", "focusAreas": ["Backward chaining", "RDF streaming", "Rule-based reasoning", "SPARQL"], "speedNote": "Very fast I/O and queries - Rust-based. Among the quickest for parsing and simple SPARQL", "scaleNote": "Early-stage project. Performance is promising but production-readiness is still developing", "standards": ["RDF 1.1", "SPARQL 1.1"], "region": "Europe", "country": "Belgium", "flag": "🇧🇪", "speedTier": "fast", "scaleTier": "medium"},
   {"name": "Linked Data Fragments Server", "category": "tool", "subcategory": "Linked Data Server", "language": "JavaScript (Node.js)", "license": "MIT", "pricing": "Open Source", "website": "https://linkeddatafragments.org/", "github": "https://github.com/LinkedDataFragments/Server.js", "description": "Server providing Triple Pattern Fragments for low-cost, scalable Linked Data publishing that distributes query load to clients", "hasDemo": true, "demoUrl": "https://linkeddatafragments.org/", "hasBenchmark": false, "logoHint": "Linked Data Fragments logo", "logoUrl": "https://github.com/LinkedDataFragments.png?size=64", "focusAreas": ["Client-side querying", "Decentralized", "Low-cost publishing", "Triple Pattern Fragments"], "speedNote": "Server is lightweight by design - pushes query work to the client. Low server resource usage", "scaleNote": "Designed for scalable publishing - minimal server load even with many concurrent clients", "standards": ["LDP", "RDF 1.1", "SPARQL 1.1"], "region": "Europe", "country": "Belgium", "flag": "🇧🇪", "speedTier": "moderate", "scaleTier": "large"},
-  {"name": "maplib", "category": "framework", "subcategory": "Python/Rust Library + Triple Store (disk mode)", "language": "Python / Rust", "license": "Apache 2.0", "pricing": "Open Source (core) + Commercial (advanced features)", "website": "https://github.com/DataTreehouse/maplib", "github": "https://github.com/DataTreehouse/maplib", "description": "Rust-powered Python library for building, querying, and transforming RDF knowledge graphs from Polars DataFrames using OTTR templates. In-memory or persistent disk-backed triple store. Core mapping, SPARQL, and serialization are open source (Apache 2.0). SHACL validation, Datalog reasoning, and disk mode require a separate proprietary license.", "hasDemo": false, "demoUrl": null, "hasBenchmark": true, "logoHint": "maplib DataTreehouse logo", "logoUrl": "https://github.com/DataTreehouse.png?size=64", "focusAreas": ["Chrontext (multi-modal)", "DataFrame-to-RDF", "Datalog reasoning", "Knowledge graph construction", "OTTR templates", "SHACL validation", "SPARQL", "Triple store"], "speedNote": "Very fast - Rust core with Polars/Arrow gives near-native I/O and sub-second SPARQL on millions of triples", "scaleNote": "In-memory by default (bounded by RAM), but disk mode handles billions of triples for larger-than-memory datasets", "standards": ["OWL 2", "RDF 1.1", "RDF-star", "SHACL", "SPARQL 1.1", "SPARQL-star"], "region": "Europe", "country": "Norway", "flag": "🇳🇴", "speedTier": "fast", "scaleTier": "large"},
+  {"name": "maplib", "category": "framework", "subcategory": "Python/Rust Library + Triple Store (disk mode)", "language": "Python / Rust", "license": "Apache 2.0", "pricing": "Open Source (core) + Commercial (advanced features)", "website": "https://github.com/DataTreehouse/maplib", "github": "https://github.com/DataTreehouse/maplib", "description": "Rust-powered Python library for building, querying, and transforming RDF knowledge graphs from Polars DataFrames using OTTR templates. In-memory or persistent disk-backed triple store. Core mapping, SPARQL, and serialization are open source (Apache 2.0). SHACL validation, Datalog reasoning, and disk mode require a separate proprietary license.", "hasDemo": true, "demoUrl": "https://vimeo.com/1189459767?fl=pl&fe=cm", "hasBenchmark": true, "logoHint": "maplib DataTreehouse logo", "logoUrl": "https://github.com/DataTreehouse.png?size=64", "focusAreas": ["Chrontext (multi-modal)", "DataFrame-to-RDF", "Datalog reasoning", "Knowledge graph construction", "OTTR templates", "SHACL validation", "SPARQL", "Triple store"], "speedNote": "Very fast - Rust core with Polars/Arrow gives near-native I/O and sub-second SPARQL on millions of triples", "scaleNote": "In-memory by default (bounded by RAM), but disk mode handles billions of triples for larger-than-memory datasets", "standards": ["Datalog", "RDF 1.1", "SHACL", "SPARQL 1.1"], "region": "Europe", "country": "Norway", "flag": "🇳🇴", "speedTier": "fast", "scaleTier": "large"},
   {"name": "MarkLogic", "category": "database", "subcategory": "Multi-Model Database", "language": "C++", "license": "Proprietary (Free Developer Edition)", "pricing": "Free Developer Edition + Commercial (from ~$20K)", "website": "https://www.marklogic.com/", "github": "", "description": "Enterprise NoSQL multi-model database natively storing JSON, XML, and RDF triples with SPARQL, full-text search, and AI features", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Progress MarkLogic logo", "logoUrl": "https://www.google.com/s2/favicons?domain=marklogic.com&sz=64", "focusAreas": ["Document + RDF", "Enterprise integration", "Full-text search", "Multi-model", "Security"], "speedNote": "Optimized for mixed document/RDF workloads. SPARQL performance is adequate but not its primary strength", "scaleNote": "Enterprise-grade clustering. Handles very large datasets across distributed nodes", "standards": ["JSON-LD", "RDF 1.1", "SPARQL 1.1"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "moderate", "scaleTier": "large"},
   {"name": "Matey", "category": "tool", "subcategory": "YARRRML Editor", "language": "Web / JavaScript", "license": "MIT", "pricing": "Free (Web Service)", "website": "https://rml.io/yarrrml/matey/", "github": "https://github.com/RMLio/matey", "description": "Web-based editor for writing YARRRML mapping rules with live RDF preview and export to RML", "hasDemo": true, "demoUrl": "https://rml.io/yarrrml/matey/", "hasBenchmark": false, "logoHint": "Matey YARRRML editor logo", "logoUrl": "https://github.com/RMLio.png?size=64", "focusAreas": ["Beginner-friendly", "Live preview", "RML export", "YARRRML editing"], "speedNote": "Browser-based editor - instant preview for small mappings", "scaleNote": "Designed for writing and testing mappings, not production execution", "standards": ["R2RML", "RDF 1.1", "RML"], "region": "Europe", "country": "Belgium", "flag": "🇧🇪", "speedTier": "varies", "scaleTier": "small"},
+  {"name": "metaphactory", "category": "tool", "subcategory": "Knowledge Graph Platform", "language": "Java", "license": "Commercial (Community Edition available)", "pricing": "Community Edition (free) + Commercial Enterprise", "website": "https://metaphacts.com/product", "github": "", "description": "Enterprise knowledge graph platform by metaphacts for building knowledge-driven applications on top of existing triple stores. Low-code UI framework with reusable semantic components, SPARQL editor, LDP support, and graph visualization", "hasDemo": true, "demoUrl": "https://wikidata.metaphacts.com/", "hasBenchmark": false, "logoHint": "metaphacts metaphactory logo", "logoUrl": "https://www.google.com/s2/favicons?domain=metaphacts.com&sz=64", "focusAreas": ["Knowledge graph platform", "LDP support", "Low-code", "SPARQL", "Semantic search"], "speedNote": "Flexible backend — can sit on top of GraphDB, Neptune, Stardog, or its own built-in store. Query speed depends on the chosen backend", "scaleNote": "Scales with the underlying triple store. Proven in large enterprise deployments", "standards": ["JSON-LD", "LDP", "OWL 2", "RDF 1.1", "SHACL", "SKOS", "SPARQL 1.1"], "region": "Europe", "country": "Germany", "flag": "🇩🇪", "speedTier": "moderate", "scaleTier": "large"},
   {"name": "Morph-KGC", "category": "framework", "subcategory": "Python Library (Mapping)", "language": "Python", "license": "Apache 2.0", "pricing": "Open Source", "website": "https://morph-kgc.readthedocs.io/", "github": "https://github.com/morph-kgc/morph-kgc", "description": "Engine for constructing RDF knowledge graphs from heterogeneous data sources using R2RML and RML mapping languages with YARRRML support", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Morph-KGC knowledge graph logo", "logoUrl": "https://github.com/morph-kgc.png?size=64", "focusAreas": ["Heterogeneous data sources", "Knowledge graph construction", "R2RML/RML", "RDF mapping", "YARRRML"], "speedNote": "Good throughput for materialization. Optimized for batch mapping from tabular/JSON/XML sources", "scaleNote": "Handles large mapping jobs well. Designed for ETL pipelines, not runtime querying", "standards": ["CSVW", "R2RML", "RDF 1.1", "RML"], "region": "Europe", "country": "Spain", "flag": "🇪🇸", "speedTier": "moderate", "scaleTier": "medium"},
-  {"name": "N3.js", "category": "framework", "subcategory": "JavaScript Library", "language": "JavaScript / TypeScript", "license": "MIT", "pricing": "Open Source", "website": "https://rdf.js.org/", "github": "https://github.com/rdfjs/N3.js", "description": "Lightning-fast, spec-compatible, streaming RDF parser/writer for JavaScript following the RDF/JS specification", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "N3.js RDF JavaScript logo", "logoUrl": "https://github.com/rdfjs.png?size=64", "focusAreas": ["RDF parsing", "RDF/JS spec", "Streaming parser", "Turtle/N3/N-Quads"], "speedNote": "Fast for JavaScript - streaming architecture keeps memory low. One of the fastest JS RDF parsers", "scaleNote": "Streaming design handles large files well. No SPARQL engine - pair with Comunica for queries", "standards": ["N3", "RDF 1.1", "RDF-star"], "region": "Europe", "country": "Belgium", "flag": "🇧🇪", "speedTier": "fast", "scaleTier": "medium"},
+  {"name": "N3.js", "category": "framework", "subcategory": "JavaScript Library", "language": "JavaScript / TypeScript", "license": "MIT", "pricing": "Open Source", "website": "https://rdf.js.org/", "github": "https://github.com/rdfjs/N3.js", "description": "Lightning-fast, spec-compatible, streaming RDF parser/writer for JavaScript following the RDF/JS specification", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "N3.js RDF JavaScript logo", "logoUrl": "https://github.com/rdfjs.png?size=64", "focusAreas": ["RDF parsing", "RDF/JS spec", "Streaming parser", "Turtle/N3/N-Quads"], "speedNote": "Fast for JavaScript - streaming architecture keeps memory low. One of the fastest JS RDF parsers", "scaleNote": "Streaming design handles large files well. No SPARQL engine - pair with Comunica for queries", "standards": ["N3", "RDF 1.1", "RDF 1.2"], "region": "Europe", "country": "Belgium", "flag": "🇧🇪", "speedTier": "fast", "scaleTier": "medium"},
   {"name": "Neo4j + n10s", "category": "database", "subcategory": "Graph Database + RDF Plugin", "language": "Java", "license": "GPL v3 (Community) / Commercial (Enterprise) + Apache 2.0 (n10s)", "pricing": "Free Community + Commercial Enterprise", "website": "https://neo4j.com/labs/neosemantics/", "github": "https://github.com/neo4j-labs/neosemantics", "description": "Property graph database with the neosemantics (n10s) plugin for RDF import/export, SHACL validation, and ontology mapping", "hasDemo": true, "demoUrl": "https://neo4j.com/sandbox/", "hasBenchmark": true, "logoHint": "Neo4j logo", "logoUrl": "https://github.com/neo4j-labs.png?size=64", "focusAreas": ["Cypher queries", "Graph visualization", "Property graph", "RDF import/export"], "speedNote": "Fast native graph queries via Cypher. RDF import has overhead from property graph conversion", "scaleNote": "Neo4j itself scales very well. The RDF layer (n10s) adds import overhead but queries run at native speed", "standards": ["JSON-LD", "RDF 1.1", "SHACL"], "region": "North America", "country": "Sweden", "flag": "🇸🇪", "speedTier": "fast", "scaleTier": "large", "warning": "Not a semantic graph database - Neo4j is a property graph. RDF triples are converted to labeled property graph structures on import, losing native RDF semantics. No SPARQL support, no OWL reasoning, no semantic inferencing. Consider a native triple store if your use case requires semantic knowledge graphs."},
   {"name": "Ontop", "category": "database", "subcategory": "Virtual Knowledge Graph / OBDA", "language": "Java", "license": "Apache 2.0", "pricing": "Open Source", "website": "https://ontop-vkg.org/", "github": "https://github.com/ontop/ontop", "description": "Open-source Virtual Knowledge Graph system that translates SPARQL queries to SQL over relational databases using R2RML mappings", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Ontop VKG logo", "logoUrl": "https://github.com/ontop.png?size=64", "focusAreas": ["No data duplication", "R2RML mappings", "SPARQL-to-SQL", "Virtual knowledge graph"], "speedNote": "Query speed depends on the underlying SQL database. Translation overhead is minimal for simple queries", "scaleNote": "Scales with the relational database underneath - no data duplication, no separate RDF storage needed", "standards": ["JSON-LD", "OWL 2", "R2RML", "RDF 1.1", "SPARQL 1.1"], "region": "Europe", "country": "Italy", "flag": "🇮🇹", "speedTier": "varies", "scaleTier": "large"},
   {"name": "Ontopic Studio", "category": "tool", "subcategory": "Knowledge Graph Builder / Mapping", "language": "Java / Web", "license": "Commercial (Free Academic)", "pricing": "Commercial + Free Academic License", "website": "https://ontopic.ai/en/ontopic-studio/", "github": "", "description": "Low-code GUI for designing R2RML-compliant mappings for virtual and materialized RDF graphs from relational databases", "hasDemo": true, "demoUrl": "https://ontopic.ai/en/ontopic-studio/", "hasBenchmark": false, "logoHint": "Ontopic Studio logo", "logoUrl": "https://www.google.com/s2/favicons?domain=ontopic.ai&sz=64", "focusAreas": ["Database integration", "Low-code", "R2RML mapping", "Virtual knowledge graphs"], "speedNote": "Visual mapping tool - performance depends on the underlying database and Ontop engine", "scaleNote": "Scales with the relational source - no separate RDF storage", "standards": ["OWL 2", "R2RML", "RDF 1.1", "SPARQL 1.1"], "region": "Europe", "country": "Italy", "flag": "🇮🇹", "speedTier": "varies", "scaleTier": "large"},
   {"name": "OOPS!", "category": "tool", "subcategory": "Ontology Validator", "language": "Java / Web", "license": "Open Source", "pricing": "Free (Web Service)", "website": "https://oops.linkeddata.es/", "github": "https://github.com/oeg-upm/OOPS", "description": "Web-based ontology pitfall scanner that detects common modeling errors and quality issues in OWL/RDF ontologies", "hasDemo": true, "demoUrl": "https://oops.linkeddata.es/", "hasBenchmark": false, "logoHint": "OOPS ontology pitfall scanner logo", "logoUrl": "https://github.com/oeg-upm.png?size=64", "focusAreas": ["Best practices", "Modeling errors", "Ontology quality", "Pitfall detection"], "speedNote": "Web service - analysis typically completes in seconds for normal ontologies", "scaleNote": "Designed for ontology auditing, not data-scale operations", "standards": ["OWL 2", "RDF 1.1"], "region": "Europe", "country": "Spain", "flag": "🇪🇸", "speedTier": "varies", "scaleTier": "small"},
   {"name": "Oracle RDF Graph", "category": "database", "subcategory": "Triple Store (embedded in RDBMS)", "language": "SQL / Java", "license": "Commercial (Oracle Database license)", "pricing": "Commercial (per-processor or named-user-plus)", "website": "https://www.oracle.com/database/graph/", "github": "", "description": "Native RDF graph support built into Oracle Database, storing triples as relational data with full SPARQL 1.1 query/update, RDFS/OWL 2 EL inference, and SHACL validation via an RDF4J adapter. Available on-premise and on Oracle Cloud.", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "oracle", "logoUrl": "https://www.google.com/s2/favicons?domain=oracle.com&sz=64", "focusAreas": ["Enterprise integration", "OWL reasoning", "SHACL validation", "SPARQL", "SQL/RDF hybrid queries", "Triple store"], "speedNote": "Backed by Oracle Database query optimizer; benefits from mature indexing and parallel execution on large datasets", "scaleNote": "Inherits Oracle Database scalability - handles billions of triples in production. RAC clustering for horizontal scaling", "standards": ["JSON-LD", "OWL 2", "RDF 1.1", "SHACL", "SPARQL 1.1"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "fast", "scaleTier": "large"},
   {"name": "Owlready2", "category": "framework", "subcategory": "Python Library", "language": "Python", "license": "LGPL v3", "pricing": "Open Source", "website": "https://owlready2.readthedocs.io/", "github": "https://github.com/pwin/owlready2", "description": "Python module for ontology-oriented programming with transparent access to OWL ontologies, automatic reasoning via HermiT/Pellet", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Owlready2 Python OWL logo", "logoUrl": "https://www.google.com/s2/favicons?domain=owlready2.readthedocs.io&sz=64", "focusAreas": ["HermiT/Pellet", "OWL ontologies", "Python-native", "Reasoning", "SQLite backend"], "speedNote": "Slow for RDF I/O but convenient for ontology work. Automatic reasoning via HermiT/Pellet", "scaleNote": "SQLite backend helps with larger ontologies but still limited by Python performance", "standards": ["OWL 2", "RDF 1.1", "SPARQL 1.1"], "region": "Europe", "country": "France", "flag": "🇫🇷", "speedTier": "slow", "scaleTier": "small"},
-  {"name": "Oxigraph", "category": "database", "subcategory": "Triple Store", "language": "Rust", "license": "Apache 2.0 / MIT", "pricing": "Open Source", "website": "https://github.com/oxigraph/oxigraph", "github": "https://github.com/oxigraph/oxigraph", "description": "SPARQL graph database written in Rust, available as embedded library, standalone server, and Python/JS bindings", "hasDemo": true, "demoUrl": null, "hasBenchmark": true, "logoHint": "Oxigraph logo", "logoUrl": "https://github.com/oxigraph.png?size=64", "focusAreas": ["Embedded database", "Python/JS bindings", "RDF storage", "SPARQL 1.1"], "speedNote": "Good read/write performance from Rust + RocksDB. Mid-pack on SPARQL queries - solid but not the fastest", "scaleNote": "Disk-backed via RocksDB, handles tens of millions of triples well. Not designed for billion-triple scale", "standards": ["RDF 1.1", "RDF-star", "SPARQL 1.1", "SPARQL-star"], "region": "Europe", "country": "France", "flag": "🇫🇷", "speedTier": "fast", "scaleTier": "large"},
-  {"name": "Oxigraph Server", "category": "database", "subcategory": "Standalone SPARQL Server", "language": "Rust", "license": "Apache 2.0 / MIT", "pricing": "Open Source", "website": "https://github.com/oxigraph/oxigraph", "github": "https://github.com/oxigraph/oxigraph", "description": "Standalone SPARQL server built on Oxigraph with HTTP endpoint, Graph Store Protocol support, and built-in YASGUI interface", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Oxigraph server logo", "logoUrl": "https://github.com/oxigraph.png?size=64", "focusAreas": ["Docker-ready", "HTTP endpoint", "Lightweight", "SPARQL server"], "speedNote": "Same Rust engine as Oxigraph library, with minimal HTTP overhead. Good for small to medium deployments", "scaleNote": "Single-node only. Good for millions of triples, not designed for distributed scale", "standards": ["RDF 1.1", "RDF-star", "SPARQL 1.1", "SPARQL-star"], "region": "Europe", "country": "France", "flag": "🇫🇷", "speedTier": "fast", "scaleTier": "large"},
+  {"name": "Oxigraph", "category": "database", "subcategory": "Triple Store", "language": "Rust", "license": "Apache 2.0 / MIT", "pricing": "Open Source", "website": "https://github.com/oxigraph/oxigraph", "github": "https://github.com/oxigraph/oxigraph", "description": "SPARQL graph database written in Rust, available as embedded library, standalone server, and Python/JS bindings", "hasDemo": true, "demoUrl": null, "hasBenchmark": true, "logoHint": "Oxigraph logo", "logoUrl": "https://github.com/oxigraph.png?size=64", "focusAreas": ["Embedded database", "Python/JS bindings", "RDF storage", "SPARQL 1.1"], "speedNote": "Good read/write performance from Rust + RocksDB. Mid-pack on SPARQL queries - solid but not the fastest", "scaleNote": "Disk-backed via RocksDB, handles tens of millions of triples well. Not designed for billion-triple scale", "standards": ["RDF 1.1", "RDF 1.2", "SPARQL 1.1", "SPARQL 1.2"], "region": "Europe", "country": "France", "flag": "🇫🇷", "speedTier": "fast", "scaleTier": "large"},
+  {"name": "Oxigraph Server", "category": "database", "subcategory": "Standalone SPARQL Server", "language": "Rust", "license": "Apache 2.0 / MIT", "pricing": "Open Source", "website": "https://github.com/oxigraph/oxigraph", "github": "https://github.com/oxigraph/oxigraph", "description": "Standalone SPARQL server built on Oxigraph with HTTP endpoint, Graph Store Protocol support, and built-in YASGUI interface", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Oxigraph server logo", "logoUrl": "https://github.com/oxigraph.png?size=64", "focusAreas": ["Docker-ready", "HTTP endpoint", "Lightweight", "SPARQL server"], "speedNote": "Same Rust engine as Oxigraph library, with minimal HTTP overhead. Good for small to medium deployments", "scaleNote": "Single-node only. Good for millions of triples, not designed for distributed scale", "standards": ["RDF 1.1", "RDF 1.2", "SPARQL 1.1", "SPARQL 1.2"], "region": "Europe", "country": "France", "flag": "🇫🇷", "speedTier": "fast", "scaleTier": "large"},
   {"name": "Pellet / Openllet", "category": "tool", "subcategory": "OWL Reasoner", "language": "Java", "license": "AGPL v3 / Commercial", "pricing": "Open Source (AGPL) + Commercial", "website": "https://github.com/Galigator/openllet", "github": "https://github.com/Galigator/openllet", "description": "OWL 2 DL reasoner supporting consistency checking, classification, explanation of inferences, and SPARQL-DL queries", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Pellet Openllet OWL reasoner logo", "logoUrl": "https://www.google.com/s2/favicons?domain=github.com&sz=64", "focusAreas": ["Classification", "Consistency checking", "Explanation", "OWL 2 DL reasoning"], "speedNote": "Comprehensive reasoner but can be slow on large, complex ontologies. Explanation support is unique", "scaleNote": "In-memory reasoning - bounded by ontology complexity more than triple count", "standards": ["OWL 2", "RDF 1.1", "SHACL", "SPARQL 1.1"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "slow", "scaleTier": "small"},
   {"name": "PoolParty", "category": "tool", "subcategory": "Taxonomy / Knowledge Management", "language": "Java / Web", "license": "Commercial", "pricing": "Commercial (from ~$21K/year)", "website": "https://www.poolparty.biz/", "github": "", "description": "Enterprise semantic suite for taxonomy, thesaurus, and ontology management with text mining, linked data publishing, and knowledge modeling", "hasDemo": true, "demoUrl": "https://www.poolparty.biz/", "hasBenchmark": false, "logoHint": "PoolParty Semantic Web Company logo", "logoUrl": "https://www.google.com/s2/favicons?domain=poolparty.biz&sz=64", "focusAreas": ["Enterprise semantic AI", "Knowledge modeling", "Taxonomy management", "Text mining"], "speedNote": "Enterprise platform - optimized for taxonomy workflows, NLP enrichment, and content classification", "scaleNote": "Cloud-native enterprise platform. Handles large organizational taxonomies and content volumes", "standards": ["JSON-LD", "LDP", "OWL 2", "RDF 1.1", "SKOS", "SPARQL 1.1"], "region": "Europe", "country": "Austria", "flag": "🇦🇹", "speedTier": "varies", "scaleTier": "large"},
   {"name": "Protege", "category": "tool", "subcategory": "Ontology Editor", "language": "Java", "license": "BSD 2-Clause", "pricing": "Open Source", "website": "https://protege.stanford.edu/", "github": "https://github.com/protegeproject/protege", "description": "Leading open-source ontology editor from Stanford University with full OWL 2 support, reasoning, and extensive plugin ecosystem", "hasDemo": true, "demoUrl": "https://webprotege.stanford.edu/", "hasBenchmark": false, "logoHint": "Protege Stanford ontology editor logo", "logoUrl": "https://github.com/protegeproject.png?size=64", "focusAreas": ["OWL 2", "Ontology editing", "Plugin ecosystem", "Reasoning", "Visualization"], "speedNote": "Desktop app - responsive for typical ontologies. Can slow down on very large ontologies (>100K axioms)", "scaleNote": "Designed for ontology engineering, not large-scale data processing", "standards": ["OWL 2", "RDF 1.1", "SKOS"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "varies", "scaleTier": "small"},
@@ -572,27 +630,27 @@ const VENDORS = [
   {"name": "Raptor", "category": "framework", "subcategory": "C Library (Parser)", "language": "C", "license": "Apache 2.0 / LGPL / GPL", "pricing": "Open Source", "website": "https://librdf.org/raptor/", "github": "https://github.com/dajobe/raptor", "description": "RDF Parser Toolkit for C providing parsers and serializers for RDF/XML, N-Triples, Turtle, RSS, Atom, and other formats", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Raptor RDF parser logo", "logoUrl": "https://www.google.com/s2/favicons?domain=librdf.org&sz=64", "focusAreas": ["N-Triples", "RDF parsing", "RDF/XML", "Serialization", "Turtle"], "speedNote": "Fast C parser - still one of the quickest for RDF/XML. Battle-tested in production since the 2000s", "scaleNote": "Streaming parser with constant memory usage. Handles arbitrarily large files", "standards": ["RDF 1.1"], "region": "Europe", "country": "UK", "flag": "🇬🇧", "speedTier": "fast", "scaleTier": "medium"},
   {"name": "rdf-ext", "category": "framework", "subcategory": "JavaScript Library", "language": "JavaScript", "license": "MIT", "pricing": "Open Source", "website": "https://rdf.js.org/", "github": "https://github.com/rdf-ext/rdf-ext", "description": "Developer-friendly RDF/JS extension library providing high-level APIs for working with RDF data in JavaScript", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "rdf-ext JavaScript logo", "logoUrl": "https://github.com/rdf-ext.png?size=64", "focusAreas": ["Data pipelines", "Developer experience", "RDF/JS spec", "Stream processing"], "speedNote": "Convenience-focused rather than performance-focused. Good DX, moderate throughput", "scaleNote": "Stream-based pipelines handle moderate data. Not for high-volume production", "standards": ["JSON-LD", "N3", "RDF 1.1"], "region": "North America", "country": "Switzerland", "flag": "🇨🇭", "speedTier": "moderate", "scaleTier": "small"},
   {"name": "RDF4J Workbench", "category": "tool", "subcategory": "SPARQL Workbench", "language": "Java / Web", "license": "Eclipse Public License 2.0", "pricing": "Open Source", "website": "https://rdf4j.org/documentation/tools/server-workbench/", "github": "https://github.com/eclipse-rdf4j/rdf4j", "description": "Web-based administration and query interface for Eclipse RDF4J Server with repository management, SPARQL queries, and data exploration", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "RDF4J Workbench Eclipse logo", "logoUrl": "https://github.com/eclipse-rdf4j.png?size=64", "focusAreas": ["Data exploration", "RDF4J administration", "Repository management", "SPARQL queries"], "speedNote": "Web UI - query performance depends on the RDF4J repository backend", "scaleNote": "Admin tool - scales with the underlying RDF4J server", "standards": ["JSON-LD", "RDF 1.1", "SPARQL 1.1"], "region": "Europe", "country": "Netherlands", "flag": "🇳🇱", "speedTier": "varies", "scaleTier": "varies"},
-  {"name": "rdflib", "category": "framework", "subcategory": "Python Library", "language": "Python", "license": "BSD-3-Clause", "pricing": "Open Source", "website": "https://rdflib.dev/", "github": "https://github.com/RDFLib/rdflib", "description": "Pure Python library for working with RDF, including parsers/serializers for various formats, a graph interface, and a SPARQL engine", "hasDemo": false, "demoUrl": null, "hasBenchmark": true, "logoHint": "rdflib Python RDF logo", "logoUrl": "https://github.com/RDFLib.png?size=64", "focusAreas": ["Education", "Prototyping", "RDF parsing", "SPARQL", "Serialization"], "speedNote": "Slow - pure Python, 10-100x slower than native alternatives. Fine for small datasets and prototyping", "scaleNote": "Struggles above ~1M triples due to memory and CPU. Not suitable for production-scale workloads", "standards": ["JSON-LD", "N3", "RDF 1.1", "RDF-star", "SPARQL 1.1"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "slow", "scaleTier": "small"},
-  {"name": "RDFox", "category": "database", "subcategory": "In-Memory Triple Store / Reasoner", "language": "C++", "license": "Commercial (Academic license available)", "pricing": "Commercial + Free Academic License", "website": "https://www.oxfordsemantic.tech/", "github": "", "description": "High-performance in-memory knowledge graph by Oxford Semantic Technologies (Samsung) with incremental reasoning and Datalog support", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "RDFox Oxford Semantic Technologies logo", "logoUrl": "https://www.google.com/s2/favicons?domain=oxfordsemantic.tech&sz=64", "focusAreas": ["Datalog", "High-performance", "In-memory reasoning", "Incremental materialization"], "speedNote": "Extremely fast - among the fastest triple stores for both loading and querying with reasoning", "scaleNote": "In-memory, so bounded by RAM. Designed for high-performance reasoning, not raw storage scale", "standards": ["OWL 2", "RDF 1.1", "RDF-star", "SHACL", "SPARQL 1.1", "SPARQL-star"], "region": "Europe", "country": "UK", "flag": "🇬🇧", "speedTier": "fast", "scaleTier": "medium"},
+  {"name": "rdflib", "category": "framework", "subcategory": "Python Library", "language": "Python", "license": "BSD-3-Clause", "pricing": "Open Source", "website": "https://rdflib.dev/", "github": "https://github.com/RDFLib/rdflib", "description": "Pure Python library for working with RDF, including parsers/serializers for various formats, a graph interface, and a SPARQL engine", "hasDemo": false, "demoUrl": null, "hasBenchmark": true, "logoHint": "rdflib Python RDF logo", "logoUrl": "https://github.com/RDFLib.png?size=64", "focusAreas": ["Education", "Prototyping", "RDF parsing", "SPARQL", "Serialization"], "speedNote": "Slow - pure Python, 10-100x slower than native alternatives. Fine for small datasets and prototyping", "scaleNote": "Struggles above ~1M triples due to memory and CPU. Not suitable for production-scale workloads", "standards": ["JSON-LD", "N3", "RDF 1.1", "SPARQL 1.1"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "slow", "scaleTier": "small"},
+  {"name": "RDFox", "category": "database", "subcategory": "In-Memory Triple Store / Reasoner", "language": "C++", "license": "Commercial (Academic license available)", "pricing": "Commercial + Free Academic License", "website": "https://www.oxfordsemantic.tech/", "github": "", "description": "High-performance in-memory knowledge graph by Oxford Semantic Technologies (Samsung) with incremental reasoning and Datalog support", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "RDFox Oxford Semantic Technologies logo", "logoUrl": "https://www.google.com/s2/favicons?domain=oxfordsemantic.tech&sz=64", "focusAreas": ["Datalog", "High-performance", "In-memory reasoning", "Incremental materialization"], "speedNote": "Extremely fast - among the fastest triple stores for both loading and querying with reasoning", "scaleNote": "In-memory, so bounded by RAM. Designed for high-performance reasoning, not raw storage scale", "standards": ["Datalog", "OWL 2", "RDF 1.1", "RDF 1.2", "SHACL", "SPARQL 1.1", "SPARQL 1.2"], "region": "Europe", "country": "UK", "flag": "🇬🇧", "speedTier": "fast", "scaleTier": "medium"},
   {"name": "RDFSharp", "category": "framework", "subcategory": "C# / .NET Library", "language": "C#", "license": "Apache 2.0", "pricing": "Open Source", "website": "https://github.com/mdesalvo/RDFSharp", "github": "https://github.com/mdesalvo/RDFSharp", "description": "Lightweight .NET library for Semantic Web applications supporting RDF modeling, SPARQL querying, SHACL validation, and SKOS", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "RDFSharp .NET logo", "logoUrl": "https://www.google.com/s2/favicons?domain=github.com&sz=64", "focusAreas": [".NET ecosystem", "RDF modeling", "SHACL validation", "SKOS", "SPARQL"], "speedNote": "Moderate .NET performance. Lighter weight than dotNetRDF with simpler API", "scaleNote": "In-memory graph - suitable for small to moderate datasets", "standards": ["OWL 2", "RDF 1.1", "SHACL", "SPARQL 1.1"], "region": "Europe", "country": "Italy", "flag": "🇮🇹", "speedTier": "moderate", "scaleTier": "medium"},
   {"name": "Redland (librdf)", "category": "framework", "subcategory": "C Library", "language": "C", "license": "Apache 2.0 / LGPL / GPL", "pricing": "Open Source", "website": "https://librdf.org/", "github": "https://github.com/dajobe/librdf", "description": "Modular C libraries providing RDF graph API (librdf), parser/serializer (Raptor), and SPARQL query engine (Rasqal) with bindings for many languages", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Redland librdf RDF logo", "logoUrl": "https://www.google.com/s2/favicons?domain=librdf.org&sz=64", "focusAreas": ["C library", "Language bindings", "Multiple storage backends", "RDF API"], "speedNote": "Native C performance for parsing - historically fast. Showing its age vs. modern Rust alternatives", "scaleNote": "Multiple storage backends (BDB, MySQL, PostgreSQL) offer different scale characteristics", "standards": ["RDF 1.1", "SPARQL 1.1"], "region": "Europe", "country": "UK", "flag": "🇬🇧", "speedTier": "fast", "scaleTier": "medium"},
   {"name": "RMLMapper", "category": "tool", "subcategory": "RDF Mapping Tool", "language": "Java", "license": "MIT", "pricing": "Open Source", "website": "https://rml.io/", "github": "https://github.com/RMLio/rmlmapper-java", "description": "Reference implementation of the RML specification for generating RDF from heterogeneous data sources (CSV, JSON, XML, databases)", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "RMLMapper RML.io logo", "logoUrl": "https://github.com/RMLio.png?size=64", "focusAreas": ["CSV/JSON/XML to RDF", "Data transformation", "R2RML compatible", "RML mapping"], "speedNote": "Moderate throughput for mapping. Java-based with room for optimization on large sources", "scaleNote": "Handles moderate-sized mapping jobs. For very large sources, consider streaming alternatives", "standards": ["R2RML", "RDF 1.1", "RML"], "region": "Europe", "country": "Belgium", "flag": "🇧🇪", "speedTier": "moderate", "scaleTier": "medium"},
   {"name": "SAP HANA Cloud KGE", "category": "database", "subcategory": "Knowledge Graph Engine (in-database)", "language": "SQL / Java", "license": "Commercial (SAP HANA Cloud subscription)", "pricing": "Commercial (consumption-based cloud pricing)", "website": "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-graph-reference/knowledge-graph-engine-kge", "github": "", "description": "RDF triple store and SPARQL engine built into SAP HANA Cloud, with RDFS/OWL reasoning and SHACL validation. Launched in 2025 as part of SAP's push into enterprise knowledge graphs.", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "sap", "logoUrl": "https://www.google.com/s2/favicons?domain=sap.com&sz=64", "focusAreas": ["Enterprise ERP integration", "In-database processing", "OWL reasoning", "SHACL validation", "SPARQL", "Triple store"], "speedNote": "Runs inside HANA's in-memory columnar engine; designed for fast analytical and graph queries at enterprise scale", "scaleNote": "Cloud-native with SAP HANA Cloud scaling. Aimed at enterprise datasets integrated with SAP business data", "standards": ["OWL 2", "RDF 1.1", "SHACL", "SPARQL 1.1"], "region": "Europe", "country": "Germany", "flag": "🇩🇪", "speedTier": "fast", "scaleTier": "large"},
   {"name": "SHACL Playground", "category": "tool", "subcategory": "SHACL Validator", "language": "JavaScript / Web", "license": "Open Source", "pricing": "Free (Web Service)", "website": "https://shacl.org/playground/", "github": "", "description": "Online interactive tool for testing and validating SHACL shapes against RDF data graphs directly in the browser", "hasDemo": true, "demoUrl": "https://shacl.org/playground/", "hasBenchmark": false, "logoHint": "SHACL playground validator logo", "logoUrl": "https://www.google.com/s2/favicons?domain=shacl.org&sz=64", "focusAreas": ["Interactive testing", "SHACL validation", "Shape debugging"], "speedNote": "Browser-based - instant validation for small shapes and data graphs", "scaleNote": "Designed for testing, not production validation", "standards": ["RDF 1.1", "SHACL"], "region": "Europe", "country": "Germany", "flag": "🇩🇪", "speedTier": "varies", "scaleTier": "small"},
   {"name": "Sophia", "category": "framework", "subcategory": "Rust Library", "language": "Rust", "license": "Apache 2.0 / MIT", "pricing": "Open Source", "website": "https://docs.rs/sophia", "github": "https://github.com/pchampin/sophia_rs", "description": "Rust toolkit for RDF 1.2 and Linked Data providing a generic API with traits for graphs, datasets, parsers, and serializers", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Sophia Rust RDF logo", "logoUrl": "https://www.google.com/s2/favicons?domain=docs.rs&sz=64", "focusAreas": ["Generic API", "RDF 1.2", "Rust toolkit", "Type-safe graph operations"], "speedNote": "Rust performance for parsing and graph operations. Less mature than Oxigraph but promising", "scaleNote": "In-memory by default. Good for moderate datasets where type safety and API design matter", "standards": ["RDF 1.1"], "region": "Europe", "country": "France", "flag": "🇫🇷", "speedTier": "fast", "scaleTier": "medium"},
-  {"name": "Stardog", "category": "database", "subcategory": "Knowledge Graph Platform", "language": "Java", "license": "Commercial (Free tier available)", "pricing": "Stardog Free (1-year renewable license) + Commercial Enterprise", "website": "https://www.stardog.com/", "github": "", "description": "Enterprise knowledge graph platform combining graph database with AI toolkit, supporting SPARQL, GraphQL, and OWL reasoning", "hasDemo": true, "demoUrl": "https://www.stardog.com/studio/", "hasBenchmark": false, "logoHint": "Stardog knowledge graph logo", "logoUrl": "https://www.google.com/s2/favicons?domain=stardog.com&sz=64", "focusAreas": ["Enterprise AI", "GraphQL", "Knowledge graph platform", "OWL reasoning", "Virtual graphs"], "speedNote": "Good query performance with reasoning enabled. Virtual graph feature avoids data duplication", "scaleNote": "Enterprise-proven, handles billions of triples in cluster deployments", "standards": ["JSON-LD", "LDP", "OWL 2", "R2RML", "RDF 1.1", "RDF-star", "SHACL", "SKOS", "SPARQL 1.1", "SPARQL-star"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "moderate", "scaleTier": "large"},
+  {"name": "Stardog", "category": "database", "subcategory": "Knowledge Graph Platform", "language": "Java", "license": "Commercial (Free tier available)", "pricing": "Stardog Free (1-year renewable license) + Commercial Enterprise", "website": "https://www.stardog.com/", "github": "", "description": "Enterprise knowledge graph platform combining graph database with AI toolkit, supporting SPARQL, GraphQL, and OWL reasoning", "hasDemo": true, "demoUrl": "https://www.stardog.com/studio/", "hasBenchmark": false, "logoHint": "Stardog knowledge graph logo", "logoUrl": "https://www.google.com/s2/favicons?domain=stardog.com&sz=64", "focusAreas": ["Enterprise AI", "GraphQL", "Knowledge graph platform", "OWL reasoning", "Virtual graphs"], "speedNote": "Good query performance with reasoning enabled. Virtual graph feature avoids data duplication", "scaleNote": "Enterprise-proven, handles billions of triples in cluster deployments", "standards": ["JSON-LD", "LDP", "OWL 2", "R2RML", "RDF 1.1", "RDF 1.2", "SHACL", "SKOS", "SPARQL 1.1", "SPARQL 1.2"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "moderate", "scaleTier": "large"},
   {"name": "Tentris", "category": "database", "subcategory": "Triple Store / SPARQL Engine", "language": "C++", "license": "Research License / Commercial", "pricing": "Free (research) + Commercial", "website": "https://dice-research.org/Tentris/", "github": "https://github.com/dice-group/tentris", "description": "High-performance tensor-based RDF triple store from the DICE research group (Paderborn University) using worst-case optimal joins for fast SPARQL query processing.", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "dice-group", "logoUrl": "https://github.com/dice-group.png?size=64", "focusAreas": ["SPARQL", "Tensor-based indexing", "Triple store", "Worst-case optimal joins"], "speedNote": "Very fast SPARQL processing through tensor-based storage and worst-case optimal join algorithms", "scaleNote": "Disk-based with persistent indexing; designed for large-scale RDF datasets", "standards": ["RDF 1.1", "SPARQL 1.1"], "region": "Europe", "country": "Germany", "flag": "🇩🇪", "speedTier": "fast", "scaleTier": "large"},
   {"name": "Titanium JSON-LD", "category": "framework", "subcategory": "Java Library", "language": "Java", "license": "Apache 2.0", "pricing": "Open Source", "website": "https://github.com/filip26/titanium-json-ld", "github": "https://github.com/filip26/titanium-json-ld", "description": "JSON-LD 1.1 processor and API for Java supporting expansion, compaction, flattening, framing, and RDF conversion", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Titanium JSON-LD Java logo", "logoUrl": "https://www.google.com/s2/favicons?domain=github.com&sz=64", "focusAreas": ["Expansion/compaction/framing", "JSON-LD 1.1", "Java processing"], "speedNote": "Fast Java JSON-LD processing. Focused and optimized for the JSON-LD spec", "scaleNote": "Document-level processing - not a bulk data tool", "standards": ["JSON-LD", "RDF 1.1"], "region": "Europe", "country": "Czech Republic", "flag": "🇨🇿", "speedTier": "fast", "scaleTier": "medium"},
   {"name": "TopBraid Composer", "category": "tool", "subcategory": "Ontology IDE", "language": "Java (Eclipse-based)", "license": "Commercial (Free Maestro Edition)", "pricing": "Free Maestro Edition + Commercial", "website": "https://www.topquadrant.com/", "github": "", "description": "Enterprise-class IDE for RDFS/OWL modeling, SHACL validation, SPARQL editing, and semantic application development by TopQuadrant", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "TopBraid Composer TopQuadrant logo", "logoUrl": "https://www.google.com/s2/favicons?domain=topquadrant.com&sz=64", "focusAreas": ["Enterprise modeling", "Ontology IDE", "SHACL", "SPARQL editing"], "speedNote": "Full-featured IDE with good performance for modeling tasks", "scaleNote": "Desktop tool - suited for ontology engineering, not large-scale data processing", "standards": ["JSON-LD", "OWL 2", "RDF 1.1", "SHACL", "SKOS", "SPARQL 1.1"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "varies", "scaleTier": "medium"},
   {"name": "TopBraid EDG", "category": "tool", "subcategory": "Data Governance Platform", "language": "Java / Web", "license": "Commercial", "pricing": "Commercial (contact for pricing)", "website": "https://www.topquadrant.com/topbraid-edg/", "github": "", "description": "Enterprise data governance platform built on RDF knowledge graphs for metadata, vocabulary, reference data, and business glossary management", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "TopBraid EDG TopQuadrant logo", "logoUrl": "https://www.google.com/s2/favicons?domain=topquadrant.com&sz=64", "focusAreas": ["Business glossaries", "Data governance", "Enterprise", "Metadata management", "Vocabularies"], "speedNote": "Enterprise platform - performance tuned for governance workflows, not raw RDF processing", "scaleNote": "Enterprise-grade with support for large organizational vocabularies and metadata", "standards": ["JSON-LD", "OWL 2", "RDF 1.1", "SHACL", "SKOS", "SPARQL 1.1"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "varies", "scaleTier": "large"},
   {"name": "TopBraid SHACL API", "category": "framework", "subcategory": "Java Library (Validator)", "language": "Java", "license": "Apache 2.0", "pricing": "Open Source", "website": "https://github.com/TopQuadrant/shacl", "github": "https://github.com/TopQuadrant/shacl", "description": "Open-source Java SHACL implementation based on Apache Jena for constraint checking and rule-based inference", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "TopBraid SHACL API logo", "logoUrl": "https://github.com/TopQuadrant.png?size=64", "focusAreas": ["Java API", "Jena integration", "SHACL rules", "SHACL validation"], "speedNote": "Good Java performance for validation. Efficient for programmatic SHACL checking in pipelines", "scaleNote": "Scales with Jena - suitable for production validation workloads", "standards": ["RDF 1.1", "SHACL", "SPARQL 1.1"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "fast", "scaleTier": "medium"},
   {"name": "Turtle Web Editor", "category": "tool", "subcategory": "RDF Editor", "language": "JavaScript / Web", "license": "MIT", "pricing": "Free (Web Service)", "website": "https://felixlohmeier.github.io/turtle-web-editor/", "github": "https://github.com/felixlohmeier/turtle-web-editor", "description": "Browser-based Turtle syntax editor with syntax highlighting, validation, and prefix autocompletion for writing RDF", "hasDemo": true, "demoUrl": "https://felixlohmeier.github.io/turtle-web-editor/", "hasBenchmark": false, "logoHint": "Turtle web editor RDF logo", "logoUrl": "https://www.google.com/s2/favicons?domain=felixlohmeier.github.io&sz=64", "focusAreas": ["Prefix autocompletion", "Syntax highlighting", "Turtle editing", "Validation"], "speedNote": "Browser-based editor - responsive for typical Turtle files", "scaleNote": "Designed for editing, not processing large files", "standards": ["RDF 1.1"], "region": "Europe", "country": "Germany", "flag": "🇩🇪", "speedTier": "varies", "scaleTier": "small"},
-  {"name": "Virtuoso", "category": "database", "subcategory": "Triple Store / Multi-Model", "language": "C", "license": "GPL v2 (Open Source) / Commercial", "pricing": "Open Source + Commercial", "website": "https://virtuoso.openlinksw.com/", "github": "https://github.com/openlink/virtuoso-opensource", "description": "High-performance multi-model RDBMS, data integration middleware, and linked data deployment platform by OpenLink Software", "hasDemo": false, "demoUrl": null, "hasBenchmark": true, "logoHint": "OpenLink Virtuoso logo", "logoUrl": "https://github.com/openlink.png?size=64", "focusAreas": ["Linked Data publishing", "Multi-model", "SPARQL 1.1", "SQL + SPARQL hybrid"], "speedNote": "Fast ingestion and good query performance. Column store architecture helps analytical queries", "scaleNote": "Battle-tested at scale - powers DBpedia and many LOD endpoints. Handles billions of triples", "standards": ["JSON-LD", "LDP", "OWL 2", "RDF 1.1", "SPARQL 1.1"], "region": "Europe", "country": "UK", "flag": "🇬🇧", "speedTier": "fast", "scaleTier": "large"},
+  {"name": "Virtuoso", "category": "database", "subcategory": "Triple Store / Multi-Model", "language": "C", "license": "GPL v2 (Open Source) / Commercial", "pricing": "Open Source + Commercial", "website": "https://virtuoso.openlinksw.com/", "github": "https://github.com/openlink/virtuoso-opensource", "description": "High-performance multi-model RDBMS, data integration middleware, and linked data deployment platform by OpenLink Software", "hasDemo": false, "demoUrl": null, "hasBenchmark": true, "logoHint": "OpenLink Virtuoso logo", "logoUrl": "https://github.com/openlink.png?size=64", "focusAreas": ["Linked Data publishing", "Multi-model", "SPARQL 1.1", "SQL + SPARQL hybrid"], "speedNote": "Fast ingestion and good query performance. Column store architecture helps analytical queries", "scaleNote": "Battle-tested at scale - powers DBpedia and many LOD endpoints. Handles billions of triples", "standards": ["JSON-LD", "LDP", "RDF 1.1", "SPARQL 1.1"], "region": "Europe", "country": "UK", "flag": "🇬🇧", "speedTier": "fast", "scaleTier": "large"},
   {"name": "W3C RDF Validator", "category": "tool", "subcategory": "RDF Validator", "language": "Web", "license": "Free (Web Service)", "pricing": "Free", "website": "https://www.w3.org/RDF/Validator/", "github": "", "description": "Official W3C service for checking and visualizing RDF/XML documents, generating triple listings and graph diagrams", "hasDemo": true, "demoUrl": "https://www.w3.org/RDF/Validator/", "hasBenchmark": false, "logoHint": "W3C RDF validator logo", "logoUrl": "https://www.google.com/s2/favicons?domain=w3.org&sz=64", "focusAreas": ["Graph visualization", "RDF/XML validation", "Triple listing"], "speedNote": "Simple web service - validates small RDF/XML documents quickly", "scaleNote": "Testing tool - paste or URL input only", "standards": ["RDF 1.1"], "region": "Global", "country": "Global", "flag": "🌐", "speedTier": "varies", "scaleTier": "small"},
   {"name": "WebProtege", "category": "tool", "subcategory": "Collaborative Ontology Editor", "language": "Java / Web", "license": "BSD 2-Clause", "pricing": "Open Source / Free hosted", "website": "https://webprotege.stanford.edu/", "github": "https://github.com/protegeproject/webprotege", "description": "Web-based collaborative ontology editor from Stanford with sharing, discussion threads, change tracking, and revision history", "hasDemo": true, "demoUrl": "https://webprotege.stanford.edu/", "hasBenchmark": false, "logoHint": "WebProtege Stanford logo", "logoUrl": "https://github.com/protegeproject.png?size=64", "focusAreas": ["Change tracking", "Collaborative editing", "Discussion threads", "Web-based"], "speedNote": "Web-based - responsive for normal-sized ontologies. Simpler than desktop Protege", "scaleNote": "Designed for collaborative ontology development, not large data", "standards": ["OWL 2", "RDF 1.1"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "varies", "scaleTier": "small"},
   {"name": "WebVOWL", "category": "tool", "subcategory": "Ontology Visualization", "language": "JavaScript", "license": "MIT", "pricing": "Open Source", "website": "https://service.tib.eu/webvowl/", "github": "https://github.com/VisualDataWeb/WebVOWL", "description": "Web application for interactive visualization of ontologies using the VOWL notation with force-directed graph layout", "hasDemo": true, "demoUrl": "https://service.tib.eu/webvowl/", "hasBenchmark": false, "logoHint": "WebVOWL ontology visualization logo", "logoUrl": "https://github.com/VisualDataWeb.png?size=64", "focusAreas": ["Force-directed layout", "Interactive", "Ontology visualization", "VOWL notation"], "speedNote": "Responsive for small-to-medium ontologies. Force-directed layout slows with many classes (>500)", "scaleNote": "Browser-based visualization - best for ontologies under a few hundred classes", "standards": ["OWL 2", "RDF 1.1"], "region": "Europe", "country": "Germany", "flag": "🇩🇪", "speedTier": "varies", "scaleTier": "small"},
   {"name": "YASGUI", "category": "tool", "subcategory": "SPARQL Editor", "language": "TypeScript", "license": "MIT", "pricing": "Open Source", "website": "https://yasgui.triply.cc/", "github": "https://github.com/TriplyDB/Yasgui", "description": "Popular web-based SPARQL query editor and result visualizer with syntax highlighting, autocompletion, and multiple output formats", "hasDemo": true, "demoUrl": "https://yasgui.triply.cc/", "hasBenchmark": false, "logoHint": "YASGUI SPARQL editor Triply logo", "logoUrl": "https://github.com/TriplyDB.png?size=64", "focusAreas": ["Autocomplete", "Embeddable", "Result visualization", "SPARQL editor"], "speedNote": "Browser-based editor - query speed depends entirely on the SPARQL endpoint, not YASGUI itself", "scaleNote": "Client-side tool - no data storage", "standards": ["SPARQL 1.1"], "region": "Europe", "country": "Netherlands", "flag": "🇳🇱", "speedTier": "varies", "scaleTier": "varies"},
-  {"name": "Zazuko Ontology Editor", "category": "tool", "subcategory": "Ontology Editor", "language": "Web / GitHub-based", "license": "Commercial / Open Source", "pricing": "Free (hosted)", "website": "https://zazuko.com/products/ontology-editor/", "github": "", "description": "Web-based collaborative ontology editor backed by GitHub for version control, producing Turtle format ontology definitions", "hasDemo": true, "demoUrl": "https://editor.zazuko.com/", "hasBenchmark": false, "logoHint": "Zazuko ontology editor logo", "logoUrl": "https://www.google.com/s2/favicons?domain=zazuko.com&sz=64", "focusAreas": ["Collaborative editing", "GitHub-backed", "Turtle output", "Version control"], "speedNote": "Web-based editor - responsive for typical ontologies", "scaleNote": "Designed for ontology editing, not data processing", "standards": ["OWL 2", "RDF 1.1", "SHACL"], "region": "Europe", "country": "Switzerland", "flag": "🇨🇭", "speedTier": "varies", "scaleTier": "small"},
+  {"name": "Zazuko Ontology Editor", "category": "tool", "subcategory": "Ontology Editor", "language": "Web / GitHub-based", "license": "Commercial / Open Source", "pricing": "Free (hosted)", "website": "https://zazuko.com/products/ontology-editor/", "github": "", "description": "Web-based collaborative ontology editor backed by GitHub for version control, producing Turtle format ontology definitions", "hasDemo": true, "demoUrl": "https://editor.zazuko.com/", "hasBenchmark": false, "logoHint": "Zazuko ontology editor logo", "logoUrl": "https://www.google.com/s2/favicons?domain=zazuko.com&sz=64", "focusAreas": ["Collaborative editing", "GitHub-backed", "Turtle output", "Version control"], "speedNote": "Web-based editor - responsive for typical ontologies", "scaleNote": "Designed for ontology editing, not data processing", "standards": ["RDF 1.1", "SHACL"], "region": "Europe", "country": "Switzerland", "flag": "🇨🇭", "speedTier": "varies", "scaleTier": "small"},
   {"name": "Zazuko Trifid", "category": "tool", "subcategory": "Linked Data Server", "language": "JavaScript (Node.js)", "license": "Apache 2.0", "pricing": "Open Source", "website": "https://zazuko.com/products/trifid/", "github": "https://github.com/zazuko/trifid", "description": "Lightweight Linked Data server and proxy for dereferencing URIs over HTTP with built-in SPARQL proxy, YASGUI, and graph explorer", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Zazuko Trifid linked data logo", "logoUrl": "https://github.com/zazuko.png?size=64", "focusAreas": ["Content negotiation", "Linked Data publishing", "SPARQL proxy", "URI dereferencing"], "speedNote": "Lightweight Node.js server - fast for serving individual resources. Proxies to backend SPARQL store", "scaleNote": "Proxy architecture - scales with the backing triple store", "standards": ["JSON-LD", "LDP", "RDF 1.1", "SPARQL 1.1"], "region": "Europe", "country": "Switzerland", "flag": "🇨🇭", "speedTier": "moderate", "scaleTier": "medium"},
 ];
 
@@ -1008,7 +1066,7 @@ const FW_COLORS = {
 const OP_LABELS = {
   read_turtle: 'Read TTL', write_turtle: 'Write TTL', read_ntriples: 'Read NT', write_ntriples: 'Write NT',
   query_q1_count: 'Q1 COUNT', query_q2_customer_orders: 'Q2 Aggregation', query_q3_join_3_entities: 'Q3 Join',
-  query_q4_optional_aggregation: 'Q4 OPTIONAL', query_q5_construct: 'Q5 CONSTRUCT', query_q6_construct_union: 'Q6 CONSTRUCT+UNION'
+  query_q4_optional_aggregation: 'Q4 OPTIONAL', query_q5_construct: 'Q5 CONSTRUCT'
 };
 
 // ======================= HELPERS =======================
@@ -1093,17 +1151,18 @@ function hasFocus(v, re) {
 // Cross-cutting categories (Validators, Reasoners, Mapping, SPARQL engines, Triple stores)
 // also check focusAreas so multi-capability tools like maplib show up correctly.
 const RADIAL_MATCHERS = {
-  // Databases
+  // Databases — cross-category: also match frameworks/tools with relevant focus areas
   'Triple stores': v =>
-    (v.category === 'database' && /(triple store|rdf stream)/i.test(v.subcategory)) ||
-    hasFocus(v, /triple store|graph storage|rdf store/i),
+    (v.category === 'database' && /triple store|in-memory triple/i.test(v.subcategory)) ||
+    hasFocus(v, /^triple store$/i),
   'SPARQL engines': v =>
-    (v.category === 'database' && /(sparql (engine|server|database)|standalone sparql)/i.test(v.subcategory)) ||
-    hasFocus(v, /\bSPARQL\b/),
-  'Multi-model / managed': v => v.category === 'database' && /(multi-model|managed|analytical)/i.test(v.subcategory),
+    (v.category === 'database' && /(sparql|rdf stream)/i.test(v.subcategory)) ||
+    hasFocus(v, /^SPARQL (server|engine|endpoint)/i),
+  'Multi-model / managed': v => v.category === 'database' && /(multi-model|managed|graph database \+ rdf|analytical)/i.test(v.subcategory),
   'Knowledge graph platforms': v =>
-    (v.category === 'database' && /(knowledge graph|virtual knowledge|in-memory|graph database \+ rdf)/i.test(v.subcategory)) ||
-    hasFocus(v, /knowledge graph construction/i),
+    (v.category === 'database' && /(knowledge graph|virtual knowledge)/i.test(v.subcategory)) ||
+    (v.category === 'tool' && /knowledge graph platform/i.test(v.subcategory)) ||
+    hasFocus(v, /^knowledge graph (platform|construction)/i),
   // Frameworks by language
   'Python': v => v.category === 'framework' && /python/i.test(v.language),
   'Java': v => v.category === 'framework' && /java/i.test(v.language) && !/javascript/i.test(v.language),
@@ -1112,19 +1171,22 @@ const RADIAL_MATCHERS = {
   'C / C++': v => v.category === 'framework' && /(^c$|^c |\/c |c\+\+|c library)/i.test(v.language + ' ' + v.subcategory),
   'Rust': v => v.category === 'framework' && /^rust$/i.test(v.language),
   'PHP': v => v.category === 'framework' && /php/i.test(v.language),
-  // Tools
-  'Ontology editors': v => v.category === 'tool' && /(ontology (editor|ide|visualization)|collaborative ontology)/i.test(v.subcategory),
+  // Tools — cross-category where relevant
+  'Ontology editors': v =>
+    (v.category === 'tool' && /(ontology (editor|ide)|collaborative ontology|taxonomy)/i.test(v.subcategory)) ||
+    hasFocus(v, /^ontology (edit|manag)/i),
   'Validators': v =>
     (v.category === 'tool' && /(validator|shacl|oops)/i.test(v.subcategory)) ||
-    hasFocus(v, /\bSHACL\b.*valid|valid.*\bSHACL\b|\bvalidat/i),
-  'Visualization': v => v.category === 'tool' && /(visualization|visualizer|graph visual)/i.test(v.subcategory),
+    hasFocus(v, /^SHACL valid/i),
+  'Visualization': v =>
+    (v.category === 'tool' && /(visualization|visualizer|graph visual)/i.test(v.subcategory)),
   'Mapping / conversion': v =>
-    (v.category === 'tool' && /(mapping|yarrrml|json-ld editor|rdf editor)/i.test(v.subcategory)) ||
-    hasFocus(v, /\bmapping\b|R2RML|RML\b|YARRRML|OTTR|DataFrame-to-RDF/i),
+    (v.category === 'tool' && /(mapping|yarrrml|json-ld editor|rdf editor|knowledge graph builder)/i.test(v.subcategory)) ||
+    hasFocus(v, /^(R2RML|RML mapping|YARRRML|OTTR|DataFrame-to-RDF)/i),
   'Reasoners': v =>
     (v.category === 'tool' && /reasoner/i.test(v.subcategory)) ||
-    hasFocus(v, /\breason|Datalog|OWL reason|inference engine/i),
-  'Servers / platforms': v => v.category === 'tool' && /(server|platform|governance|taxonomy|workbench)/i.test(v.subcategory),
+    hasFocus(v, /^(OWL reason|Datalog|backward chain|forward chain|incremental material)/i),
+  'Servers / platforms': v => v.category === 'tool' && /(server|platform|governance|workbench|sparql editor)/i.test(v.subcategory),
 };
 
 function renderVendors() {
@@ -1287,7 +1349,7 @@ function renderCharts() {
 }
 
 function renderBenchTable() {
-  const ops = ['read_turtle','write_turtle','read_ntriples','write_ntriples','query_q1_count','query_q2_customer_orders','query_q3_join_3_entities','query_q4_optional_aggregation','query_q5_construct','query_q6_construct_union'];
+  const ops = ['read_turtle','write_turtle','read_ntriples','write_ntriples','query_q1_count','query_q2_customer_orders','query_q3_join_3_entities','query_q4_optional_aggregation','query_q5_construct'];
   const frameworks = Object.keys(BENCHMARK);
   const bests = {};
   ops.forEach(op => {
@@ -1331,15 +1393,13 @@ document.querySelectorAll('.nav-tab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
-    if (tab.dataset.section === 'benchmark') {
-      document.getElementById('vendor-listing').classList.add('hidden');
-      document.getElementById('benchmark-listing').classList.remove('hidden');
-      renderCharts();
-    } else {
-      document.getElementById('vendor-listing').classList.remove('hidden');
-      document.getElementById('benchmark-listing').classList.add('hidden');
-      renderVendors();
-    }
+    const sec = tab.dataset.section;
+    document.getElementById('vendor-listing').classList.toggle('hidden', sec === 'benchmark' || sec === 'sparql');
+    document.getElementById('benchmark-listing').classList.toggle('hidden', sec !== 'benchmark');
+    document.getElementById('sparql-listing').classList.toggle('hidden', sec !== 'sparql');
+    if (sec === 'benchmark') renderCharts();
+    else if (sec === 'sparql') initSparqlEngine();
+    else renderVendors();
   });
 });
 document.getElementById('search').addEventListener('input', renderVendors);
@@ -1391,23 +1451,23 @@ document.getElementById('log-toggle').addEventListener('change', (e) => { logSca
 // ======================= RADIAL CHART (clickable) =======================
 (function() {
   const radialData = [
-    { group: "Databases", label: "Triple stores", count: 9, cat: "db" },
-    { group: "Databases", label: "SPARQL engines", count: 3, cat: "db" },
-    { group: "Databases", label: "Multi-model / managed", count: 3, cat: "db" },
-    { group: "Databases", label: "Knowledge graph platforms", count: 4, cat: "db" },
+    { group: "Databases", label: "Triple stores", count: 10, cat: "db" },
+    { group: "Databases", label: "SPARQL engines", count: 5, cat: "db" },
+    { group: "Databases", label: "Multi-model / managed", count: 5, cat: "db" },
+    { group: "Databases", label: "Knowledge graph platforms", count: 6, cat: "db" },
     { group: "Frameworks", label: "Python", count: 5, cat: "fw" },
-    { group: "Frameworks", label: "Java", count: 5, cat: "fw" },
+    { group: "Frameworks", label: "Java", count: 6, cat: "fw" },
     { group: "Frameworks", label: "JavaScript / TS", count: 5, cat: "fw" },
     { group: "Frameworks", label: "C# / .NET", count: 2, cat: "fw" },
     { group: "Frameworks", label: "C / C++", count: 3, cat: "fw" },
     { group: "Frameworks", label: "Rust", count: 1, cat: "fw" },
     { group: "Frameworks", label: "PHP", count: 2, cat: "fw" },
-    { group: "Tools", label: "Ontology editors", count: 4, cat: "tool" },
-    { group: "Tools", label: "Validators", count: 5, cat: "tool" },
+    { group: "Tools", label: "Ontology editors", count: 5, cat: "tool" },
+    { group: "Tools", label: "Validators", count: 11, cat: "tool" },
     { group: "Tools", label: "Visualization", count: 3, cat: "tool" },
-    { group: "Tools", label: "Mapping / conversion", count: 4, cat: "tool" },
-    { group: "Tools", label: "Reasoners", count: 2, cat: "tool" },
-    { group: "Tools", label: "Servers / platforms", count: 5, cat: "tool" },
+    { group: "Tools", label: "Mapping / conversion", count: 8, cat: "tool" },
+    { group: "Tools", label: "Reasoners", count: 9, cat: "tool" },
+    { group: "Tools", label: "Servers / platforms", count: 6, cat: "tool" },
   ];
 
   const catColors = {
@@ -1517,9 +1577,9 @@ document.getElementById('log-toggle').addEventListener('change', (e) => { logSca
         allTab.classList.add('active');
         document.getElementById('vendor-listing').classList.remove('hidden');
         document.getElementById('benchmark-listing').classList.add('hidden');
+        document.getElementById('sparql-listing').classList.add('hidden');
       }
       renderVendors();
-      // Scroll to vendor listing
       document.getElementById('vendor-listing').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
@@ -1559,6 +1619,7 @@ document.getElementById('log-toggle').addEventListener('change', (e) => { logSca
           allTab.classList.add('active');
           document.getElementById('vendor-listing').classList.remove('hidden');
           document.getElementById('benchmark-listing').classList.add('hidden');
+          document.getElementById('sparql-listing').classList.add('hidden');
         }
         renderVendors();
         document.getElementById('vendor-listing').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1596,7 +1657,7 @@ document.getElementById('log-toggle').addEventListener('change', (e) => { logSca
     .attr('text-anchor', 'middle').attr('dominant-baseline', 'central').attr('y', -8)
     .attr('font-size', '26px').attr('font-weight', 800)
     .attr('fill', '#4f6cf7')
-    .text('62');
+    .text(VENDORS.length);
 
   gEl.append('text')
     .attr('text-anchor', 'middle').attr('dominant-baseline', 'central').attr('y', 14)
@@ -1756,6 +1817,15 @@ const WIZARD_QUESTIONS = [
       { label: "No preference", value: "any" },
     ]
   },
+  {
+    question: "How important is digital sovereignty?",
+    key: "sovereignty",
+    options: [
+      { label: "Critical — must be EU-based & open source", value: "strict" },
+      { label: "Prefer European vendors, open standards", value: "prefer" },
+      { label: "No geographic or sovereignty requirements", value: "any" },
+    ]
+  },
 ];
 
 let wizardStep = 0;
@@ -1879,6 +1949,16 @@ function scoreVendor(v, answers) {
     if (isOpenSource(v)) score += 8;
   }
 
+  // Digital sovereignty
+  if (answers.sovereignty === 'strict') {
+    if (v.region === 'Europe' && isOpenSource(v)) score += 30;
+    else if (v.region === 'Europe') score += 10;
+    else score -= 15;
+  } else if (answers.sovereignty === 'prefer') {
+    if (v.region === 'Europe') score += 15;
+    if (isOpenSource(v)) score += 5;
+  }
+
   // Bonus for being benchmarked (known quantity)
   if (v.hasBenchmark) score += 5;
 
@@ -1917,6 +1997,407 @@ function renderWizardResults() {
   html += '</div>';
   panel.innerHTML = html;
 }
+
+// ======================= SPARQL ENGINE =======================
+let sparqlStore = null;
+let sparqlReady = false;
+let sparqlLoading = false;
+
+// IRI helpers matching vendors.ttl scheme
+const VL = 'http://data.veronahe.no/vocab#';
+const BASE = 'http://data.veronahe.no/vendors/';
+const FOCUS = 'http://data.veronahe.no/focus/';
+const STD = 'http://data.veronahe.no/standard/';
+const REGION = 'http://data.veronahe.no/region/';
+const COUNTRY = 'http://data.veronahe.no/country/';
+const SPEED = 'http://data.veronahe.no/speed/';
+const SCALE = 'http://data.veronahe.no/scale/';
+const SCHEMA = 'https://schema.org/';
+const RDFS = 'http://www.w3.org/2000/01/rdf-schema#';
+const RDF = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
+const OWL = 'http://www.w3.org/2002/07/owl#';
+const XSD = 'http://www.w3.org/2001/XMLSchema#';
+
+function slugify(text) {
+  let s = text.trim().replace(/[/\\()]+/g, '-').replace(/[^a-zA-Z0-9_-]/g, '-').replace(/-{2,}/g, '-').replace(/^-|-$/g, '');
+  if (s && !/^[a-zA-Z_]/.test(s)) s = '_' + s;
+  return s;
+}
+
+function vendorsToTurtle() {
+  const catClass = { database: 'Database', framework: 'Framework', tool: 'Tool' };
+  let ttl = `@base <${BASE}> .
+@prefix vl: <${VL}> .
+@prefix focus: <${FOCUS}> .
+@prefix std: <${STD}> .
+@prefix region: <${REGION}> .
+@prefix country: <${COUNTRY}> .
+@prefix speed: <${SPEED}> .
+@prefix scale: <${SCALE}> .
+@prefix schema: <${SCHEMA}> .
+@prefix rdfs: <${RDFS}> .
+@prefix rdf: <${RDF}> .
+@prefix owl: <${OWL}> .
+@prefix xsd: <${XSD}> .
+
+vl:Vendor a owl:Class ; rdfs:label "Vendor" .
+vl:Database a owl:Class ; rdfs:subClassOf vl:Vendor ; rdfs:label "Database" .
+vl:Framework a owl:Class ; rdfs:subClassOf vl:Vendor ; rdfs:label "Framework" .
+vl:Tool a owl:Class ; rdfs:subClassOf vl:Vendor ; rdfs:label "Tool" .
+vl:FocusArea a owl:Class ; rdfs:label "Focus Area" .
+vl:Standard a owl:Class ; rdfs:label "Standard" .
+vl:Region a owl:Class ; rdfs:label "Region" .
+vl:Country a owl:Class ; rdfs:label "Country" .
+vl:SpeedTier a owl:Class ; rdfs:label "Speed Tier" .
+vl:ScaleTier a owl:Class ; rdfs:label "Scale Tier" .
+`;
+  // Collect unique values and emit instances
+  const seen = { focus: new Set(), std: new Set(), region: new Set(), country: new Set(), speed: new Set(), scale: new Set() };
+  VENDORS.forEach(v => {
+    (v.focusAreas || []).forEach(fa => seen.focus.add(fa));
+    (v.standards || []).forEach(s => seen.std.add(s));
+    if (v.region) seen.region.add(v.region);
+    if (v.country) seen.country.add(v.country + '|' + (v.flag || ''));
+    if (v.speedTier) seen.speed.add(v.speedTier);
+    if (v.scaleTier) seen.scale.add(v.scaleTier);
+  });
+  seen.focus.forEach(fa => { ttl += `focus:${slugify(fa)} a vl:FocusArea ; rdfs:label "${fa.replace(/"/g, '\\"')}" .\n`; });
+  seen.std.forEach(s => { ttl += `std:${slugify(s)} a vl:Standard ; rdfs:label "${s.replace(/"/g, '\\"')}" .\n`; });
+  seen.region.forEach(r => { ttl += `region:${slugify(r)} a vl:Region ; rdfs:label "${r}" .\n`; });
+  seen.country.forEach(c => { const [name, flag] = c.split('|'); ttl += `country:${slugify(name)} a vl:Country ; rdfs:label "${name}"${flag ? ` ; vl:flag "${flag}"` : ''} .\n`; });
+  seen.speed.forEach(s => { ttl += `speed:${slugify(s)} a vl:SpeedTier ; rdfs:label "${s}" .\n`; });
+  seen.scale.forEach(s => { ttl += `scale:${slugify(s)} a vl:ScaleTier ; rdfs:label "${s}" .\n`; });
+  ttl += '\n';
+
+  VENDORS.forEach(v => {
+    const slug = slugify(v.name);
+    const cls = catClass[v.category] || 'Vendor';
+    const esc = s => (s || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n');
+    ttl += `<${slug}> a vl:${cls} ;\n`;
+    ttl += `  schema:name "${esc(v.name)}" ;\n`;
+    ttl += `  schema:description "${esc(v.description)}" ;\n`;
+    if (v.website) ttl += `  schema:url <${v.website}> ;\n`;
+    if (v.subcategory) ttl += `  vl:subcategory "${esc(v.subcategory)}" ;\n`;
+    if (v.language) ttl += `  vl:language "${esc(v.language)}" ;\n`;
+    if (v.license) ttl += `  vl:license "${esc(v.license)}" ;\n`;
+    if (v.pricing) ttl += `  vl:pricing "${esc(v.pricing)}" ;\n`;
+    if (v.github) ttl += `  vl:github <${v.github}> ;\n`;
+    ttl += `  vl:hasDemo ${v.hasDemo ? 'true' : 'false'} ;\n`;
+    if (v.demoUrl) ttl += `  vl:demoUrl <${v.demoUrl}> ;\n`;
+    ttl += `  vl:hasBenchmark ${v.hasBenchmark ? 'true' : 'false'} ;\n`;
+    if (v.speedNote) ttl += `  vl:speedNote "${esc(v.speedNote)}" ;\n`;
+    if (v.scaleNote) ttl += `  vl:scaleNote "${esc(v.scaleNote)}" ;\n`;
+    if (v.warning) ttl += `  vl:warning "${esc(v.warning)}" ;\n`;
+    if (v.speedTier) ttl += `  vl:speedTier speed:${slugify(v.speedTier)} ;\n`;
+    if (v.scaleTier) ttl += `  vl:scaleTier scale:${slugify(v.scaleTier)} ;\n`;
+    if (v.region) ttl += `  vl:region region:${slugify(v.region)} ;\n`;
+    if (v.country) ttl += `  vl:country country:${slugify(v.country)} ;\n`;
+    (v.focusAreas || []).forEach(fa => { ttl += `  vl:focusArea focus:${slugify(fa)} ;\n`; });
+    (v.standards || []).forEach(s => { ttl += `  vl:supportsStandard std:${slugify(s)} ;\n`; });
+    // Replace last ; with .
+    ttl = ttl.replace(/;\n$/, '.\n\n');
+  });
+  return ttl;
+}
+
+// Build autocomplete index
+function buildAcIndex() {
+  const items = [];
+  // Prefixes
+  const prefixes = [
+    ['vl:', VL, 'prefix'], ['focus:', FOCUS, 'prefix'], ['std:', STD, 'prefix'],
+    ['region:', REGION, 'prefix'], ['country:', COUNTRY, 'prefix'],
+    ['speed:', SPEED, 'prefix'], ['scale:', SCALE, 'prefix'],
+    ['schema:', SCHEMA, 'prefix'], ['rdfs:', RDFS, 'prefix'],
+    ['rdf:', RDF, 'prefix'], ['owl:', OWL, 'prefix'],
+  ];
+  prefixes.forEach(([p, , t]) => items.push({ label: p, type: t }));
+  // Classes
+  ['Vendor', 'Database', 'Framework', 'Tool', 'FocusArea', 'Standard', 'Region', 'Country', 'SpeedTier', 'ScaleTier'].forEach(c => items.push({ label: 'vl:' + c, type: 'class' }));
+  // Properties
+  ['subcategory', 'language', 'license', 'pricing', 'github', 'hasDemo', 'demoUrl', 'hasBenchmark',
+   'speedNote', 'scaleNote', 'warning', 'flag', 'focusArea', 'supportsStandard', 'region', 'country',
+   'speedTier', 'scaleTier', 'logoUrl', 'logoHint'].forEach(p => items.push({ label: 'vl:' + p, type: 'property' }));
+  ['name', 'description', 'url'].forEach(p => items.push({ label: 'schema:' + p, type: 'property' }));
+  ['label', 'subClassOf', 'seeAlso'].forEach(p => items.push({ label: 'rdfs:' + p, type: 'property' }));
+  items.push({ label: 'rdf:type', type: 'property' });
+  // Vendors
+  VENDORS.forEach(v => items.push({ label: '<' + slugify(v.name) + '>', type: 'vendor' }));
+  // Focus areas, standards, etc.
+  const seen = new Set();
+  VENDORS.forEach(v => {
+    (v.focusAreas || []).forEach(fa => { const k = 'focus:' + slugify(fa); if (!seen.has(k)) { seen.add(k); items.push({ label: k, type: 'focus' }); } });
+    (v.standards || []).forEach(s => { const k = 'std:' + slugify(s); if (!seen.has(k)) { seen.add(k); items.push({ label: k, type: 'standard' }); } });
+  });
+  // SPARQL keywords
+  ['SELECT', 'WHERE', 'FILTER', 'OPTIONAL', 'ORDER BY', 'GROUP BY', 'HAVING', 'LIMIT', 'OFFSET',
+   'DISTINCT', 'COUNT', 'SUM', 'AVG', 'MIN', 'MAX', 'BIND', 'AS', 'VALUES', 'UNION',
+   'ASC', 'DESC', 'CONSTRUCT', 'ASK', 'DESCRIBE', 'PREFIX', 'STR', 'LANG', 'CONTAINS', 'REGEX'].forEach(kw => items.push({ label: kw, type: 'keyword' }));
+  return items;
+}
+
+const SPARQL_EXAMPLES = [
+  { name: 'All vendors', query: `PREFIX vl: <${VL}>
+PREFIX schema: <${SCHEMA}>
+PREFIX rdfs: <${RDFS}>
+
+SELECT ?name ?category WHERE {
+  ?v a ?cls .
+  ?cls rdfs:subClassOf vl:Vendor ; rdfs:label ?category .
+  ?v schema:name ?name .
+} ORDER BY ?name` },
+  { name: 'Triple stores', query: `PREFIX vl: <${VL}>
+PREFIX schema: <${SCHEMA}>
+PREFIX rdfs: <${RDFS}>
+
+SELECT ?name ?speed ?scale WHERE {
+  ?v vl:focusArea ?fa .
+  ?fa rdfs:label "Triple store" .
+  ?v schema:name ?name .
+  OPTIONAL { ?v vl:speedTier/rdfs:label ?speed }
+  OPTIONAL { ?v vl:scaleTier/rdfs:label ?scale }
+} ORDER BY ?name` },
+  { name: 'Standards per vendor', query: `PREFIX vl: <${VL}>
+PREFIX schema: <${SCHEMA}>
+PREFIX rdfs: <${RDFS}>
+
+SELECT ?name (COUNT(?std) AS ?numStandards) WHERE {
+  ?v a ?cls . ?cls rdfs:subClassOf vl:Vendor .
+  ?v schema:name ?name ;
+     vl:supportsStandard ?s .
+  ?s rdfs:label ?std .
+} GROUP BY ?name ORDER BY DESC(?numStandards)` },
+  { name: 'European databases', query: `PREFIX vl: <${VL}>
+PREFIX schema: <${SCHEMA}>
+PREFIX rdfs: <${RDFS}>
+
+SELECT ?name ?country WHERE {
+  ?v a vl:Database ;
+     schema:name ?name ;
+     vl:country/rdfs:label ?country ;
+     vl:region/rdfs:label "Europe" .
+} ORDER BY ?country` },
+  { name: 'SHACL validators', query: `PREFIX vl: <${VL}>
+PREFIX schema: <${SCHEMA}>
+PREFIX rdfs: <${RDFS}>
+
+SELECT ?name ?category ?license WHERE {
+  ?v vl:supportsStandard ?s .
+  ?s rdfs:label "SHACL" .
+  ?v schema:name ?name ;
+     vl:license ?license .
+  ?v a ?cls . ?cls rdfs:subClassOf vl:Vendor ; rdfs:label ?category .
+} ORDER BY ?category ?name` },
+  { name: 'Fast + large scale', query: `PREFIX vl: <${VL}>
+PREFIX schema: <${SCHEMA}>
+PREFIX rdfs: <${RDFS}>
+
+SELECT ?name ?category WHERE {
+  ?v vl:speedTier/rdfs:label "fast" ;
+     vl:scaleTier/rdfs:label "large" ;
+     schema:name ?name .
+  ?v a ?cls . ?cls rdfs:subClassOf vl:Vendor ; rdfs:label ?category .
+} ORDER BY ?name` },
+];
+
+function renderExamples() {
+  const el = document.getElementById('sparql-examples');
+  el.innerHTML = '<span style="font-size:0.75rem;color:var(--text-dim);margin-right:4px;">Examples:</span>';
+  SPARQL_EXAMPLES.forEach((ex, i) => {
+    const btn = document.createElement('button');
+    btn.textContent = ex.name;
+    btn.onclick = () => {
+      document.getElementById('sparql-editor').value = ex.query;
+      document.getElementById('sparql-results').innerHTML = '';
+      document.getElementById('sparql-time').textContent = '';
+    };
+    el.appendChild(btn);
+  });
+}
+
+async function initSparqlEngine() {
+  if (sparqlReady || sparqlLoading) return;
+  sparqlLoading = true;
+  renderExamples();
+  document.getElementById('sparql-editor').value = SPARQL_EXAMPLES[0].query;
+
+  const statusEl = document.getElementById('sparql-status');
+  statusEl.innerHTML = '<span class="dot-loading"></span> Loading Oxigraph WASM...';
+
+  try {
+    const ox = await import('https://cdn.jsdelivr.net/npm/oxigraph@0.4.4/web.js');
+    await ox.default();
+    sparqlStore = new ox.Store();
+
+    statusEl.innerHTML = '<span class="dot-loading"></span> Building RDF graph...';
+    const ttl = vendorsToTurtle();
+    sparqlStore.load(ttl, { format: 'text/turtle', base_iri: BASE });
+
+    const count = sparqlStore.size;
+    sparqlReady = true;
+    sparqlLoading = false;
+    statusEl.innerHTML = '<span class="dot-ok"></span> Ready (' + count.toLocaleString() + ' triples)';
+    document.getElementById('sparql-run').disabled = false;
+  } catch (e) {
+    sparqlLoading = false;
+    statusEl.innerHTML = '<span style="color:#c92a2a;">Error loading engine: ' + e.message + '</span>';
+    console.error('SPARQL engine error:', e);
+  }
+}
+
+function formatSparqlValue(term) {
+  if (!term) return '';
+  const val = term.value !== undefined ? term.value : String(term);
+  if (term.termType === 'NamedNode' || val.startsWith('http')) {
+    // Shorten known prefixes
+    const prefixMap = [
+      [BASE, ''], [VL, 'vl:'], [FOCUS, 'focus:'], [STD, 'std:'],
+      [REGION, 'region:'], [COUNTRY, 'country:'], [SPEED, 'speed:'], [SCALE, 'scale:'],
+      [SCHEMA, 'schema:'], [RDFS, 'rdfs:'], [RDF, 'rdf:'], [OWL, 'owl:'],
+    ];
+    let short = val;
+    for (const [ns, prefix] of prefixMap) {
+      if (val.startsWith(ns)) { short = prefix + val.slice(ns.length); break; }
+    }
+    return '<span class="iri">' + short + '</span>';
+  }
+  if (term.termType === 'Literal' || typeof val === 'string') {
+    return '<span class="literal">' + escHtml(val) + '</span>';
+  }
+  return escHtml(val);
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function runSparql() {
+  if (!sparqlReady) return;
+  const query = document.getElementById('sparql-editor').value.trim();
+  const resultsEl = document.getElementById('sparql-results');
+  const timeEl = document.getElementById('sparql-time');
+  resultsEl.innerHTML = '';
+  timeEl.textContent = '';
+
+  const t0 = performance.now();
+  try {
+    const results = sparqlStore.query(query);
+    const elapsed = performance.now() - t0;
+
+    if (Array.isArray(results) && results.length > 0 && results[0].has) {
+      // SELECT results (array of Map-like objects)
+      const vars = [];
+      results[0].forEach((_, key) => { vars.push(key); });
+
+      let html = '<div class="sparql-results-wrap"><table><thead><tr>';
+      vars.forEach(v => { html += '<th>' + escHtml(v) + '</th>'; });
+      html += '</tr></thead><tbody>';
+      results.forEach(row => {
+        html += '<tr>';
+        vars.forEach(v => { html += '<td>' + formatSparqlValue(row.get(v)) + '</td>'; });
+        html += '</tr>';
+      });
+      html += '</tbody></table></div>';
+      html += '<div class="sparql-count">' + results.length + ' result' + (results.length !== 1 ? 's' : '') + '</div>';
+      resultsEl.innerHTML = html;
+    } else if (typeof results === 'boolean') {
+      // ASK result
+      resultsEl.innerHTML = '<div style="padding:16px;font-size:1.1rem;font-weight:600;color:' + (results ? '#1D9E75' : '#c92a2a') + ';">' + (results ? 'Yes (true)' : 'No (false)') + '</div>';
+    } else {
+      resultsEl.innerHTML = '<div style="padding:16px;color:var(--text-muted);">Query returned no results.</div>';
+    }
+    timeEl.textContent = 'Executed in ' + elapsed.toFixed(1) + ' ms';
+  } catch (e) {
+    resultsEl.innerHTML = '<div class="sparql-error">' + escHtml(e.message) + '</div>';
+    timeEl.textContent = '';
+  }
+}
+
+// Autocomplete
+(function() {
+  const editor = document.getElementById('sparql-editor');
+  const acEl = document.getElementById('sparql-ac');
+  let acItems = null;
+  let acVisible = false;
+  let acSelected = -1;
+  let acFiltered = [];
+
+  function getWordAtCursor() {
+    const pos = editor.selectionStart;
+    const text = editor.value.substring(0, pos);
+    const match = text.match(/[a-zA-Z_<][a-zA-Z0-9_:/.#-]*$/);
+    return match ? { word: match[0], start: pos - match[0].length, end: pos } : null;
+  }
+
+  function showAc(filtered, wordInfo) {
+    if (!filtered.length) { hideAc(); return; }
+    acFiltered = filtered.slice(0, 15);
+    acSelected = -1;
+    let html = '';
+    acFiltered.forEach((item, i) => {
+      html += '<div data-i="' + i + '"><span>' + escHtml(item.label) + '</span><span class="ac-type">' + item.type + '</span></div>';
+    });
+    acEl.innerHTML = html;
+    // Position near cursor
+    const rect = editor.getBoundingClientRect();
+    const lines = editor.value.substring(0, wordInfo.start).split('\n');
+    const lineH = 21;
+    const top = Math.min(lines.length * lineH + 20, rect.height - 40);
+    acEl.style.top = top + 'px';
+    acEl.style.left = '16px';
+    acEl.style.display = 'block';
+    acVisible = true;
+    acEl.querySelectorAll('div').forEach(div => {
+      div.onmousedown = (e) => { e.preventDefault(); applyAc(parseInt(div.dataset.i), wordInfo); };
+    });
+  }
+
+  function hideAc() { acEl.style.display = 'none'; acVisible = false; acSelected = -1; }
+
+  function applyAc(index, wordInfo) {
+    const item = acFiltered[index];
+    if (!item) return;
+    const before = editor.value.substring(0, wordInfo.start);
+    const after = editor.value.substring(wordInfo.end);
+    editor.value = before + item.label + after;
+    const newPos = wordInfo.start + item.label.length;
+    editor.setSelectionRange(newPos, newPos);
+    editor.focus();
+    hideAc();
+  }
+
+  editor.addEventListener('input', () => {
+    if (!acItems) acItems = buildAcIndex();
+    const wordInfo = getWordAtCursor();
+    if (!wordInfo || wordInfo.word.length < 2) { hideAc(); return; }
+    const lower = wordInfo.word.toLowerCase();
+    const filtered = acItems.filter(item => item.label.toLowerCase().includes(lower));
+    showAc(filtered, wordInfo);
+  });
+
+  editor.addEventListener('keydown', (e) => {
+    if (!acVisible) {
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); runSparql(); }
+      return;
+    }
+    if (e.key === 'ArrowDown') { e.preventDefault(); acSelected = Math.min(acSelected + 1, acFiltered.length - 1); updateAcHighlight(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); acSelected = Math.max(acSelected - 1, 0); updateAcHighlight(); }
+    else if (e.key === 'Enter' || e.key === 'Tab') {
+      if (acSelected >= 0) { e.preventDefault(); applyAc(acSelected, getWordAtCursor()); }
+      else if (e.key === 'Tab' && acFiltered.length) { e.preventDefault(); applyAc(0, getWordAtCursor()); }
+    }
+    else if (e.key === 'Escape') { hideAc(); }
+  });
+
+  function updateAcHighlight() {
+    acEl.querySelectorAll('div').forEach((div, i) => {
+      div.classList.toggle('active', i === acSelected);
+      if (i === acSelected) div.scrollIntoView({ block: 'nearest' });
+    });
+  }
+
+  editor.addEventListener('blur', () => { setTimeout(hideAc, 150); });
+})();
 
 // ======================= INIT =======================
 renderVendors();

@@ -142,6 +142,7 @@ focus:Knowledge-modeling  a vl:FocusArea ; rdfs:label "Knowledge modeling" .
 focus:LMDB-backend  a vl:FocusArea ; rdfs:label "LMDB backend" .
 focus:Language-bindings  a vl:FocusArea ; rdfs:label "Language bindings" .
 focus:Large-scale-querying  a vl:FocusArea ; rdfs:label "Large-scale querying" .
+focus:LDP-support  a vl:FocusArea ; rdfs:label "LDP support" .
 focus:Legacy-PHP-projects  a vl:FocusArea ; rdfs:label "Legacy PHP projects" .
 focus:Lightweight  a vl:FocusArea ; rdfs:label "Lightweight" .
 focus:Linked-Data  a vl:FocusArea ; rdfs:label "Linked Data" .
@@ -222,6 +223,7 @@ focus:SPARQL-editor  a vl:FocusArea ; rdfs:label "SPARQL editor" .
 focus:SPARQL-proxy  a vl:FocusArea ; rdfs:label "SPARQL proxy" .
 focus:SPARQL-queries  a vl:FocusArea ; rdfs:label "SPARQL queries" .
 focus:SPARQL-querying  a vl:FocusArea ; rdfs:label "SPARQL querying" .
+focus:Semantic-search  a vl:FocusArea ; rdfs:label "Semantic search" .
 focus:SPARQL-server  a vl:FocusArea ; rdfs:label "SPARQL server" .
 focus:SPARQL-based-constraints  a vl:FocusArea ; rdfs:label "SPARQL-based constraints" .
 focus:SPARQL-to-SQL  a vl:FocusArea ; rdfs:label "SPARQL-to-SQL" .
@@ -277,6 +279,7 @@ focus:openCypher  a vl:FocusArea ; rdfs:label "openCypher" .
 # -- Standards ---------------------------------------------------------
 std:CSVW  a vl:Standard ; rdfs:label "CSVW" ;
     rdfs:seeAlso <https://www.w3.org/TR/tabular-data-primer/> .
+std:Datalog  a vl:Standard ; rdfs:label "Datalog" .
 std:JSON-LD  a vl:Standard ; rdfs:label "JSON-LD" ;
     rdfs:seeAlso <https://www.w3.org/TR/json-ld11/> .
 std:LDP  a vl:Standard ; rdfs:label "LDP" ;
@@ -289,8 +292,8 @@ std:R2RML  a vl:Standard ; rdfs:label "R2RML" ;
     rdfs:seeAlso <https://www.w3.org/TR/r2rml/> .
 std:RDF-1-1  a vl:Standard ; rdfs:label "RDF 1.1" ;
     rdfs:seeAlso <https://www.w3.org/TR/rdf11-concepts/> .
-std:RDF-star  a vl:Standard ; rdfs:label "RDF-star" ;
-    rdfs:seeAlso <https://www.w3.org/TR/rdf-star/> .
+std:RDF-star  a vl:Standard ; rdfs:label "RDF 1.2" ;
+    rdfs:seeAlso <https://www.w3.org/TR/rdf12-concepts/> .
 std:RML  a vl:Standard ; rdfs:label "RML" ;
     rdfs:seeAlso <https://rml.io/specs/rml/> .
 std:SHACL  a vl:Standard ; rdfs:label "SHACL" ;
@@ -299,8 +302,8 @@ std:SKOS  a vl:Standard ; rdfs:label "SKOS" ;
     rdfs:seeAlso <https://www.w3.org/TR/skos-reference/> .
 std:SPARQL-1-1  a vl:Standard ; rdfs:label "SPARQL 1.1" ;
     rdfs:seeAlso <https://www.w3.org/TR/sparql11-query/> .
-std:SPARQL-star  a vl:Standard ; rdfs:label "SPARQL-star" ;
-    rdfs:seeAlso <https://www.w3.org/TR/sparql-star/> .
+std:SPARQL-star  a vl:Standard ; rdfs:label "SPARQL 1.2" ;
+    rdfs:seeAlso <https://www.w3.org/TR/sparql12-query/> .
 
 # -- Regions -----------------------------------------------------------
 region:Asia-Pacific  a vl:Region ; rdfs:label "Asia-Pacific" .
@@ -564,8 +567,7 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:High-availability ;
     vl:focusArea        focus:Wikidata ;
     vl:supportsStandard std:RDF-1-1 ;
-    vl:supportsStandard std:SPARQL-1-1 ;
-    vl:supportsStandard std:RDF-star .
+    vl:supportsStandard std:SPARQL-1-1 .
 
 <Comunica>  a vl:Framework ;
     schema:name        "Comunica" ;
@@ -624,7 +626,6 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Triple-store-connectors ;
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
-    vl:supportsStandard std:OWL-2 ;
     vl:supportsStandard std:JSON-LD ;
     vl:supportsStandard std:LDP .
 
@@ -925,9 +926,7 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Rule-based-reasoning ;
     vl:focusArea        focus:Backward-chaining ;
     vl:supportsStandard std:RDF-1-1 ;
-    vl:supportsStandard std:SPARQL-1-1 ;
-    vl:supportsStandard std:RDF-star ;
-    vl:supportsStandard std:SPARQL-star .
+    vl:supportsStandard std:SPARQL-1-1 .
 
 <Linked-Data-Fragments-Server>  a vl:Tool ;
     schema:name        "Linked Data Fragments Server" ;
@@ -968,7 +967,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:github           <https://github.com/DataTreehouse/maplib> ;
     vl:logoHint         "maplib DataTreehouse logo" ;
     vl:logoUrl          <https://github.com/DataTreehouse.png?size=64> ;
-    vl:hasDemo          false ;
+    vl:hasDemo          true ;
+    vl:demoUrl          <https://vimeo.com/1189459767?fl=pl&fe=cm> ;
     vl:hasBenchmark     true ;
     vl:speedNote        "Very fast - Rust core with Polars/Arrow gives near-native I/O and sub-second SPARQL on millions of triples" ;
     vl:scaleNote        "In-memory by default (bounded by RAM), but disk mode handles billions of triples for larger-than-memory datasets" ;
@@ -987,9 +987,7 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:supportsStandard std:SHACL ;
-    vl:supportsStandard std:RDF-star ;
-    vl:supportsStandard std:SPARQL-star ;
-    vl:supportsStandard std:OWL-2 .
+    vl:supportsStandard std:Datalog .
 
 <MarkLogic>  a vl:Database ;
     schema:name        "MarkLogic" ;
@@ -1577,8 +1575,7 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:supportsStandard std:JSON-LD ;
-    vl:supportsStandard std:N3 ;
-    vl:supportsStandard std:RDF-star .
+    vl:supportsStandard std:N3 .
 
 <RDFox>  a vl:Database ;
     schema:name        "RDFox" ;
@@ -1607,7 +1604,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:OWL-2 ;
     vl:supportsStandard std:SHACL ;
     vl:supportsStandard std:RDF-star ;
-    vl:supportsStandard std:SPARQL-star .
+    vl:supportsStandard std:SPARQL-star ;
+    vl:supportsStandard std:Datalog .
 
 <RDFSharp>  a vl:Framework ;
     schema:name        "RDFSharp" ;
@@ -1769,6 +1767,38 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Generic-API ;
     vl:focusArea        focus:Type-safe-graph-operations ;
     vl:supportsStandard std:RDF-1-1 .
+
+<metaphactory>  a vl:Tool ;
+    schema:name        "metaphactory" ;
+    schema:description "Enterprise knowledge graph platform by metaphacts for building knowledge-driven applications on top of existing triple stores. Low-code UI framework with reusable semantic components, SPARQL editor, LDP support, and graph visualization" ;
+    schema:url         <https://metaphacts.com/product> ;
+    vl:subcategory     "Knowledge Graph Platform" ;
+    vl:language         "Java" ;
+    vl:license          "Commercial (Community Edition available)" ;
+    vl:pricing          "Community Edition (free) + Commercial Enterprise" ;
+    vl:logoHint         "metaphacts metaphactory logo" ;
+    vl:logoUrl          <https://www.google.com/s2/favicons?domain=metaphacts.com&sz=64> ;
+    vl:hasDemo          true ;
+    vl:demoUrl          <https://wikidata.metaphacts.com/> ;
+    vl:hasBenchmark     false ;
+    vl:speedNote        "Flexible backend — can sit on top of GraphDB, Neptune, Stardog, or its own built-in store. Query speed depends on the chosen backend" ;
+    vl:scaleNote        "Scales with the underlying triple store. Proven in large enterprise deployments" ;
+    vl:speedTier        speed:moderate ;
+    vl:scaleTier        scale:large ;
+    vl:region           region:Europe ;
+    vl:country          country:Germany ;
+    vl:focusArea        focus:Knowledge-graph-platform ;
+    vl:focusArea        focus:Low-code ;
+    vl:focusArea        focus:SPARQL ;
+    vl:focusArea        focus:LDP-support ;
+    vl:focusArea        focus:Semantic-search ;
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:supportsStandard std:OWL-2 ;
+    vl:supportsStandard std:SHACL ;
+    vl:supportsStandard std:LDP ;
+    vl:supportsStandard std:JSON-LD ;
+    vl:supportsStandard std:SKOS .
 
 <Stardog>  a vl:Database ;
     schema:name        "Stardog" ;
@@ -1993,7 +2023,6 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Multi-model ;
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
-    vl:supportsStandard std:OWL-2 ;
     vl:supportsStandard std:LDP ;
     vl:supportsStandard std:JSON-LD .
 
@@ -2125,7 +2154,6 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Version-control ;
     vl:focusArea        focus:Turtle-output ;
     vl:supportsStandard std:RDF-1-1 ;
-    vl:supportsStandard std:OWL-2 ;
     vl:supportsStandard std:SHACL .
 
 <Zazuko-Trifid>  a vl:Tool ;
