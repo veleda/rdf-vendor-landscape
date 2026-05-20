@@ -42,6 +42,7 @@ vl:speedNote a owl:DatatypeProperty ; rdfs:label "Speed description" .
 vl:scaleNote a owl:DatatypeProperty ; rdfs:label "Scale description" .
 vl:warning a owl:DatatypeProperty ; rdfs:label "Warning note" .
 vl:firstRelease a owl:DatatypeProperty ; rdfs:label "First release year" .
+vl:reviewUrl a owl:DatatypeProperty ; rdfs:label "Video review URL" .
 vl:flag a owl:DatatypeProperty ; rdfs:label "Emoji flag" .
 vl:focusArea a owl:ObjectProperty ; rdfs:label "Focus area" .
 vl:supportsStandard a owl:ObjectProperty ; rdfs:label "Supports standard" .
@@ -81,7 +82,9 @@ focus:Data-exploration  a vl:FocusArea ; rdfs:label "Data exploration" .
 focus:Data-governance  a vl:FocusArea ; rdfs:label "Data governance" .
 focus:Data-integration  a vl:FocusArea ; rdfs:label "Data integration" .
 focus:Data-pipelines  a vl:FocusArea ; rdfs:label "Data pipelines" .
+focus:Data-publishing  a vl:FocusArea ; rdfs:label "Data publishing" .
 focus:Data-transformation  a vl:FocusArea ; rdfs:label "Data transformation" .
+focus:Data-virtualization  a vl:FocusArea ; rdfs:label "Data virtualization" .
 focus:DataFrame-to-RDF  a vl:FocusArea ; rdfs:label "DataFrame-to-RDF" .
 focus:Database-integration  a vl:FocusArea ; rdfs:label "Database integration" .
 focus:Datalog  a vl:FocusArea ; rdfs:label "Datalog" .
@@ -90,6 +93,7 @@ focus:Decentralized  a vl:FocusArea ; rdfs:label "Decentralized" .
 focus:Developer-experience  a vl:FocusArea ; rdfs:label "Developer experience" .
 focus:Discussion-threads  a vl:FocusArea ; rdfs:label "Discussion threads" .
 focus:Docker-ready  a vl:FocusArea ; rdfs:label "Docker-ready" .
+focus:Documentation-generation  a vl:FocusArea ; rdfs:label "Documentation generation" .
 focus:Document-RDF  a vl:FocusArea ; rdfs:label "Document + RDF" .
 focus:Education  a vl:FocusArea ; rdfs:label "Education" .
 focus:Embeddable  a vl:FocusArea ; rdfs:label "Embeddable" .
@@ -113,6 +117,7 @@ focus:Framing  a vl:FocusArea ; rdfs:label "Framing" .
 focus:Full-text-search  a vl:FocusArea ; rdfs:label "Full-text search" .
 focus:Fuseki-server  a vl:FocusArea ; rdfs:label "Fuseki server" .
 focus:Generic-API  a vl:FocusArea ; rdfs:label "Generic API" .
+focus:GeoSPARQL  a vl:FocusArea ; rdfs:label "GeoSPARQL" .
 focus:Geospatial  a vl:FocusArea ; rdfs:label "Geospatial" .
 focus:GitHub-backed  a vl:FocusArea ; rdfs:label "GitHub-backed" .
 focus:Graph-Store-Protocol  a vl:FocusArea ; rdfs:label "Graph Store Protocol" .
@@ -218,6 +223,7 @@ focus:SHACL  a vl:FocusArea ; rdfs:label "SHACL" .
 focus:SHACL-rules  a vl:FocusArea ; rdfs:label "SHACL rules" .
 focus:SHACL-validation  a vl:FocusArea ; rdfs:label "SHACL validation" .
 focus:SKOS  a vl:FocusArea ; rdfs:label "SKOS" .
+focus:SKOS-management  a vl:FocusArea ; rdfs:label "SKOS management" .
 focus:SPARQL  a vl:FocusArea ; rdfs:label "SPARQL" .
 focus:SPARQL-1-1  a vl:FocusArea ; rdfs:label "SPARQL 1.1" .
 focus:SPARQL-analytics  a vl:FocusArea ; rdfs:label "SPARQL analytics" .
@@ -226,6 +232,7 @@ focus:SPARQL-editor  a vl:FocusArea ; rdfs:label "SPARQL editor" .
 focus:SPARQL-proxy  a vl:FocusArea ; rdfs:label "SPARQL proxy" .
 focus:SPARQL-queries  a vl:FocusArea ; rdfs:label "SPARQL queries" .
 focus:SPARQL-querying  a vl:FocusArea ; rdfs:label "SPARQL querying" .
+focus:Semantic-layer  a vl:FocusArea ; rdfs:label "Semantic layer" .
 focus:Semantic-search  a vl:FocusArea ; rdfs:label "Semantic search" .
 focus:SPARQL-server  a vl:FocusArea ; rdfs:label "SPARQL server" .
 focus:SPARQL-based-constraints  a vl:FocusArea ; rdfs:label "SPARQL-based constraints" .
@@ -260,6 +267,7 @@ focus:Turtle-N-Triples-N-Quads-TriG  a vl:FocusArea ; rdfs:label "Turtle/N-Tripl
 focus:Turtle-N3-N-Quads  a vl:FocusArea ; rdfs:label "Turtle/N3/N-Quads" .
 focus:Type-safe-graph-operations  a vl:FocusArea ; rdfs:label "Type-safe graph operations" .
 focus:Type-safe-interfaces  a vl:FocusArea ; rdfs:label "Type-safe interfaces" .
+focus:UML-diagrams  a vl:FocusArea ; rdfs:label "UML diagrams" .
 focus:URI-dereferencing  a vl:FocusArea ; rdfs:label "URI dereferencing" .
 focus:VOWL-notation  a vl:FocusArea ; rdfs:label "VOWL notation" .
 focus:Validation  a vl:FocusArea ; rdfs:label "Validation" .
@@ -312,18 +320,22 @@ std:SPARQL-star  a vl:Standard ; rdfs:label "SPARQL 1.2" ;
 region:Asia-Pacific  a vl:Region ; rdfs:label "Asia-Pacific" .
 region:Europe  a vl:Region ; rdfs:label "Europe" .
 region:Global  a vl:Region ; rdfs:label "Global" .
+region:Middle-East  a vl:Region ; rdfs:label "Middle East" .
 region:North-America  a vl:Region ; rdfs:label "North America" .
+region:South-America  a vl:Region ; rdfs:label "South America" .
 
 # -- Countries ---------------------------------------------------------
 country:Australia  a vl:Country ; rdfs:label "Australia" ; vl:flag "🇦🇺" .
 country:Austria  a vl:Country ; rdfs:label "Austria" ; vl:flag "🇦🇹" .
 country:Belgium  a vl:Country ; rdfs:label "Belgium" ; vl:flag "🇧🇪" .
 country:Bulgaria  a vl:Country ; rdfs:label "Bulgaria" ; vl:flag "🇧🇬" .
+country:Chile  a vl:Country ; rdfs:label "Chile" ; vl:flag "🇨🇱" .
 country:Czech-Republic  a vl:Country ; rdfs:label "Czech Republic" ; vl:flag "🇨🇿" .
 country:Denmark  a vl:Country ; rdfs:label "Denmark" ; vl:flag "🇩🇰" .
 country:France  a vl:Country ; rdfs:label "France" ; vl:flag "🇫🇷" .
 country:Germany  a vl:Country ; rdfs:label "Germany" ; vl:flag "🇩🇪" .
 country:Global  a vl:Country ; rdfs:label "Global" ; vl:flag "🌐" .
+country:Israel  a vl:Country ; rdfs:label "Israel" ; vl:flag "🇮🇱" .
 country:Italy  a vl:Country ; rdfs:label "Italy" ; vl:flag "🇮🇹" .
 country:Netherlands  a vl:Country ; rdfs:label "Netherlands" ; vl:flag "🇳🇱" .
 country:Norway  a vl:Country ; rdfs:label "Norway" ; vl:flag "🇳🇴" .
@@ -410,7 +422,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:SHACL ;
     vl:supportsStandard std:JSON-LD ;
     vl:supportsStandard std:LDP ;
-    vl:firstRelease      2004 .
+    vl:firstRelease      2004 ;
+    vl:reviewUrl        <https://www.youtube.com/watch?v=_CPM9X4Evn8> .
 
 <Amazon-Neptune>  a vl:Database ;
     schema:name        "Amazon Neptune" ;
@@ -768,7 +781,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:SPARQL-star ;
     vl:supportsStandard std:JSON-LD ;
     vl:supportsStandard std:LDP ;
-    vl:firstRelease      2004 .
+    vl:firstRelease      2004 ;
+    vl:reviewUrl        <https://www.youtube.com/watch?v=yteql3eB8E4> .
 
 <graphy-js>  a vl:Framework ;
     schema:name        "graphy.js" ;
@@ -1218,7 +1232,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:JSON-LD ;
     vl:supportsStandard std:SHACL ;
-    vl:firstRelease      2007 .
+    vl:firstRelease      2007 ;
+    vl:reviewUrl        <https://www.youtube.com/watch?v=OkrCXF2BZ3Y> .
 
 <Ontop>  a vl:Database ;
     schema:name        "Ontop" ;
@@ -1277,7 +1292,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:supportsStandard std:R2RML ;
     vl:supportsStandard std:OWL-2 ;
-    vl:firstRelease      2020 .
+    vl:firstRelease      2020 ;
+    vl:reviewUrl        <https://www.youtube.com/watch?v=YQELrRy3qg0> .
 
 <OOPS>  a vl:Tool ;
     schema:name        "OOPS!" ;
@@ -1483,7 +1499,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:OWL-2 ;
     vl:supportsStandard std:JSON-LD ;
     vl:supportsStandard std:LDP ;
-    vl:firstRelease      2009 .
+    vl:firstRelease      2009 ;
+    vl:reviewUrl        <https://www.youtube.com/watch?v=KgXaAxWNsJM> .
 
 <Protege>  a vl:Tool ;
     schema:name        "Protege" ;
@@ -1713,7 +1730,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:RDF-star ;
     vl:supportsStandard std:SPARQL-star ;
     vl:supportsStandard std:Datalog ;
-    vl:firstRelease      2013 .
+    vl:firstRelease      2013 ;
+    vl:reviewUrl        <https://www.youtube.com/watch?v=YqOSD5XMoF4> .
 
 <RDFSharp>  a vl:Framework ;
     schema:name        "RDFSharp" ;
@@ -1913,7 +1931,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:LDP ;
     vl:supportsStandard std:JSON-LD ;
     vl:supportsStandard std:SKOS ;
-    vl:firstRelease      2016 .
+    vl:firstRelease      2016 ;
+    vl:reviewUrl        <https://www.youtube.com/watch?v=D-1zlMdxYmk> .
 
 <Stardog>  a vl:Database ;
     schema:name        "Stardog" ;
@@ -1949,7 +1968,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:LDP ;
     vl:supportsStandard std:R2RML ;
     vl:supportsStandard std:SKOS ;
-    vl:firstRelease      2010 .
+    vl:firstRelease      2010 ;
+    vl:reviewUrl        <https://www.youtube.com/watch?v=GmqFAmtJ6GY> .
 
 <Tentris>  a vl:Database ;
     schema:name        "Tentris" ;
@@ -2063,7 +2083,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:SHACL ;
     vl:supportsStandard std:SKOS ;
     vl:supportsStandard std:JSON-LD ;
-    vl:firstRelease      2010 .
+    vl:firstRelease      2010 ;
+    vl:reviewUrl        <https://www.youtube.com/watch?v=VNEnVg9OoRk> .
 
 <TopBraid-SHACL-API>  a vl:Framework ;
     schema:name        "TopBraid SHACL API" ;
@@ -2312,3 +2333,168 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:JSON-LD ;
     vl:supportsStandard std:LDP ;
     vl:firstRelease      2016 .
+
+<MillenniumDB>  a vl:Database ;
+    schema:name        "MillenniumDB" ;
+    schema:description "Open-source graph database from the Millennium Institute (IMFD, Chile) supporting both RDF/SPARQL and property graphs, with worst-case optimal join algorithms" ;
+    schema:url         <https://github.com/MillenniumDB/MillenniumDB> ;
+    vl:subcategory     "Graph Database + RDF" ;
+    vl:language         "C++" ;
+    vl:license          "GPL v2" ;
+    vl:pricing          "Open Source" ;
+    vl:github           <https://github.com/MillenniumDB/MillenniumDB> ;
+    vl:logoHint         "MillenniumDB IMFD Chile" ;
+    vl:logoUrl          <https://github.com/MillenniumDB.png?size=64> ;
+    vl:hasDemo          false ;
+    vl:hasBenchmark     false ;
+    vl:speedNote        "Fast query processing through worst-case optimal joins. Competitive on Wikidata-scale workloads" ;
+    vl:scaleNote        "Handles Wikidata-scale datasets. Persistent disk-based storage" ;
+    vl:speedTier        speed:fast ;
+    vl:scaleTier        scale:large ;
+    vl:region           region:South-America ;
+    vl:country          country:Chile ;
+    vl:focusArea        focus:SPARQL ;
+    vl:focusArea        focus:Wikidata-scale ;
+    vl:focusArea        focus:High-performance ;
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:firstRelease      2022 .
+
+<Qendpoint>  a vl:Database ;
+    schema:name        "Qendpoint" ;
+    schema:description "Highly scalable triple store using HDT for read-optimized storage with a write partition based on RDF4J. Can index and query the entire Wikidata dump on commodity hardware" ;
+    schema:url         <https://github.com/the-qa-company/qEndpoint> ;
+    vl:subcategory     "Triple Store / SPARQL Engine" ;
+    vl:language         "Java" ;
+    vl:license          "GPL v3" ;
+    vl:pricing          "Open Source" ;
+    vl:github           <https://github.com/the-qa-company/qEndpoint> ;
+    vl:logoHint         "Qendpoint QA Company logo" ;
+    vl:logoUrl          <https://github.com/the-qa-company.png?size=64> ;
+    vl:hasDemo          false ;
+    vl:hasBenchmark     false ;
+    vl:speedNote        "Optimized for large-scale read-heavy workloads. HDT-based partition delivers fast query execution" ;
+    vl:scaleNote        "Indexes 17B+ triples (full Wikidata) on a single machine with 10GB RAM and 600GB SSD" ;
+    vl:speedTier        speed:fast ;
+    vl:scaleTier        scale:large ;
+    vl:region           region:Europe ;
+    vl:country          country:France ;
+    vl:focusArea        focus:Wikidata-scale ;
+    vl:focusArea        focus:Compressed-RDF ;
+    vl:focusArea        focus:Full-text-search ;
+    vl:focusArea        focus:GeoSPARQL ;
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:firstRelease      2022 .
+
+<SHACL-Play>  a vl:Tool ;
+    schema:name        "SHACL Play" ;
+    schema:description "Free online SHACL toolkit by Sparna for validation, documentation generation, UML diagram generation, and SHACL profile derivation from RDF data" ;
+    schema:url         <https://shacl-play.sparna.fr/play/> ;
+    vl:subcategory     "SHACL Validator / Documentation" ;
+    vl:language         "Java" ;
+    vl:license          "Open Source" ;
+    vl:pricing          "Free (Web Service)" ;
+    vl:github           <https://github.com/sparna-git/shacl-play> ;
+    vl:logoHint         "SHACL Play Sparna logo" ;
+    vl:logoUrl          <https://www.google.com/s2/favicons?domain=sparna.fr&sz=64> ;
+    vl:hasDemo          true ;
+    vl:demoUrl          <https://shacl-play.sparna.fr/play/> ;
+    vl:hasBenchmark     false ;
+    vl:speedNote        "Web-based tool - validates and generates documentation quickly for typical ontology sizes" ;
+    vl:scaleNote        "Designed for interactive use, not bulk processing" ;
+    vl:speedTier        speed:varies ;
+    vl:scaleTier        scale:small ;
+    vl:region           region:Europe ;
+    vl:country          country:France ;
+    vl:focusArea        focus:SHACL-validation ;
+    vl:focusArea        focus:Documentation-generation ;
+    vl:focusArea        focus:UML-diagrams ;
+    vl:focusArea        focus:Shape-debugging ;
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:supportsStandard std:SHACL ;
+    vl:firstRelease      2020 .
+
+<SousLeSens-Vocables>  a vl:Tool ;
+    schema:name        "SousLeSens" ;
+    schema:description "Open-source suite for managing thesauri and ontologies (SKOS, OWL, RDF) with graph visualization, knowledge graph construction from tabular data, and a no-code visual interface" ;
+    schema:url         <https://souslesens.org/> ;
+    vl:subcategory     "Ontology Editor / KG Builder" ;
+    vl:language         "JavaScript (Node.js)" ;
+    vl:license          "MIT" ;
+    vl:pricing          "Open Source" ;
+    vl:github           <https://github.com/souslesens/souslesensVocables> ;
+    vl:logoHint         "SousLeSens Vocables logo" ;
+    vl:logoUrl          <https://github.com/souslesens.png?size=64> ;
+    vl:hasDemo          false ;
+    vl:hasBenchmark     false ;
+    vl:speedNote        "Web-based tool for ontology management and KG construction workflows" ;
+    vl:scaleNote        "Designed for industrial ontology management. Scales with the backing triple store" ;
+    vl:speedTier        speed:varies ;
+    vl:scaleTier        scale:medium ;
+    vl:region           region:Europe ;
+    vl:country          country:France ;
+    vl:focusArea        focus:SKOS-management ;
+    vl:focusArea        focus:Graph-visualization ;
+    vl:focusArea        focus:Knowledge-graph-construction ;
+    vl:focusArea        focus:Low-code ;
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:supportsStandard std:OWL-2 ;
+    vl:supportsStandard std:SKOS ;
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:firstRelease      2020 .
+
+<Timbr>  a vl:Database ;
+    schema:name        "Timbr" ;
+    schema:description "SQL-based ontology semantic layer that models knowledge graphs over existing databases (Snowflake, Databricks, Spark, etc.) using OWL ontologies, queryable via standard SQL" ;
+    schema:url         <https://timbr.ai/> ;
+    vl:subcategory     "Virtual Knowledge Graph / SQL Semantic Layer" ;
+    vl:language         "Managed Service" ;
+    vl:license          "Commercial (SaaS)" ;
+    vl:pricing          "Commercial (contact for pricing)" ;
+    vl:logoHint         "Timbr.ai SQL knowledge graph logo" ;
+    vl:logoUrl          <https://www.google.com/s2/favicons?domain=timbr.ai&sz=64> ;
+    vl:hasDemo          false ;
+    vl:hasBenchmark     false ;
+    vl:speedNote        "Queries run against the underlying data platform (Snowflake, Spark, etc.) with ontological reasoning added on top" ;
+    vl:scaleNote        "Inherits scale from the backing data platform. No data duplication needed" ;
+    vl:speedTier        speed:varies ;
+    vl:scaleTier        scale:large ;
+    vl:region           region:Middle-East ;
+    vl:country          country:Israel ;
+    vl:focusArea        focus:Semantic-layer ;
+    vl:focusArea        focus:Data-virtualization ;
+    vl:focusArea        focus:Data-integration ;
+    vl:focusArea        focus:Enterprise ;
+    vl:supportsStandard std:OWL-2 ;
+    vl:firstRelease      2018 .
+
+<TriplyDB>  a vl:Tool ;
+    schema:name        "TriplyDB" ;
+    schema:description "Commercial linked data platform for knowledge graph hosting, SPARQL endpoints, API publishing, and data management. Powers the Dutch Land Registry (Kadaster) linked data infrastructure" ;
+    schema:url         <https://triplydb.com/> ;
+    vl:subcategory     "Linked Data Platform" ;
+    vl:language         "TypeScript / Web" ;
+    vl:license          "Commercial" ;
+    vl:pricing          "Commercial (contact for pricing)" ;
+    vl:logoHint         "TriplyDB Triply logo" ;
+    vl:logoUrl          <https://www.google.com/s2/favicons?domain=triplydb.com&sz=64> ;
+    vl:hasDemo          true ;
+    vl:demoUrl          <https://triplydb.com/> ;
+    vl:hasBenchmark     false ;
+    vl:speedNote        "Optimized for linked data serving with SPARQL, REST, and ElasticSearch-based text search" ;
+    vl:scaleNote        "Enterprise-grade. Handles the largest government linked data deployment in the Netherlands" ;
+    vl:speedTier        speed:fast ;
+    vl:scaleTier        scale:large ;
+    vl:region           region:Europe ;
+    vl:country          country:Netherlands ;
+    vl:focusArea        focus:Data-publishing ;
+    vl:focusArea        focus:Linked-Data-publishing ;
+    vl:focusArea        focus:SPARQL-server ;
+    vl:focusArea        focus:Enterprise ;
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:supportsStandard std:JSON-LD ;
+    vl:supportsStandard std:SHACL ;
+    vl:supportsStandard std:SKOS ;
+    vl:firstRelease      2017 .

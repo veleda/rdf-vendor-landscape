@@ -55,7 +55,7 @@ def query_vendors(m: Model) -> list[dict]:
                ?speedNote ?scaleNote ?warning
                ?speedLabel ?scaleLabel
                ?regionLabel ?countryLabel ?flag
-               ?firstRelease
+               ?firstRelease ?reviewUrl
         WHERE {
             ?v a ?cls .
             ?cls rdfs:subClassOf vl:Vendor ; rdfs:label ?cat .
@@ -81,6 +81,7 @@ def query_vendors(m: Model) -> list[dict]:
             OPTIONAL { ?v vl:country     ?co . ?co rdfs:label ?countryLabel }
             OPTIONAL { ?v vl:country     ?co2 . ?co2 vl:flag ?flag }
             OPTIONAL { ?v vl:firstRelease ?firstRelease }
+            OPTIONAL { ?v vl:reviewUrl ?reviewUrl }
         }
     """)
 
@@ -138,6 +139,7 @@ def query_vendors(m: Model) -> list[dict]:
             "speedTier":    row.get("speedLabel") or "",
             "scaleTier":    row.get("scaleLabel") or "",
             "firstRelease": int(row["firstRelease"]) if row.get("firstRelease") else None,
+            "reviewUrl":    strip_iri(row.get("reviewUrl") or "") or None,
         }
         if row.get("warning"):
             v["warning"] = row["warning"]
