@@ -41,6 +41,7 @@ vl:logoUrl a owl:DatatypeProperty ; rdfs:label "Logo URL" .
 vl:speedNote a owl:DatatypeProperty ; rdfs:label "Speed description" .
 vl:scaleNote a owl:DatatypeProperty ; rdfs:label "Scale description" .
 vl:warning a owl:DatatypeProperty ; rdfs:label "Warning note" .
+vl:firstRelease a owl:DatatypeProperty ; rdfs:label "First release year" .
 vl:flag a owl:DatatypeProperty ; rdfs:label "Emoji flag" .
 vl:focusArea a owl:ObjectProperty ; rdfs:label "Focus area" .
 vl:supportsStandard a owl:ObjectProperty ; rdfs:label "Supports standard" .
@@ -101,6 +102,7 @@ focus:Enterprise-integration  a vl:FocusArea ; rdfs:label "Enterprise integratio
 focus:Enterprise-modeling  a vl:FocusArea ; rdfs:label "Enterprise modeling" .
 focus:Enterprise-semantic-AI  a vl:FocusArea ; rdfs:label "Enterprise semantic AI" .
 focus:Expansion-compaction  a vl:FocusArea ; rdfs:label "Expansion/compaction" .
+focus:Faceted-search  a vl:FocusArea ; rdfs:label "Faceted search" .
 focus:Expansion-compaction-framing  a vl:FocusArea ; rdfs:label "Expansion/compaction/framing" .
 focus:Explanation  a vl:FocusArea ; rdfs:label "Explanation" .
 focus:Exploration  a vl:FocusArea ; rdfs:label "Exploration" .
@@ -155,6 +157,7 @@ focus:Managed-cloud-service  a vl:FocusArea ; rdfs:label "Managed cloud service"
 focus:Metadata-management  a vl:FocusArea ; rdfs:label "Metadata management" .
 focus:Modeling-errors  a vl:FocusArea ; rdfs:label "Modeling errors" .
 focus:Modular-architecture  a vl:FocusArea ; rdfs:label "Modular architecture" .
+focus:Multi-database-IDE  a vl:FocusArea ; rdfs:label "Multi-database IDE" .
 focus:Multi-model  a vl:FocusArea ; rdfs:label "Multi-model" .
 focus:Multiple-storage-backends  a vl:FocusArea ; rdfs:label "Multiple storage backends" .
 focus:MySQL-storage  a vl:FocusArea ; rdfs:label "MySQL storage" .
@@ -317,6 +320,7 @@ country:Austria  a vl:Country ; rdfs:label "Austria" ; vl:flag "🇦🇹" .
 country:Belgium  a vl:Country ; rdfs:label "Belgium" ; vl:flag "🇧🇪" .
 country:Bulgaria  a vl:Country ; rdfs:label "Bulgaria" ; vl:flag "🇧🇬" .
 country:Czech-Republic  a vl:Country ; rdfs:label "Czech Republic" ; vl:flag "🇨🇿" .
+country:Denmark  a vl:Country ; rdfs:label "Denmark" ; vl:flag "🇩🇰" .
 country:France  a vl:Country ; rdfs:label "France" ; vl:flag "🇫🇷" .
 country:Germany  a vl:Country ; rdfs:label "Germany" ; vl:flag "🇩🇪" .
 country:Global  a vl:Country ; rdfs:label "Global" ; vl:flag "🌐" .
@@ -344,6 +348,37 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
 # ======================================================================
 # Vendor instances
 # ======================================================================
+
+<AtomGraph-LinkedDataHub>  a vl:Tool ;
+    schema:name        "AtomGraph LinkedDataHub" ;
+    schema:description "Low-code Knowledge Graph application platform built entirely on RDF and SPARQL. Supports faceted search, set-based navigation, and declarative data-driven web apps with LDP and DCAT support" ;
+    schema:url         <https://atomgraph.com/> ;
+    vl:subcategory     "Linked Data Platform" ;
+    vl:language         "Java / Web" ;
+    vl:license          "Apache 2.0" ;
+    vl:pricing          "Open Source + Commercial Cloud" ;
+    vl:github           <https://github.com/AtomGraph/LinkedDataHub> ;
+    vl:logoHint         "AtomGraph LinkedDataHub logo" ;
+    vl:logoUrl          <https://github.com/AtomGraph.png?size=64> ;
+    vl:hasDemo          true ;
+    vl:demoUrl          <https://atomgraph.github.io/LinkedDataHub/> ;
+    vl:hasBenchmark     false ;
+    vl:speedNote        "Java-based platform - performance depends on backing SPARQL store" ;
+    vl:scaleNote        "Scales with the backing triple store. Cloud option available for managed deployments" ;
+    vl:speedTier        speed:varies ;
+    vl:scaleTier        scale:medium ;
+    vl:region           region:Europe ;
+    vl:country          country:Denmark ;
+    vl:focusArea        focus:Low-code ;
+    vl:focusArea        focus:LDP-support ;
+    vl:focusArea        focus:Faceted-search ;
+    vl:focusArea        focus:Linked-Data-publishing ;
+    vl:focusArea        focus:SPARQL ;
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:supportsStandard std:LDP ;
+    vl:flag             "🇩🇰" ;
+    vl:firstRelease      2019 .
 
 <AllegroGraph>  a vl:Database ;
     schema:name        "AllegroGraph" ;
@@ -374,7 +409,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:OWL-2 ;
     vl:supportsStandard std:SHACL ;
     vl:supportsStandard std:JSON-LD ;
-    vl:supportsStandard std:LDP .
+    vl:supportsStandard std:LDP ;
+    vl:firstRelease      2004 .
 
 <Amazon-Neptune>  a vl:Database ;
     schema:name        "Amazon Neptune" ;
@@ -400,7 +436,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:openCypher ;
     vl:focusArea        focus:Serverless-option ;
     vl:supportsStandard std:RDF-1-1 ;
-    vl:supportsStandard std:SPARQL-1-1 .
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:firstRelease      2018 .
 
 <AnzoGraph>  a vl:Database ;
     schema:name        "AnzoGraph" ;
@@ -428,7 +465,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:supportsStandard std:OWL-2 ;
     vl:supportsStandard std:RDF-star ;
-    vl:supportsStandard std:SPARQL-star .
+    vl:supportsStandard std:SPARQL-star ;
+    vl:firstRelease      2018 .
 
 <Apache-Commons-RDF>  a vl:Framework ;
     schema:name        "Apache Commons RDF" ;
@@ -452,7 +490,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:RDF-API-abstraction ;
     vl:focusArea        focus:Jena-RDF4J-interop ;
     vl:focusArea        focus:Type-safe-interfaces ;
-    vl:supportsStandard std:RDF-1-1 .
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:firstRelease      2015 .
 
 <Apache-Jena>  a vl:Framework ;
     schema:name        "Apache Jena" ;
@@ -484,7 +523,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:SHACL ;
     vl:supportsStandard std:RDF-star ;
     vl:supportsStandard std:SPARQL-star ;
-    vl:supportsStandard std:JSON-LD .
+    vl:supportsStandard std:JSON-LD ;
+    vl:firstRelease      2000 .
 
 <Apache-Jena-Fuseki>  a vl:Database ;
     schema:name        "Apache Jena Fuseki" ;
@@ -515,7 +555,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:SHACL ;
     vl:supportsStandard std:RDF-star ;
     vl:supportsStandard std:SPARQL-star ;
-    vl:supportsStandard std:JSON-LD .
+    vl:supportsStandard std:JSON-LD ;
+    vl:firstRelease      2012 .
 
 <ARC2>  a vl:Framework ;
     schema:name        "ARC2" ;
@@ -541,7 +582,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:MySQL-storage ;
     vl:focusArea        focus:Legacy-PHP-projects ;
     vl:supportsStandard std:RDF-1-1 ;
-    vl:supportsStandard std:SPARQL-1-1 .
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:firstRelease      2004 .
 
 <Blazegraph>  a vl:Database ;
     schema:name        "Blazegraph" ;
@@ -567,7 +609,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:High-availability ;
     vl:focusArea        focus:Wikidata ;
     vl:supportsStandard std:RDF-1-1 ;
-    vl:supportsStandard std:SPARQL-1-1 .
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:firstRelease      2006 .
 
 <Comunica>  a vl:Framework ;
     schema:name        "Comunica" ;
@@ -599,7 +642,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:JSON-LD ;
     vl:supportsStandard std:RDF-star ;
     vl:supportsStandard std:SPARQL-star ;
-    vl:supportsStandard std:LDP .
+    vl:supportsStandard std:LDP ;
+    vl:firstRelease      2018 .
 
 <dotNetRDF>  a vl:Framework ;
     schema:name        "dotNetRDF" ;
@@ -627,7 +671,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:supportsStandard std:JSON-LD ;
-    vl:supportsStandard std:LDP .
+    vl:supportsStandard std:LDP ;
+    vl:firstRelease      2009 .
 
 <EasyRdf>  a vl:Framework ;
     schema:name        "EasyRdf" ;
@@ -654,7 +699,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Web-development ;
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
-    vl:supportsStandard std:JSON-LD .
+    vl:supportsStandard std:JSON-LD ;
+    vl:firstRelease      2011 .
 
 <Eclipse-RDF4J>  a vl:Framework ;
     schema:name        "Eclipse RDF4J" ;
@@ -687,7 +733,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:RDF-star ;
     vl:supportsStandard std:SPARQL-star ;
     vl:supportsStandard std:JSON-LD ;
-    vl:supportsStandard std:LDP .
+    vl:supportsStandard std:LDP ;
+    vl:firstRelease      2004 .
 
 <GraphDB>  a vl:Database ;
     schema:name        "GraphDB" ;
@@ -720,7 +767,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:RDF-star ;
     vl:supportsStandard std:SPARQL-star ;
     vl:supportsStandard std:JSON-LD ;
-    vl:supportsStandard std:LDP .
+    vl:supportsStandard std:LDP ;
+    vl:firstRelease      2004 .
 
 <graphy-js>  a vl:Framework ;
     schema:name        "graphy.js" ;
@@ -745,7 +793,36 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Streaming-I-O ;
     vl:focusArea        focus:Turtle-N-Triples-N-Quads-TriG ;
     vl:supportsStandard std:RDF-1-1 ;
-    vl:supportsStandard std:N3 .
+    vl:supportsStandard std:N3 ;
+    vl:firstRelease      2017 .
+
+<gdotv>  a vl:Tool ;
+    schema:name        "gdotv" ;
+    schema:description "Multi-database graph IDE supporting SPARQL, Cypher, and Gremlin with visual query building, graph exploration, and schema visualization. Connects to Fuseki, Virtuoso, QLever, Neptune, and more" ;
+    schema:url         <https://gdotv.com/> ;
+    vl:subcategory     "Graph Visualization / IDE" ;
+    vl:language         "TypeScript / Electron" ;
+    vl:license          "Commercial (Free Lite tier)" ;
+    vl:pricing          "Free Lite + Commercial Pro" ;
+    vl:logoHint         "gdotv graph database IDE logo" ;
+    vl:logoUrl          <https://www.google.com/s2/favicons?domain=gdotv.com&sz=64> ;
+    vl:hasDemo          false ;
+    vl:hasBenchmark     false ;
+    vl:speedNote        "Desktop IDE - query speed depends on the connected database backend" ;
+    vl:scaleNote        "Client-side tool for exploration and querying. Visualization handles moderate graph sizes" ;
+    vl:speedTier        speed:varies ;
+    vl:scaleTier        scale:varies ;
+    vl:region           region:Europe ;
+    vl:country          country:UK ;
+    vl:focusArea        focus:Multi-database-IDE ;
+    vl:focusArea        focus:SPARQL-editor ;
+    vl:focusArea        focus:Graph-visualization ;
+    vl:focusArea        focus:Cypher-queries ;
+    vl:focusArea        focus:Gremlin ;
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:flag             "🇬🇧" ;
+    vl:firstRelease      2021 .
 
 <Gruff>  a vl:Tool ;
     schema:name        "Gruff" ;
@@ -770,7 +847,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:AllegroGraph-integration ;
     vl:focusArea        focus:Exploration ;
     vl:supportsStandard std:RDF-1-1 ;
-    vl:supportsStandard std:SPARQL-1-1 .
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:firstRelease      2010 .
 
 <HDT-Header-Dictionary-Triples>  a vl:Framework ;
     schema:name        "HDT (Header-Dictionary-Triples)" ;
@@ -795,7 +873,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Archival ;
     vl:focusArea        focus:Triple-pattern-queries ;
     vl:focusArea        focus:Linked-Data-publishing ;
-    vl:supportsStandard std:RDF-1-1 .
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:firstRelease      2012 .
 
 <HermiT>  a vl:Tool ;
     schema:name        "HermiT" ;
@@ -821,7 +900,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Classification ;
     vl:focusArea        focus:Consistency-checking ;
     vl:supportsStandard std:OWL-2 ;
-    vl:supportsStandard std:RDF-1-1 .
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:firstRelease      2008 .
 
 <isSemantic-RDF-Visualizer>  a vl:Tool ;
     schema:name        "isSemantic RDF Visualizer" ;
@@ -846,7 +926,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Validation ;
     vl:focusArea        focus:Format-conversion ;
     vl:focusArea        focus:RDF-star-support ;
-    vl:supportsStandard std:RDF-1-1 .
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:firstRelease      2021 .
 
 <JSON-LD-Playground>  a vl:Tool ;
     schema:name        "JSON-LD Playground" ;
@@ -873,7 +954,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Framing ;
     vl:focusArea        focus:RDF-conversion ;
     vl:supportsStandard std:JSON-LD ;
-    vl:supportsStandard std:RDF-1-1 .
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:firstRelease      2012 .
 
 <jsonld-js>  a vl:Framework ;
     schema:name        "jsonld.js" ;
@@ -900,7 +982,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Framing ;
     vl:focusArea        focus:RDF-conversion ;
     vl:supportsStandard std:JSON-LD ;
-    vl:supportsStandard std:RDF-1-1 .
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:firstRelease      2012 .
 
 <Kolibrie>  a vl:Database ;
     schema:name        "Kolibrie" ;
@@ -926,7 +1009,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Rule-based-reasoning ;
     vl:focusArea        focus:Backward-chaining ;
     vl:supportsStandard std:RDF-1-1 ;
-    vl:supportsStandard std:SPARQL-1-1 .
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:firstRelease      2024 .
 
 <Linked-Data-Fragments-Server>  a vl:Tool ;
     schema:name        "Linked Data Fragments Server" ;
@@ -954,7 +1038,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Decentralized ;
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
-    vl:supportsStandard std:LDP .
+    vl:supportsStandard std:LDP ;
+    vl:firstRelease      2014 .
 
 <maplib>  a vl:Framework ;
     schema:name        "maplib" ;
@@ -987,7 +1072,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:supportsStandard std:SHACL ;
-    vl:supportsStandard std:Datalog .
+    vl:supportsStandard std:Datalog ;
+    vl:firstRelease      2023 .
 
 <MarkLogic>  a vl:Database ;
     schema:name        "MarkLogic" ;
@@ -1014,7 +1100,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Security ;
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
-    vl:supportsStandard std:JSON-LD .
+    vl:supportsStandard std:JSON-LD ;
+    vl:firstRelease      2001 .
 
 <Matey>  a vl:Tool ;
     schema:name        "Matey" ;
@@ -1042,7 +1129,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Beginner-friendly ;
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:RML ;
-    vl:supportsStandard std:R2RML .
+    vl:supportsStandard std:R2RML ;
+    vl:firstRelease      2019 .
 
 <Morph-KGC>  a vl:Framework ;
     schema:name        "Morph-KGC" ;
@@ -1071,7 +1159,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:R2RML ;
     vl:supportsStandard std:RML ;
-    vl:supportsStandard std:CSVW .
+    vl:supportsStandard std:CSVW ;
+    vl:firstRelease      2021 .
 
 <N3-js>  a vl:Framework ;
     schema:name        "N3.js" ;
@@ -1098,7 +1187,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Turtle-N3-N-Quads ;
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:N3 ;
-    vl:supportsStandard std:RDF-star .
+    vl:supportsStandard std:RDF-star ;
+    vl:firstRelease      2013 .
 
 <Neo4j-n10s>  a vl:Database ;
     schema:name        "Neo4j + n10s" ;
@@ -1127,7 +1217,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Graph-visualization ;
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:JSON-LD ;
-    vl:supportsStandard std:SHACL .
+    vl:supportsStandard std:SHACL ;
+    vl:firstRelease      2007 .
 
 <Ontop>  a vl:Database ;
     schema:name        "Ontop" ;
@@ -1156,7 +1247,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:supportsStandard std:OWL-2 ;
     vl:supportsStandard std:R2RML ;
-    vl:supportsStandard std:JSON-LD .
+    vl:supportsStandard std:JSON-LD ;
+    vl:firstRelease      2009 .
 
 <Ontopic-Studio>  a vl:Tool ;
     schema:name        "Ontopic Studio" ;
@@ -1184,7 +1276,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:supportsStandard std:R2RML ;
-    vl:supportsStandard std:OWL-2 .
+    vl:supportsStandard std:OWL-2 ;
+    vl:firstRelease      2020 .
 
 <OOPS>  a vl:Tool ;
     schema:name        "OOPS!" ;
@@ -1211,7 +1304,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Best-practices ;
     vl:focusArea        focus:Modeling-errors ;
     vl:supportsStandard std:OWL-2 ;
-    vl:supportsStandard std:RDF-1-1 .
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:firstRelease      2012 .
 
 <Oracle-RDF-Graph>  a vl:Database ;
     schema:name        "Oracle RDF Graph" ;
@@ -1241,7 +1335,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:supportsStandard std:OWL-2 ;
     vl:supportsStandard std:SHACL ;
-    vl:supportsStandard std:JSON-LD .
+    vl:supportsStandard std:JSON-LD ;
+    vl:firstRelease      2005 .
 
 <Owlready2>  a vl:Framework ;
     schema:name        "Owlready2" ;
@@ -1269,7 +1364,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:HermiT-Pellet ;
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:OWL-2 ;
-    vl:supportsStandard std:SPARQL-1-1 .
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:firstRelease      2017 .
 
 <Oxigraph>  a vl:Database ;
     schema:name        "Oxigraph" ;
@@ -1297,7 +1393,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:supportsStandard std:RDF-star ;
-    vl:supportsStandard std:SPARQL-star .
+    vl:supportsStandard std:SPARQL-star ;
+    vl:firstRelease      2020 .
 
 <Oxigraph-Server>  a vl:Database ;
     schema:name        "Oxigraph Server" ;
@@ -1325,7 +1422,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:supportsStandard std:RDF-star ;
-    vl:supportsStandard std:SPARQL-star .
+    vl:supportsStandard std:SPARQL-star ;
+    vl:firstRelease      2020 .
 
 <Pellet-Openllet>  a vl:Tool ;
     schema:name        "Pellet / Openllet" ;
@@ -1353,7 +1451,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:OWL-2 ;
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
-    vl:supportsStandard std:SHACL .
+    vl:supportsStandard std:SHACL ;
+    vl:firstRelease      2003 .
 
 <PoolParty>  a vl:Tool ;
     schema:name        "PoolParty" ;
@@ -1383,7 +1482,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:SKOS ;
     vl:supportsStandard std:OWL-2 ;
     vl:supportsStandard std:JSON-LD ;
-    vl:supportsStandard std:LDP .
+    vl:supportsStandard std:LDP ;
+    vl:firstRelease      2009 .
 
 <Protege>  a vl:Tool ;
     schema:name        "Protege" ;
@@ -1412,7 +1512,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Visualization ;
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:OWL-2 ;
-    vl:supportsStandard std:SKOS .
+    vl:supportsStandard std:SKOS ;
+    vl:firstRelease      1999 .
 
 <pySHACL>  a vl:Framework ;
     schema:name        "pySHACL" ;
@@ -1439,7 +1540,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Python ;
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SHACL ;
-    vl:supportsStandard std:OWL-2 .
+    vl:supportsStandard std:OWL-2 ;
+    vl:firstRelease      2018 .
 
 <QLever>  a vl:Database ;
     schema:name        "QLever" ;
@@ -1466,7 +1568,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Large-scale-querying ;
     vl:focusArea        focus:Wikidata-scale ;
     vl:supportsStandard std:RDF-1-1 ;
-    vl:supportsStandard std:SPARQL-1-1 .
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:firstRelease      2017 .
 
 <Raptor>  a vl:Framework ;
     schema:name        "Raptor" ;
@@ -1492,7 +1595,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:RDF-XML ;
     vl:focusArea        focus:Turtle ;
     vl:focusArea        focus:N-Triples ;
-    vl:supportsStandard std:RDF-1-1 .
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:firstRelease      2001 .
 
 <rdf-ext>  a vl:Framework ;
     schema:name        "rdf-ext" ;
@@ -1519,7 +1623,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Stream-processing ;
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:JSON-LD ;
-    vl:supportsStandard std:N3 .
+    vl:supportsStandard std:N3 ;
+    vl:firstRelease      2014 .
 
 <RDF4J-Workbench>  a vl:Tool ;
     schema:name        "RDF4J Workbench" ;
@@ -1546,7 +1651,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:RDF4J-administration ;
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
-    vl:supportsStandard std:JSON-LD .
+    vl:supportsStandard std:JSON-LD ;
+    vl:firstRelease      2015 .
 
 <rdflib>  a vl:Framework ;
     schema:name        "rdflib" ;
@@ -1575,7 +1681,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:supportsStandard std:JSON-LD ;
-    vl:supportsStandard std:N3 .
+    vl:supportsStandard std:N3 ;
+    vl:firstRelease      2002 .
 
 <RDFox>  a vl:Database ;
     schema:name        "RDFox" ;
@@ -1605,7 +1712,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:SHACL ;
     vl:supportsStandard std:RDF-star ;
     vl:supportsStandard std:SPARQL-star ;
-    vl:supportsStandard std:Datalog .
+    vl:supportsStandard std:Datalog ;
+    vl:firstRelease      2013 .
 
 <RDFSharp>  a vl:Framework ;
     schema:name        "RDFSharp" ;
@@ -1634,7 +1742,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:supportsStandard std:OWL-2 ;
-    vl:supportsStandard std:SHACL .
+    vl:supportsStandard std:SHACL ;
+    vl:firstRelease      2015 .
 
 <Redland-librdf>  a vl:Framework ;
     schema:name        "Redland (librdf)" ;
@@ -1660,7 +1769,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Language-bindings ;
     vl:focusArea        focus:Multiple-storage-backends ;
     vl:supportsStandard std:RDF-1-1 ;
-    vl:supportsStandard std:SPARQL-1-1 .
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:firstRelease      2000 .
 
 <RMLMapper>  a vl:Tool ;
     schema:name        "RMLMapper" ;
@@ -1687,7 +1797,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:R2RML-compatible ;
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:R2RML ;
-    vl:supportsStandard std:RML .
+    vl:supportsStandard std:RML ;
+    vl:firstRelease      2014 .
 
 <SAP-HANA-Cloud-KGE>  a vl:Database ;
     schema:name        "SAP HANA Cloud KGE" ;
@@ -1716,7 +1827,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:supportsStandard std:OWL-2 ;
-    vl:supportsStandard std:SHACL .
+    vl:supportsStandard std:SHACL ;
+    vl:firstRelease      2025 .
 
 <SHACL-Playground>  a vl:Tool ;
     schema:name        "SHACL Playground" ;
@@ -1741,7 +1853,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Interactive-testing ;
     vl:focusArea        focus:Shape-debugging ;
     vl:supportsStandard std:SHACL ;
-    vl:supportsStandard std:RDF-1-1 .
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:firstRelease      2020 .
 
 <Sophia>  a vl:Framework ;
     schema:name        "Sophia" ;
@@ -1766,7 +1879,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Rust-toolkit ;
     vl:focusArea        focus:Generic-API ;
     vl:focusArea        focus:Type-safe-graph-operations ;
-    vl:supportsStandard std:RDF-1-1 .
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:firstRelease      2019 .
 
 <metaphactory>  a vl:Tool ;
     schema:name        "metaphactory" ;
@@ -1798,7 +1912,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:SHACL ;
     vl:supportsStandard std:LDP ;
     vl:supportsStandard std:JSON-LD ;
-    vl:supportsStandard std:SKOS .
+    vl:supportsStandard std:SKOS ;
+    vl:firstRelease      2016 .
 
 <Stardog>  a vl:Database ;
     schema:name        "Stardog" ;
@@ -1833,7 +1948,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:JSON-LD ;
     vl:supportsStandard std:LDP ;
     vl:supportsStandard std:R2RML ;
-    vl:supportsStandard std:SKOS .
+    vl:supportsStandard std:SKOS ;
+    vl:firstRelease      2010 .
 
 <Tentris>  a vl:Database ;
     schema:name        "Tentris" ;
@@ -1859,7 +1975,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Tensor-based-indexing ;
     vl:focusArea        focus:Worst-case-optimal-joins ;
     vl:supportsStandard std:RDF-1-1 ;
-    vl:supportsStandard std:SPARQL-1-1 .
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:firstRelease      2019 .
 
 <Titanium-JSON-LD>  a vl:Framework ;
     schema:name        "Titanium JSON-LD" ;
@@ -1884,7 +2001,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Java-processing ;
     vl:focusArea        focus:Expansion-compaction-framing ;
     vl:supportsStandard std:JSON-LD ;
-    vl:supportsStandard std:RDF-1-1 .
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:firstRelease      2020 .
 
 <TopBraid-Composer>  a vl:Tool ;
     schema:name        "TopBraid Composer" ;
@@ -1913,7 +2031,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:OWL-2 ;
     vl:supportsStandard std:SHACL ;
     vl:supportsStandard std:JSON-LD ;
-    vl:supportsStandard std:SKOS .
+    vl:supportsStandard std:SKOS ;
+    vl:firstRelease      2006 .
 
 <TopBraid-EDG>  a vl:Tool ;
     schema:name        "TopBraid EDG" ;
@@ -1943,7 +2062,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:OWL-2 ;
     vl:supportsStandard std:SHACL ;
     vl:supportsStandard std:SKOS ;
-    vl:supportsStandard std:JSON-LD .
+    vl:supportsStandard std:JSON-LD ;
+    vl:firstRelease      2010 .
 
 <TopBraid-SHACL-API>  a vl:Framework ;
     schema:name        "TopBraid SHACL API" ;
@@ -1970,7 +2090,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Jena-integration ;
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SHACL ;
-    vl:supportsStandard std:SPARQL-1-1 .
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:firstRelease      2017 .
 
 <Turtle-Web-Editor>  a vl:Tool ;
     schema:name        "Turtle Web Editor" ;
@@ -1996,7 +2117,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Syntax-highlighting ;
     vl:focusArea        focus:Validation ;
     vl:focusArea        focus:Prefix-autocompletion ;
-    vl:supportsStandard std:RDF-1-1 .
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:firstRelease      2019 .
 
 <Virtuoso>  a vl:Database ;
     schema:name        "Virtuoso" ;
@@ -2015,8 +2137,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:scaleNote        "Battle-tested at scale - powers DBpedia and many LOD endpoints. Handles billions of triples" ;
     vl:speedTier        speed:fast ;
     vl:scaleTier        scale:large ;
-    vl:region           region:Europe ;
-    vl:country          country:UK ;
+    vl:region           region:North-America ;
+    vl:country          country:USA ;
     vl:focusArea        focus:SPARQL-1-1 ;
     vl:focusArea        focus:SQL-SPARQL-hybrid ;
     vl:focusArea        focus:Linked-Data-publishing ;
@@ -2024,7 +2146,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:supportsStandard std:LDP ;
-    vl:supportsStandard std:JSON-LD .
+    vl:supportsStandard std:JSON-LD ;
+    vl:firstRelease      1998 .
 
 <W3C-RDF-Validator>  a vl:Tool ;
     schema:name        "W3C RDF Validator" ;
@@ -2048,7 +2171,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:RDF-XML-validation ;
     vl:focusArea        focus:Triple-listing ;
     vl:focusArea        focus:Graph-visualization ;
-    vl:supportsStandard std:RDF-1-1 .
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:firstRelease      2001 .
 
 <WebProtege>  a vl:Tool ;
     schema:name        "WebProtege" ;
@@ -2075,7 +2199,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Discussion-threads ;
     vl:focusArea        focus:Web-based ;
     vl:supportsStandard std:RDF-1-1 ;
-    vl:supportsStandard std:OWL-2 .
+    vl:supportsStandard std:OWL-2 ;
+    vl:firstRelease      2013 .
 
 <WebVOWL>  a vl:Tool ;
     schema:name        "WebVOWL" ;
@@ -2102,7 +2227,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Force-directed-layout ;
     vl:focusArea        focus:Interactive ;
     vl:supportsStandard std:OWL-2 ;
-    vl:supportsStandard std:RDF-1-1 .
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:firstRelease      2014 .
 
 <YASGUI>  a vl:Tool ;
     schema:name        "YASGUI" ;
@@ -2128,7 +2254,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Autocomplete ;
     vl:focusArea        focus:Result-visualization ;
     vl:focusArea        focus:Embeddable ;
-    vl:supportsStandard std:SPARQL-1-1 .
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:firstRelease      2013 .
 
 <Zazuko-Ontology-Editor>  a vl:Tool ;
     schema:name        "Zazuko Ontology Editor" ;
@@ -2154,7 +2281,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Version-control ;
     vl:focusArea        focus:Turtle-output ;
     vl:supportsStandard std:RDF-1-1 ;
-    vl:supportsStandard std:SHACL .
+    vl:supportsStandard std:SHACL ;
+    vl:firstRelease      2020 .
 
 <Zazuko-Trifid>  a vl:Tool ;
     schema:name        "Zazuko Trifid" ;
@@ -2182,4 +2310,5 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:supportsStandard std:JSON-LD ;
-    vl:supportsStandard std:LDP .
+    vl:supportsStandard std:LDP ;
+    vl:firstRelease      2016 .

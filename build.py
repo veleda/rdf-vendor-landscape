@@ -55,6 +55,7 @@ def query_vendors(m: Model) -> list[dict]:
                ?speedNote ?scaleNote ?warning
                ?speedLabel ?scaleLabel
                ?regionLabel ?countryLabel ?flag
+               ?firstRelease
         WHERE {
             ?v a ?cls .
             ?cls rdfs:subClassOf vl:Vendor ; rdfs:label ?cat .
@@ -79,6 +80,7 @@ def query_vendors(m: Model) -> list[dict]:
             OPTIONAL { ?v vl:region      ?rg . ?rg rdfs:label ?regionLabel }
             OPTIONAL { ?v vl:country     ?co . ?co rdfs:label ?countryLabel }
             OPTIONAL { ?v vl:country     ?co2 . ?co2 vl:flag ?flag }
+            OPTIONAL { ?v vl:firstRelease ?firstRelease }
         }
     """)
 
@@ -135,6 +137,7 @@ def query_vendors(m: Model) -> list[dict]:
             "flag":         row.get("flag") or "",
             "speedTier":    row.get("speedLabel") or "",
             "scaleTier":    row.get("scaleLabel") or "",
+            "firstRelease": int(row["firstRelease"]) if row.get("firstRelease") else None,
         }
         if row.get("warning"):
             v["warning"] = row["warning"]
