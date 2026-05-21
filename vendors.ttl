@@ -2498,3 +2498,33 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:SHACL ;
     vl:supportsStandard std:SKOS ;
     vl:firstRelease      2017 .
+
+# -- Wistor ----------------------------------------------------------------
+<wistor> a vl:Tool ;
+    schema:name         "Wistor" ;
+    schema:description  "No-code app builder for SPARQL and Linked Data. Build interactive applications directly on top of a triple store or SPARQL endpoint with ontology editing, visualization, validation, and conversion." ;
+    schema:url          <https://www.wistor.nl/> ;
+    vl:subcategory      "no-code app builder" ;
+    vl:language         "Java / Web" ;
+    vl:license          "Commercial" ;
+    vl:pricing          "Commercial" ;
+    vl:logoHint         "Wistor logo" ;
+    vl:logoUrl          <https://www.google.com/s2/favicons?domain=wistor.nl&sz=64> ;
+    vl:hasDemo          false ;
+    vl:hasBenchmark     false ;
+    vl:speedNote        "Runs directly on top of any SPARQL endpoint; performance depends on the underlying triple store" ;
+    vl:scaleNote        "Designed for enterprise use; scales with the connected triple store" ;
+    vl:speedTier        speed:fast ;
+    vl:scaleTier        scale:large ;
+    vl:region           region:Europe ;
+    vl:country          country:Netherlands ;
+    vl:focusArea        focus:Ontology-editing ;
+    vl:focusArea        focus:SHACL-validation ;
+    vl:focusArea        focus:Collaborative-editing ;
+    vl:focusArea        focus:Linked-Data ;
+    vl:supportsStandard std:RDF-1-2 ;
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:supportsStandard std:OWL-2 ;
+    vl:supportsStandard std:SHACL ;
+    vl:supportsStandard std:JSON-LD ;
+    vl:firstRelease      2020 .

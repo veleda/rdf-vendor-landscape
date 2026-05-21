@@ -276,10 +276,10 @@
   <h1>RDF Vendor Landscape</h1>
   <p>Structured knowledge for a world that needs machines to understand meaning, not just store data.</p>
   <div class="stats-bar">
-    <div class="stat"><div class="stat-num" id="stat-total">74</div><div class="stat-label">Vendors</div></div>
+    <div class="stat"><div class="stat-num" id="stat-total">75</div><div class="stat-label">Vendors</div></div>
     <div class="stat"><div class="stat-num" id="stat-db">22</div><div class="stat-label">Databases</div></div>
     <div class="stat"><div class="stat-num" id="stat-fw">23</div><div class="stat-label">Frameworks</div></div>
-    <div class="stat"><div class="stat-num" id="stat-tool">29</div><div class="stat-label">Tools</div></div>
+    <div class="stat"><div class="stat-num" id="stat-tool">30</div><div class="stat-label">Tools</div></div>
     <div class="stat"><div class="stat-num">11</div><div class="stat-label">Benchmarked</div></div>
   </div>
 </div>
@@ -484,22 +484,6 @@
         <button class="chip" data-std="Datalog">Datalog</button>
       </div>
     </div>
-    <div class="controls">
-      <span class="filter-row-label">Speed</span>
-      <div class="filter-chips" id="speed-filters">
-        <button class="chip active" data-speed="all">All</button>
-        <button class="chip" data-speed="fast">Fast</button>
-        <button class="chip" data-speed="moderate">Moderate</button>
-        <button class="chip" data-speed="slow">Slow</button>
-      </div>
-      <span class="filter-row-label" style="margin-left:16px;">Scale</span>
-      <div class="filter-chips" id="scale-filters">
-        <button class="chip active" data-scale="all">All</button>
-        <button class="chip" data-scale="large">Large (100M+)</button>
-        <button class="chip" data-scale="medium">Medium (1M+)</button>
-        <button class="chip" data-scale="small">Small</button>
-      </div>
-    </div>
 
     <div id="db-section" class="section">
       <div class="section-header"><h2>Triple Stores &amp; Graph Databases</h2><span class="count" id="db-count"></span></div>
@@ -660,6 +644,7 @@ const VENDORS = [
   {"name": "W3C RDF Validator", "category": "tool", "subcategory": "RDF Validator", "language": "Web", "license": "Free (Web Service)", "pricing": "Free", "website": "https://www.w3.org/RDF/Validator/", "github": "", "description": "Official W3C service for checking and visualizing RDF/XML documents, generating triple listings and graph diagrams", "hasDemo": true, "demoUrl": "https://www.w3.org/RDF/Validator/", "hasBenchmark": false, "logoHint": "W3C RDF validator logo", "logoUrl": "https://www.google.com/s2/favicons?domain=w3.org&sz=64", "focusAreas": ["Graph visualization", "RDF/XML validation", "Triple listing"], "speedNote": "Simple web service - validates small RDF/XML documents quickly", "scaleNote": "Testing tool - paste or URL input only", "standards": ["RDF 1.1"], "region": "Global", "country": "Global", "flag": "🌐", "speedTier": "varies", "scaleTier": "small", "firstRelease": 2001, "reviewUrl": null},
   {"name": "WebProtege", "category": "tool", "subcategory": "Collaborative Ontology Editor", "language": "Java / Web", "license": "BSD 2-Clause", "pricing": "Open Source / Free hosted", "website": "https://webprotege.stanford.edu/", "github": "https://github.com/protegeproject/webprotege", "description": "Web-based collaborative ontology editor from Stanford with sharing, discussion threads, change tracking, and revision history", "hasDemo": true, "demoUrl": "https://webprotege.stanford.edu/", "hasBenchmark": false, "logoHint": "WebProtege Stanford logo", "logoUrl": "https://github.com/protegeproject.png?size=64", "focusAreas": ["Change tracking", "Collaborative editing", "Discussion threads", "Web-based"], "speedNote": "Web-based - responsive for normal-sized ontologies. Simpler than desktop Protege", "scaleNote": "Designed for collaborative ontology development, not large data", "standards": ["OWL 2", "RDF 1.1"], "region": "North America", "country": "USA", "flag": "🇺🇸", "speedTier": "varies", "scaleTier": "small", "firstRelease": 2013, "reviewUrl": null},
   {"name": "WebVOWL", "category": "tool", "subcategory": "Ontology Visualization", "language": "JavaScript", "license": "MIT", "pricing": "Open Source", "website": "https://service.tib.eu/webvowl/", "github": "https://github.com/VisualDataWeb/WebVOWL", "description": "Web application for interactive visualization of ontologies using the VOWL notation with force-directed graph layout", "hasDemo": true, "demoUrl": "https://service.tib.eu/webvowl/", "hasBenchmark": false, "logoHint": "WebVOWL ontology visualization logo", "logoUrl": "https://github.com/VisualDataWeb.png?size=64", "focusAreas": ["Force-directed layout", "Interactive", "Ontology visualization", "VOWL notation"], "speedNote": "Responsive for small-to-medium ontologies. Force-directed layout slows with many classes (>500)", "scaleNote": "Browser-based visualization - best for ontologies under a few hundred classes", "standards": ["OWL 2", "RDF 1.1"], "region": "Europe", "country": "Germany", "flag": "🇩🇪", "speedTier": "varies", "scaleTier": "small", "firstRelease": 2014, "reviewUrl": null},
+  {"name": "Wistor", "category": "tool", "subcategory": "no-code app builder", "language": "Java / Web", "license": "Commercial", "pricing": "Commercial", "website": "https://www.wistor.nl/", "github": "", "description": "No-code app builder for SPARQL and Linked Data. Build interactive applications directly on top of a triple store or SPARQL endpoint with ontology editing, visualization, validation, and conversion.", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Wistor logo", "logoUrl": "https://www.google.com/s2/favicons?domain=wistor.nl&sz=64", "focusAreas": ["Collaborative editing", "Linked Data", "Ontology editing", "SHACL validation"], "speedNote": "Runs directly on top of any SPARQL endpoint; performance depends on the underlying triple store", "scaleNote": "Designed for enterprise use; scales with the connected triple store", "standards": ["JSON-LD", "OWL 2", "SHACL", "SPARQL 1.1"], "region": "Europe", "country": "Netherlands", "flag": "🇳🇱", "speedTier": "fast", "scaleTier": "large", "firstRelease": 2020, "reviewUrl": null},
   {"name": "YASGUI", "category": "tool", "subcategory": "SPARQL Editor", "language": "TypeScript", "license": "MIT", "pricing": "Open Source", "website": "https://yasgui.triply.cc/", "github": "https://github.com/TriplyDB/Yasgui", "description": "Popular web-based SPARQL query editor and result visualizer with syntax highlighting, autocompletion, and multiple output formats", "hasDemo": true, "demoUrl": "https://yasgui.triply.cc/", "hasBenchmark": false, "logoHint": "YASGUI SPARQL editor Triply logo", "logoUrl": "https://github.com/TriplyDB.png?size=64", "focusAreas": ["Autocomplete", "Embeddable", "Result visualization", "SPARQL editor"], "speedNote": "Browser-based editor - query speed depends entirely on the SPARQL endpoint, not YASGUI itself", "scaleNote": "Client-side tool - no data storage", "standards": ["SPARQL 1.1"], "region": "Europe", "country": "Netherlands", "flag": "🇳🇱", "speedTier": "varies", "scaleTier": "varies", "firstRelease": 2013, "reviewUrl": null},
   {"name": "Zazuko Ontology Editor", "category": "tool", "subcategory": "Ontology Editor", "language": "Web / GitHub-based", "license": "Commercial / Open Source", "pricing": "Free (hosted)", "website": "https://zazuko.com/products/ontology-editor/", "github": "", "description": "Web-based collaborative ontology editor backed by GitHub for version control, producing Turtle format ontology definitions", "hasDemo": true, "demoUrl": "https://editor.zazuko.com/", "hasBenchmark": false, "logoHint": "Zazuko ontology editor logo", "logoUrl": "https://www.google.com/s2/favicons?domain=zazuko.com&sz=64", "focusAreas": ["Collaborative editing", "GitHub-backed", "Turtle output", "Version control"], "speedNote": "Web-based editor - responsive for typical ontologies", "scaleNote": "Designed for ontology editing, not data processing", "standards": ["RDF 1.1", "SHACL"], "region": "Europe", "country": "Switzerland", "flag": "🇨🇭", "speedTier": "varies", "scaleTier": "small", "firstRelease": 2020, "reviewUrl": null},
   {"name": "Zazuko Trifid", "category": "tool", "subcategory": "Linked Data Server", "language": "JavaScript (Node.js)", "license": "Apache 2.0", "pricing": "Open Source", "website": "https://zazuko.com/products/trifid/", "github": "https://github.com/zazuko/trifid", "description": "Lightweight Linked Data server and proxy for dereferencing URIs over HTTP with built-in SPARQL proxy, YASGUI, and graph explorer", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Zazuko Trifid linked data logo", "logoUrl": "https://github.com/zazuko.png?size=64", "focusAreas": ["Content negotiation", "Linked Data publishing", "SPARQL proxy", "URI dereferencing"], "speedNote": "Lightweight Node.js server - fast for serving individual resources. Proxies to backend SPARQL store", "scaleNote": "Proxy architecture - scales with the backing triple store", "standards": ["JSON-LD", "LDP", "RDF 1.1", "SPARQL 1.1"], "region": "Europe", "country": "Switzerland", "flag": "🇨🇭", "speedTier": "moderate", "scaleTier": "medium", "firstRelease": 2016, "reviewUrl": null},
@@ -1207,12 +1192,12 @@ function renderVendors() {
   Object.values(grids).forEach(g => g.innerHTML = '');
 
   const search = document.getElementById('search').value.toLowerCase();
-  const activeLang = document.querySelector('#lang-filters .chip.active')?.dataset.lang || 'all';
-  const activeLicense = document.querySelector('#license-filters .chip.active')?.dataset.license || 'all';
-  const activeRegion = document.querySelector('#region-filters .chip.active')?.dataset.region || 'all';
-  const activeStd = document.querySelector('#standards-filters .chip.active')?.dataset.std || 'all';
-  const activeSpeed = document.querySelector('#speed-filters .chip.active')?.dataset.speed || 'all';
-  const activeScale = document.querySelector('#scale-filters .chip.active')?.dataset.scale || 'all';
+
+  // Multi-select: collect all active chips per filter row (ignore "All" chip)
+  const activeLangs = [...document.querySelectorAll('#lang-filters .chip.active')].map(c => c.dataset.lang).filter(v => v !== 'all');
+  const activeLicenses = [...document.querySelectorAll('#license-filters .chip.active')].map(c => c.dataset.license).filter(v => v !== 'all');
+  const activeRegions = [...document.querySelectorAll('#region-filters .chip.active')].map(c => c.dataset.region).filter(v => v !== 'all');
+  const activeStds = [...document.querySelectorAll('#standards-filters .chip.active')].map(c => c.dataset.std).filter(v => v !== 'all');
   const benchOnly = document.getElementById('benchmarked-only').checked;
   const activeSection = document.querySelector('.nav-tab.active')?.dataset.section || 'all';
 
@@ -1229,33 +1214,37 @@ function renderVendors() {
 
     if (search && !(v.name.toLowerCase().includes(search) || (v.description||'').toLowerCase().includes(search) || (v.language||'').toLowerCase().includes(search) || (v.subcategory||'').toLowerCase().includes(search))) return;
 
-    // Language filter
-    if (activeLang !== 'all') {
+    // Language filter (AND across selections — vendor must match ALL selected languages)
+    if (activeLangs.length > 0) {
       const lang = (v.language || '').toLowerCase();
-      if (activeLang === 'c++') {
-        if (!lang.includes('c++') && !lang.match(/\bc\b/)) return;
-      } else if (activeLang === 'c#') {
-        if (!lang.includes('c#') && !lang.includes('.net')) return;
-      } else {
-        if (!lang.includes(activeLang)) return;
-      }
+      const matchesAll = activeLangs.every(al => {
+        if (al === 'c++') return lang.includes('c++') || /\bc\b/.test(lang);
+        if (al === 'c#') return lang.includes('c#') || lang.includes('.net');
+        return lang.includes(al);
+      });
+      if (!matchesAll) return;
     }
 
-    // License filter: open source vs non-open source
-    if (activeLicense === 'opensource' && !isOpenSource(v)) return;
-    if (activeLicense === 'not-opensource' && isOpenSource(v)) return;
+    // License filter (OR within row — vendor matches if it satisfies ANY selected license)
+    if (activeLicenses.length > 0) {
+      const matchesAny = activeLicenses.some(al => {
+        if (al === 'opensource') return isOpenSource(v);
+        if (al === 'not-opensource') return !isOpenSource(v);
+        return false;
+      });
+      if (!matchesAny) return;
+    }
 
-    // Region filter
-    if (activeRegion !== 'all' && v.region !== activeRegion) return;
+    // Region filter (OR within row — vendor is in ANY selected region)
+    if (activeRegions.length > 0) {
+      if (!activeRegions.includes(v.region)) return;
+    }
 
-    // Standards filter
-    if (activeStd !== 'all' && !(v.standards || []).includes(activeStd)) return;
-
-    // Speed filter
-    if (activeSpeed !== 'all' && v.speedTier !== activeSpeed) return;
-
-    // Scale filter
-    if (activeScale !== 'all' && v.scaleTier !== activeScale) return;
+    // Standards filter (AND — vendor must support ALL selected standards)
+    if (activeStds.length > 0) {
+      const stds = v.standards || [];
+      if (!activeStds.every(s => stds.includes(s))) return;
+    }
 
     if (benchOnly && !v.hasBenchmark) return;
 
@@ -1416,42 +1405,33 @@ document.querySelectorAll('.nav-tab').forEach(tab => {
   });
 });
 document.getElementById('search').addEventListener('input', renderVendors);
-document.querySelectorAll('#lang-filters .chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    document.querySelectorAll('#lang-filters .chip').forEach(c => c.classList.remove('active'));
-    chip.classList.add('active'); renderVendors();
+// Multi-select toggle logic for all filter rows
+function setupMultiSelectFilter(containerId) {
+  document.querySelectorAll('#' + containerId + ' .chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const isAll = chip.dataset.lang === 'all' || chip.dataset.license === 'all' || chip.dataset.region === 'all' || chip.dataset.std === 'all';
+      const allChip = document.querySelector('#' + containerId + ' .chip[data-lang="all"], #' + containerId + ' .chip[data-license="all"], #' + containerId + ' .chip[data-region="all"], #' + containerId + ' .chip[data-std="all"]');
+      if (isAll) {
+        // "All" resets: deactivate everything, activate only All
+        document.querySelectorAll('#' + containerId + ' .chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      } else {
+        // Toggle this chip
+        chip.classList.toggle('active');
+        // Deactivate "All" when a specific filter is on
+        if (allChip) allChip.classList.remove('active');
+        // If nothing is selected, re-activate "All"
+        const anyActive = [...document.querySelectorAll('#' + containerId + ' .chip')].some(c => c.classList.contains('active'));
+        if (!anyActive && allChip) allChip.classList.add('active');
+      }
+      renderVendors();
+    });
   });
-});
-document.querySelectorAll('#license-filters .chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    document.querySelectorAll('#license-filters .chip').forEach(c => c.classList.remove('active'));
-    chip.classList.add('active'); renderVendors();
-  });
-});
-document.querySelectorAll('#region-filters .chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    document.querySelectorAll('#region-filters .chip').forEach(c => c.classList.remove('active'));
-    chip.classList.add('active'); renderVendors();
-  });
-});
-document.querySelectorAll('#standards-filters .chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    document.querySelectorAll('#standards-filters .chip').forEach(c => c.classList.remove('active'));
-    chip.classList.add('active'); renderVendors();
-  });
-});
-document.querySelectorAll('#speed-filters .chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    document.querySelectorAll('#speed-filters .chip').forEach(c => c.classList.remove('active'));
-    chip.classList.add('active'); renderVendors();
-  });
-});
-document.querySelectorAll('#scale-filters .chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    document.querySelectorAll('#scale-filters .chip').forEach(c => c.classList.remove('active'));
-    chip.classList.add('active'); renderVendors();
-  });
-});
+}
+setupMultiSelectFilter('lang-filters');
+setupMultiSelectFilter('license-filters');
+setupMultiSelectFilter('region-filters');
+setupMultiSelectFilter('standards-filters');
 document.getElementById('benchmarked-only').addEventListener('change', renderVendors);
 document.querySelectorAll('#scale-tabs .bench-tab').forEach(tab => {
   tab.addEventListener('click', () => {
