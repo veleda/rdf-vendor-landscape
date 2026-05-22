@@ -78,6 +78,7 @@ focus:Consistency-checking  a vl:FocusArea ; rdfs:label "Consistency checking" .
 focus:Constraint-checking  a vl:FocusArea ; rdfs:label "Constraint checking" .
 focus:Content-negotiation  a vl:FocusArea ; rdfs:label "Content negotiation" .
 focus:Cypher-queries  a vl:FocusArea ; rdfs:label "Cypher queries" .
+focus:Data-cataloging  a vl:FocusArea ; rdfs:label "Data cataloging" .
 focus:Data-exploration  a vl:FocusArea ; rdfs:label "Data exploration" .
 focus:Data-governance  a vl:FocusArea ; rdfs:label "Data governance" .
 focus:Data-integration  a vl:FocusArea ; rdfs:label "Data integration" .
@@ -290,6 +291,8 @@ focus:openCypher  a vl:FocusArea ; rdfs:label "openCypher" .
 # -- Standards ---------------------------------------------------------
 std:CSVW  a vl:Standard ; rdfs:label "CSVW" ;
     rdfs:seeAlso <https://www.w3.org/TR/tabular-data-primer/> .
+std:DCAT  a vl:Standard ; rdfs:label "DCAT" ;
+    rdfs:seeAlso <https://www.w3.org/TR/vocab-dcat-3/> .
 std:Datalog  a vl:Standard ; rdfs:label "Datalog" .
 std:JSON-LD  a vl:Standard ; rdfs:label "JSON-LD" ;
     rdfs:seeAlso <https://www.w3.org/TR/json-ld11/> .
@@ -389,6 +392,7 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:RDF-1-1 ;
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:supportsStandard std:LDP ;
+    vl:supportsStandard std:DCAT ;
     vl:flag             "🇩🇰" ;
     vl:firstRelease      2019 .
 
@@ -1203,37 +1207,6 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:N3 ;
     vl:supportsStandard std:RDF-star ;
     vl:firstRelease      2013 .
-
-<Neo4j-n10s>  a vl:Database ;
-    schema:name        "Neo4j + n10s" ;
-    schema:description "Property graph database with the neosemantics (n10s) plugin for RDF import/export, SHACL validation, and ontology mapping" ;
-    schema:url         <https://neo4j.com/labs/neosemantics/> ;
-    vl:subcategory     "Graph Database + RDF Plugin" ;
-    vl:language         "Java" ;
-    vl:license          "GPL v3 (Community) / Commercial (Enterprise) + Apache 2.0 (n10s)" ;
-    vl:pricing          "Free Community + Commercial Enterprise" ;
-    vl:github           <https://github.com/neo4j-labs/neosemantics> ;
-    vl:logoHint         "Neo4j logo" ;
-    vl:logoUrl          <https://github.com/neo4j-labs.png?size=64> ;
-    vl:hasDemo          true ;
-    vl:demoUrl          <https://neo4j.com/sandbox/> ;
-    vl:hasBenchmark     true ;
-    vl:speedNote        "Fast native graph queries via Cypher. RDF import has overhead from property graph conversion" ;
-    vl:scaleNote        "Neo4j itself scales very well. The RDF layer (n10s) adds import overhead but queries run at native speed" ;
-    vl:speedTier        speed:fast ;
-    vl:scaleTier        scale:large ;
-    vl:warning          "Not a semantic graph database - Neo4j is a property graph. RDF triples are converted to labeled property graph structures on import, losing native RDF semantics. No SPARQL support, no OWL reasoning, no semantic inferencing. Consider a native triple store if your use case requires semantic knowledge graphs." ;
-    vl:region           region:North-America ;
-    vl:country          country:Sweden ;
-    vl:focusArea        focus:Property-graph ;
-    vl:focusArea        focus:RDF-import-export ;
-    vl:focusArea        focus:Cypher-queries ;
-    vl:focusArea        focus:Graph-visualization ;
-    vl:supportsStandard std:RDF-1-1 ;
-    vl:supportsStandard std:JSON-LD ;
-    vl:supportsStandard std:SHACL ;
-    vl:firstRelease      2007 ;
-    vl:reviewUrl        <https://www.youtube.com/watch?v=OkrCXF2BZ3Y> .
 
 <Ontop>  a vl:Database ;
     schema:name        "Ontop" ;
@@ -2528,3 +2501,35 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:SHACL ;
     vl:supportsStandard std:JSON-LD ;
     vl:firstRelease      2020 .
+
+# -- data.world (ServiceNow) ----------------------------------------------
+<dataworld> a vl:Tool ;
+    schema:name         "data.world (ServiceNow)" ;
+    schema:description  "Enterprise data catalog and knowledge graph platform built natively on RDF, OWL, and DCAT. Exposes a SPARQL endpoint over all metadata and tabular data, supports federated queries, and uses W3C standards for cataloging and governance. Acquired by ServiceNow in 2025." ;
+    schema:url          <https://data.world/> ;
+    vl:subcategory      "data catalog / knowledge graph platform" ;
+    vl:language         "Java / Web" ;
+    vl:license          "Commercial" ;
+    vl:pricing          "Commercial (SaaS)" ;
+    vl:logoHint         "data.world logo" ;
+    vl:logoUrl          <https://www.google.com/s2/favicons?domain=data.world&sz=64> ;
+    vl:hasDemo          true ;
+    vl:demoUrl          <https://data.world/> ;
+    vl:hasBenchmark     false ;
+    vl:speedNote        "Cloud-hosted SaaS; SPARQL queries run over catalog metadata and linked datasets" ;
+    vl:scaleNote        "Enterprise-grade. Used by large organizations for metadata management across thousands of datasets" ;
+    vl:speedTier        speed:fast ;
+    vl:scaleTier        scale:large ;
+    vl:region           region:North-America ;
+    vl:country          country:USA ;
+    vl:focusArea        focus:Data-cataloging ;
+    vl:focusArea        focus:Data-governance ;
+    vl:focusArea        focus:Linked-Data ;
+    vl:focusArea        focus:Federated-queries ;
+    vl:focusArea        focus:Enterprise ;
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:supportsStandard std:OWL-2 ;
+    vl:supportsStandard std:DCAT ;
+    vl:supportsStandard std:JSON-LD ;
+    vl:firstRelease      2016 .
