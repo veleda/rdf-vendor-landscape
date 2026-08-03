@@ -131,6 +131,7 @@ focus:Heterogeneous-data-sources  a vl:FocusArea ; rdfs:label "Heterogeneous dat
 focus:High-availability  a vl:FocusArea ; rdfs:label "High availability" .
 focus:High-performance  a vl:FocusArea ; rdfs:label "High-performance" .
 focus:Hypertableau-calculus  a vl:FocusArea ; rdfs:label "Hypertableau calculus" .
+focus:Immutable-ledger  a vl:FocusArea ; rdfs:label "Immutable ledger" .
 focus:In-database-processing  a vl:FocusArea ; rdfs:label "In-database processing" .
 focus:In-memory  a vl:FocusArea ; rdfs:label "In-memory" .
 focus:In-memory-reasoning  a vl:FocusArea ; rdfs:label "In-memory reasoning" .
@@ -254,6 +255,7 @@ focus:TDB-storage  a vl:FocusArea ; rdfs:label "TDB storage" .
 focus:TDB2-storage  a vl:FocusArea ; rdfs:label "TDB2 storage" .
 focus:Taxonomy-management  a vl:FocusArea ; rdfs:label "Taxonomy management" .
 focus:Temporal-reasoning  a vl:FocusArea ; rdfs:label "Temporal reasoning" .
+focus:Temporal-queries  a vl:FocusArea ; rdfs:label "Temporal queries" .
 focus:Tensor-based-indexing  a vl:FocusArea ; rdfs:label "Tensor-based indexing" .
 focus:Text-mining  a vl:FocusArea ; rdfs:label "Text mining" .
 focus:Triple-Pattern-Fragments  a vl:FocusArea ; rdfs:label "Triple Pattern Fragments" .
@@ -342,6 +344,7 @@ country:Israel  a vl:Country ; rdfs:label "Israel" ; vl:flag "🇮🇱" .
 country:Italy  a vl:Country ; rdfs:label "Italy" ; vl:flag "🇮🇹" .
 country:Netherlands  a vl:Country ; rdfs:label "Netherlands" ; vl:flag "🇳🇱" .
 country:Norway  a vl:Country ; rdfs:label "Norway" ; vl:flag "🇳🇴" .
+country:Poland  a vl:Country ; rdfs:label "Poland" ; vl:flag "🇵🇱" .
 country:Spain  a vl:Country ; rdfs:label "Spain" ; vl:flag "🇪🇸" .
 country:Sweden  a vl:Country ; rdfs:label "Sweden" ; vl:flag "🇸🇪" .
 country:Switzerland  a vl:Country ; rdfs:label "Switzerland" ; vl:flag "🇨🇭" .
@@ -629,6 +632,40 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:firstRelease      2006 .
 
+<Fluree>  a vl:Database ;
+    schema:name        "Fluree" ;
+    schema:description "Immutable, temporal, ledger-backed RDF triple store written in Rust (v4). Full SPARQL 1.1 (700+ W3C tests passing), partial SPARQL 1.2, OWL/RDFS reasoning, SHACL validation at transaction time, JSON-LD 1.1, Turtle/N-Triples/N-Quads/TriG import/export. Git-like branching, triple-level access control, integrated BM25 + HNSW vector search. Also supports FQL (JSON-centric query language)." ;
+    schema:url         <https://flur.ee/platform/core> ;
+    vl:subcategory     "Triple Store" ;
+    vl:language         "Rust" ;
+    vl:license          "Apache 2.0" ;
+    vl:pricing          "Open Source + Commercial (Fluree Platform)" ;
+    vl:github           <https://github.com/fluree/db> ;
+    vl:logoHint         "Fluree logo" ;
+    vl:logoUrl          <https://github.com/fluree.png?size=64> ;
+    vl:hasDemo          false ;
+    vl:hasBenchmark     false ;
+    vl:speedNote        "Claims 2M+ facts/second bulk import. Rust rewrite (v4) for performance" ;
+    vl:scaleNote        "Claims billions of graph facts on commodity hardware" ;
+    vl:speedTier        speed:fast ;
+    vl:scaleTier        scale:large ;
+    vl:region           region:North-America ;
+    vl:country          country:USA ;
+    vl:focusArea        focus:SPARQL-querying ;
+    vl:focusArea        focus:Reasoning ;
+    vl:focusArea        focus:Full-text-search ;
+    vl:focusArea        focus:Immutable-ledger ;
+    vl:focusArea        focus:Temporal-queries ;
+    vl:focusArea        focus:JSON-LD-1-1 ;
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:supportsStandard std:RDF-star ;
+    vl:supportsStandard std:SPARQL-1-1 ;
+    vl:supportsStandard std:SPARQL-star ;
+    vl:supportsStandard std:OWL-2 ;
+    vl:supportsStandard std:SHACL ;
+    vl:supportsStandard std:JSON-LD ;
+    vl:firstRelease      2017 .
+
 <Comunica>  a vl:Framework ;
     schema:name        "Comunica" ;
     schema:description "Highly modular meta SPARQL query engine for the Web, querying over heterogeneous Linked Data interfaces" ;
@@ -893,6 +930,33 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Linked-Data-publishing ;
     vl:supportsStandard std:RDF-1-1 ;
     vl:firstRelease      2012 .
+
+# -- Jelly -----------------------------------------------------------------
+<Jelly>  a vl:Framework ;
+    schema:name        "Jelly" ;
+    schema:description "High-performance binary RDF serialization format based on Protobuf, optimized for streaming. O(1) memory complexity for arbitrarily large datasets. Implementations for JVM (Jena, RDF4J), Python (RDFLib), Rust (Sophia), JavaScript (RDF/JS), and Dart" ;
+    schema:url         <https://w3id.org/jelly/> ;
+    vl:subcategory     "binary RDF serialization" ;
+    vl:language         "Scala / Java / Python / Rust / JavaScript" ;
+    vl:license          "Apache 2.0" ;
+    vl:pricing          "Open Source" ;
+    vl:github           <https://github.com/Jelly-RDF> ;
+    vl:logoHint         "Jelly RDF logo" ;
+    vl:logoUrl          <https://github.com/Jelly-RDF.png?size=64> ;
+    vl:hasDemo          false ;
+    vl:hasBenchmark     false ;
+    vl:speedNote        "Faster than N-Triples, RDF Thrift, and RDF Protobuf in Jena benchmarks. ~1/6 size of N-Triples" ;
+    vl:scaleNote        "Streaming design with O(1) memory: handles datasets of any size. Works over gRPC, Kafka, MQTT" ;
+    vl:speedTier        speed:fast ;
+    vl:scaleTier        scale:large ;
+    vl:region           region:Europe ;
+    vl:country          country:Poland ;
+    vl:focusArea        focus:Serialization ;
+    vl:focusArea        focus:Streaming-I-O ;
+    vl:focusArea        focus:Compressed-RDF ;
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:supportsStandard std:RDF-star ;
+    vl:firstRelease      2023 .
 
 <HermiT>  a vl:Tool ;
     schema:name        "HermiT" ;
