@@ -77,6 +77,7 @@ focus:Connectors  a vl:FocusArea ; rdfs:label "Connectors" .
 focus:Consistency-checking  a vl:FocusArea ; rdfs:label "Consistency checking" .
 focus:Constraint-checking  a vl:FocusArea ; rdfs:label "Constraint checking" .
 focus:Content-negotiation  a vl:FocusArea ; rdfs:label "Content negotiation" .
+focus:Context-engineering  a vl:FocusArea ; rdfs:label "Context engineering" .
 focus:Cypher-queries  a vl:FocusArea ; rdfs:label "Cypher queries" .
 focus:Data-cataloging  a vl:FocusArea ; rdfs:label "Data cataloging" .
 focus:Data-exploration  a vl:FocusArea ; rdfs:label "Data exploration" .
@@ -110,6 +111,7 @@ focus:Expansion-compaction  a vl:FocusArea ; rdfs:label "Expansion/compaction" .
 focus:Faceted-search  a vl:FocusArea ; rdfs:label "Faceted search" .
 focus:Expansion-compaction-framing  a vl:FocusArea ; rdfs:label "Expansion/compaction/framing" .
 focus:Explanation  a vl:FocusArea ; rdfs:label "Explanation" .
+focus:Explainability  a vl:FocusArea ; rdfs:label "Explainability" .
 focus:Exploration  a vl:FocusArea ; rdfs:label "Exploration" .
 focus:Federated-queries  a vl:FocusArea ; rdfs:label "Federated queries" .
 focus:Force-directed-layout  a vl:FocusArea ; rdfs:label "Force-directed layout" .
@@ -124,6 +126,7 @@ focus:GitHub-backed  a vl:FocusArea ; rdfs:label "GitHub-backed" .
 focus:Graph-Store-Protocol  a vl:FocusArea ; rdfs:label "Graph Store Protocol" .
 focus:Graph-visualization  a vl:FocusArea ; rdfs:label "Graph visualization" .
 focus:GraphQL  a vl:FocusArea ; rdfs:label "GraphQL" .
+focus:GraphRAG  a vl:FocusArea ; rdfs:label "GraphRAG" .
 focus:Gremlin  a vl:FocusArea ; rdfs:label "Gremlin" .
 focus:HTTP-endpoint  a vl:FocusArea ; rdfs:label "HTTP endpoint" .
 focus:HermiT-Pellet  a vl:FocusArea ; rdfs:label "HermiT/Pellet" .
@@ -182,6 +185,7 @@ focus:Ontology-IDE  a vl:FocusArea ; rdfs:label "Ontology IDE" .
 focus:Ontology-editing  a vl:FocusArea ; rdfs:label "Ontology editing" .
 focus:Ontology-quality  a vl:FocusArea ; rdfs:label "Ontology quality" .
 focus:Ontology-visualization  a vl:FocusArea ; rdfs:label "Ontology visualization" .
+focus:OntologyRAG  a vl:FocusArea ; rdfs:label "OntologyRAG" .
 focus:PHP-RDF  a vl:FocusArea ; rdfs:label "PHP RDF" .
 focus:Pitfall-detection  a vl:FocusArea ; rdfs:label "Pitfall detection" .
 focus:Plugin-ecosystem  a vl:FocusArea ; rdfs:label "Plugin ecosystem" .
@@ -2150,6 +2154,33 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:SHACL ;
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:firstRelease      2017 .
+
+<TrustGraph>  a vl:Framework ;
+    schema:name        "TrustGraph" ;
+    schema:description "Self-hosted agent runtime that builds knowledge graphs from unstructured data. OntologyRAG, GraphRAG, and vector retrieval with explainable, source-provenance answers. Supports small and open models for data-sovereign deployments" ;
+    schema:url         <https://trustgraph.ai/> ;
+    vl:subcategory     "Agent Runtime / Knowledge Graph" ;
+    vl:language         "Python" ;
+    vl:license          "Apache 2.0" ;
+    vl:pricing          "Free / Open Source" ;
+    vl:github           <https://github.com/trustgraph-ai/trustgraph> ;
+    vl:logoHint         "TrustGraph logo" ;
+    vl:logoUrl          <https://www.google.com/s2/favicons?domain=trustgraph.ai&sz=64> ;
+    vl:hasDemo          false ;
+    vl:hasBenchmark     false ;
+    vl:speedNote        "" ;
+    vl:scaleNote        "Containerized microservices architecture, deployable via Docker on AWS, Azure, Google Cloud, Scaleway, and OVH" ;
+    vl:region           region:Global ;
+    vl:country          country:USA ;
+    vl:focusArea        focus:Knowledge-graph-construction ;
+    vl:focusArea        focus:OntologyRAG ;
+    vl:focusArea        focus:GraphRAG ;
+    vl:focusArea        focus:Context-engineering ;
+    vl:focusArea        focus:Explainability ;
+    vl:supportsStandard std:RDF-1-1 ;
+    vl:supportsStandard std:RDF-star ;
+    vl:supportsStandard std:OWL-2 ;
+    vl:firstRelease      2024 .
 
 <Turtle-Web-Editor>  a vl:Tool ;
     schema:name        "Turtle Web Editor" ;
