@@ -638,8 +638,8 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     schema:url         <https://flur.ee/platform/core> ;
     vl:subcategory     "Triple Store" ;
     vl:language         "Rust" ;
-    vl:license          "Apache 2.0" ;
-    vl:pricing          "Open Source + Commercial (Fluree Platform)" ;
+    vl:license          "BSL 1.1 (converts to Apache 2.0 after 3 years)" ;
+    vl:pricing          "Source Available + Commercial (Fluree Platform)" ;
     vl:github           <https://github.com/fluree/db> ;
     vl:logoHint         "Fluree logo" ;
     vl:logoUrl          <https://github.com/fluree.png?size=64> ;
