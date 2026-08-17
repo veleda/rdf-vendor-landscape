@@ -111,12 +111,22 @@ def query_vendors(m: Model) -> list[dict]:
         stds_map.setdefault(row["v"], []).append(row["label"])
 
     # --- 4. Assemble vendor dicts -----------------------------------------
-    vendors = []
+    # A vendor with multiple rdf:type values (e.g. Database + Framework) will
+    # produce multiple rows in the scalars result. We merge them by IRI,
+    # collecting all categories into a list.
+    seen: dict[str, dict] = {}
     for row in scalars.iter_rows(named=True):
         v_iri = row["v"]
+        cat = CLASS_TO_CATEGORY.get(row["cat"], row["cat"].lower())
+        if v_iri in seen:
+            # Merge additional category
+            if cat not in seen[v_iri]["categories"]:
+                seen[v_iri]["categories"].append(cat)
+            continue
         v = {
             "name":         row["name"],
-            "category":     CLASS_TO_CATEGORY.get(row["cat"], row["cat"].lower()),
+            "category":     cat,
+            "categories":   [cat],
             "subcategory":  row.get("subcategory") or "",
             "language":     row.get("language") or "",
             "license":      row.get("license") or "",
@@ -143,8 +153,9 @@ def query_vendors(m: Model) -> list[dict]:
         }
         if row.get("warning"):
             v["warning"] = row["warning"]
-        vendors.append(v)
+        seen[v_iri] = v
 
+    vendors = list(seen.values())
     vendors.sort(key=lambda x: x["name"].lower())
     return vendors
 

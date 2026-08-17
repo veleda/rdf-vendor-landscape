@@ -1420,11 +1420,11 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:supportsStandard std:SPARQL-1-1 ;
     vl:firstRelease      2017 .
 
-<Oxigraph>  a vl:Database ;
+<Oxigraph>  a vl:Database, vl:Framework ;
     schema:name        "Oxigraph" ;
-    schema:description "SPARQL graph database written in Rust, available as embedded library, standalone server, and Python/JS bindings" ;
+    schema:description "SPARQL graph database and embeddable RDF library written in Rust. Available as standalone server (HTTP endpoint, Graph Store Protocol, YASGUI), embeddable library, and Python/JS bindings. Disk-backed via RocksDB." ;
     schema:url         <https://github.com/oxigraph/oxigraph> ;
-    vl:subcategory     "Triple Store" ;
+    vl:subcategory     "Triple Store / Embeddable Library" ;
     vl:language         "Rust" ;
     vl:license          "Apache 2.0 / MIT" ;
     vl:pricing          "Open Source" ;
@@ -1443,31 +1443,6 @@ scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
     vl:focusArea        focus:Embedded-database ;
     vl:focusArea        focus:RDF-storage ;
     vl:focusArea        focus:Python-JS-bindings ;
-    vl:supportsStandard std:RDF-1-1 ;
-    vl:supportsStandard std:SPARQL-1-1 ;
-    vl:supportsStandard std:RDF-star ;
-    vl:supportsStandard std:SPARQL-star ;
-    vl:firstRelease      2020 .
-
-<Oxigraph-Server>  a vl:Database ;
-    schema:name        "Oxigraph Server" ;
-    schema:description "Standalone SPARQL server built on Oxigraph with HTTP endpoint, Graph Store Protocol support, and built-in YASGUI interface" ;
-    schema:url         <https://github.com/oxigraph/oxigraph> ;
-    vl:subcategory     "Standalone SPARQL Server" ;
-    vl:language         "Rust" ;
-    vl:license          "Apache 2.0 / MIT" ;
-    vl:pricing          "Open Source" ;
-    vl:github           <https://github.com/oxigraph/oxigraph> ;
-    vl:logoHint         "Oxigraph server logo" ;
-    vl:logoUrl          <https://github.com/oxigraph.png?size=64> ;
-    vl:hasDemo          false ;
-    vl:hasBenchmark     false ;
-    vl:speedNote        "Same Rust engine as Oxigraph library, with minimal HTTP overhead. Good for small to medium deployments" ;
-    vl:scaleNote        "Single-node only. Good for millions of triples, not designed for distributed scale" ;
-    vl:speedTier        speed:fast ;
-    vl:scaleTier        scale:large ;
-    vl:region           region:Europe ;
-    vl:country          country:France ;
     vl:focusArea        focus:SPARQL-server ;
     vl:focusArea        focus:HTTP-endpoint ;
     vl:focusArea        focus:Lightweight ;
