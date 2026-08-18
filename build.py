@@ -19,6 +19,7 @@ PREFIXES = """
 PREFIX vl:      <http://data.veronahe.no/vocab#>
 PREFIX schema:  <https://schema.org/>
 PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
 PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
 """
 
@@ -47,9 +48,12 @@ def query_vendors(m: Model) -> list[dict]:
     """Run SPARQL queries and assemble the vendor dicts matching the JS schema."""
 
     # --- 1. Scalar properties per vendor ----------------------------------
+    # subcategory, license, pricing are now ObjectProperties with labels
+    # language is multi-valued and handled separately
+    # Country/region use skos:prefLabel; flag is on the country
     scalars = m.query(PREFIXES + """
         SELECT ?v ?name ?desc ?url ?cat
-               ?subcategory ?language ?license ?pricing
+               ?subcategoryLabel ?licenseLabel ?pricingLabel
                ?github ?logoHint ?logoUrl
                ?hasDemo ?demoUrl ?hasBenchmark
                ?speedNote ?scaleNote ?warning
@@ -62,10 +66,9 @@ def query_vendors(m: Model) -> list[dict]:
             ?v schema:name ?name ;
                schema:description ?desc ;
                schema:url ?url .
-            OPTIONAL { ?v vl:subcategory ?subcategory }
-            OPTIONAL { ?v vl:language    ?language }
-            OPTIONAL { ?v vl:license     ?license }
-            OPTIONAL { ?v vl:pricing     ?pricing }
+            OPTIONAL { ?v vl:subcategory ?sub . ?sub skos:prefLabel ?subcategoryLabel }
+            OPTIONAL { ?v vl:license     ?lic . ?lic rdfs:label ?licenseLabel }
+            OPTIONAL { ?v vl:pricing     ?pr  . ?pr  rdfs:label ?pricingLabel }
             OPTIONAL { ?v vl:github      ?github }
             OPTIONAL { ?v vl:logoHint    ?logoHint }
             OPTIONAL { ?v vl:logoUrl     ?logoUrl }
@@ -77,31 +80,43 @@ def query_vendors(m: Model) -> list[dict]:
             OPTIONAL { ?v vl:warning     ?warning }
             OPTIONAL { ?v vl:speedTier   ?st . ?st rdfs:label ?speedLabel }
             OPTIONAL { ?v vl:scaleTier   ?sc . ?sc rdfs:label ?scaleLabel }
-            OPTIONAL { ?v vl:region      ?rg . ?rg rdfs:label ?regionLabel }
-            OPTIONAL { ?v vl:country     ?co . ?co rdfs:label ?countryLabel }
+            OPTIONAL { ?v vl:region      ?rg . ?rg skos:prefLabel ?regionLabel }
+            OPTIONAL { ?v vl:country     ?co . ?co skos:prefLabel ?countryLabel }
             OPTIONAL { ?v vl:country     ?co2 . ?co2 vl:flag ?flag }
             OPTIONAL { ?v vl:firstRelease ?firstRelease }
             OPTIONAL { ?v vl:reviewUrl ?reviewUrl }
         }
     """)
 
-    # --- 2. Multi-valued: focusAreas per vendor ---------------------------
-    focus_df = m.query(PREFIXES + """
+    # --- 2. Multi-valued: languages per vendor ----------------------------
+    lang_df = m.query(PREFIXES + """
         SELECT ?v ?label WHERE {
-            ?v vl:focusArea ?fa .
-            ?fa rdfs:label ?label .
+            ?v vl:language ?lg .
+            ?lg rdfs:label ?label .
         } ORDER BY ?v ?label
     """)
 
-    # --- 3. Multi-valued: standards per vendor ----------------------------
+    # --- 3. Multi-valued: focusAreas per vendor ---------------------------
+    focus_df = m.query(PREFIXES + """
+        SELECT ?v ?label WHERE {
+            ?v vl:focusArea ?fa .
+            ?fa skos:prefLabel ?label .
+        } ORDER BY ?v ?label
+    """)
+
+    # --- 4. Multi-valued: standards per vendor ----------------------------
     stds_df = m.query(PREFIXES + """
         SELECT ?v ?label WHERE {
             ?v vl:supportsStandard ?s .
-            ?s rdfs:label ?label .
+            ?s skos:prefLabel ?label .
         } ORDER BY ?v ?label
     """)
 
     # Build lookup dicts: vendor IRI -> list of strings
+    lang_map: dict[str, list[str]] = {}
+    for row in lang_df.iter_rows(named=True):
+        lang_map.setdefault(row["v"], []).append(row["label"])
+
     focus_map: dict[str, list[str]] = {}
     for row in focus_df.iter_rows(named=True):
         focus_map.setdefault(row["v"], []).append(row["label"])
@@ -110,7 +125,7 @@ def query_vendors(m: Model) -> list[dict]:
     for row in stds_df.iter_rows(named=True):
         stds_map.setdefault(row["v"], []).append(row["label"])
 
-    # --- 4. Assemble vendor dicts -----------------------------------------
+    # --- 5. Assemble vendor dicts -----------------------------------------
     # A vendor with multiple rdf:type values (e.g. Database + Framework) will
     # produce multiple rows in the scalars result. We merge them by IRI,
     # collecting all categories into a list.
@@ -123,14 +138,19 @@ def query_vendors(m: Model) -> list[dict]:
             if cat not in seen[v_iri]["categories"]:
                 seen[v_iri]["categories"].append(cat)
             continue
+
+        # Join languages with " / " to match the JS expectation
+        langs = lang_map.get(v_iri, [])
+        language_str = " / ".join(langs)
+
         v = {
             "name":         row["name"],
             "category":     cat,
             "categories":   [cat],
-            "subcategory":  row.get("subcategory") or "",
-            "language":     row.get("language") or "",
-            "license":      row.get("license") or "",
-            "pricing":      row.get("pricing") or "",
+            "subcategory":  row.get("subcategoryLabel") or "",
+            "language":     language_str,
+            "license":      row.get("licenseLabel") or "",
+            "pricing":      row.get("pricingLabel") or "",
             "website":      strip_iri(row.get("url") or ""),
             "github":       strip_iri(row.get("github") or ""),
             "description":  row.get("desc") or "",
