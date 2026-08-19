@@ -136,6 +136,7 @@ focus:Document-RDF  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:pre
 focus:Documentation-generation  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Documentation generation" .
 focus:Education  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Education" .
 focus:Embeddable  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Embeddable" .
+focus:Euler-path-reasoning  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Euler path reasoning" .
 focus:Embedded-database  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Embedded database" .
 focus:Enterprise  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Enterprise" .
 focus:Enterprise-AI  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Enterprise AI" .
@@ -151,6 +152,7 @@ focus:Exploration  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:pref
 focus:Faceted-search  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Faceted search" .
 focus:Federated-queries  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Federated queries" .
 focus:Force-directed-layout  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Force-directed layout" .
+focus:Forward-chaining  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Forward chaining" .
 focus:Format-conversion  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Format conversion" .
 focus:Framing  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Framing" .
 focus:Full-text-search  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Full-text search" .
@@ -206,7 +208,9 @@ focus:Multi-database-IDE  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; sk
 focus:Multi-model  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Multi-model" .
 focus:Multiple-storage-backends  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Multiple storage backends" .
 focus:MySQL-storage  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "MySQL storage" .
+focus:MCP-server  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "MCP server" .
 focus:N-Triples  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "N-Triples" .
+focus:N3-reasoning  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "N3 reasoning" .
 focus:No-data-duplication  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "No data duplication" .
 focus:OLAP-on-graphs  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "OLAP on graphs" .
 focus:OTTR-templates  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "OTTR templates" .
@@ -220,6 +224,8 @@ focus:Ontology-IDE  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:pre
 focus:Ontology-editing  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Ontology editing" .
 focus:Ontology-quality  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Ontology quality" .
 focus:Ontology-visualization  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Ontology visualization" .
+focus:Proof-generation  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Proof generation" .
+focus:Python-bindings  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Python bindings" .
 focus:PHP-RDF  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "PHP RDF" .
 focus:Pitfall-detection  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Pitfall detection" .
 focus:Plugin-ecosystem  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Plugin ecosystem" .
@@ -260,7 +266,9 @@ focus:SAIL-API  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLab
 focus:SHACL  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "SHACL" .
 focus:SHACL-rules  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "SHACL rules" .
 focus:SHACL-validation  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "SHACL validation" .
+focus:ShEx-validation  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "ShEx validation" .
 focus:SKOS  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "SKOS" .
+focus:SKOS-XL  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "SKOS-XL" .
 focus:SKOS-management  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "SKOS management" .
 focus:SPARQL  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "SPARQL" .
 focus:SPARQL-1-1  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "SPARQL 1.1" .
@@ -281,6 +289,7 @@ focus:Semantic-layer  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:p
 focus:Semantic-search  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Semantic search" .
 focus:Serialization  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Serialization" .
 focus:Serverless-option  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Serverless option" .
+focus:Shape-conversion  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Shape conversion" .
 focus:Shape-debugging  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Shape debugging" .
 focus:Simple-API  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Simple API" .
 focus:Stream-processing  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Stream processing" .
@@ -289,7 +298,9 @@ focus:Streaming-parser  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos
 focus:Syntax-highlighting  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Syntax highlighting" .
 focus:TDB-storage  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "TDB storage" .
 focus:TDB2-storage  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "TDB2 storage" .
+focus:Tableaux-reasoning  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Tableaux reasoning" .
 focus:Taxonomy-management  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Taxonomy management" .
+focus:Thesaurus-management  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Thesaurus management" .
 focus:Temporal-queries  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Temporal queries" .
 focus:Temporal-reasoning  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Temporal reasoning" .
 focus:Tensor-based-indexing  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Tensor-based indexing" .
@@ -318,6 +329,7 @@ focus:Visual-workbench  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos
 focus:Visualization  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Visualization" .
 focus:Vocabularies  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Vocabularies" .
 focus:Web-development  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Web development" .
+focus:Workflow-management  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Workflow management" .
 focus:Web-based  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Web-based" .
 focus:Wikidata  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Wikidata" .
 focus:Wikidata-scale  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Wikidata-scale" .
@@ -339,7 +351,9 @@ std:RDF-1-1  a skos:Concept ; skos:inScheme vl:StandardScheme ; skos:prefLabel "
 std:RDF-star  a skos:Concept ; skos:inScheme vl:StandardScheme ; skos:prefLabel "RDF 1.2" ; rdfs:seeAlso <https://www.w3.org/TR/rdf12-concepts/> .
 std:RML  a skos:Concept ; skos:inScheme vl:StandardScheme ; skos:prefLabel "RML" ; rdfs:seeAlso <https://rml.io/specs/rml/> .
 std:SHACL  a skos:Concept ; skos:inScheme vl:StandardScheme ; skos:prefLabel "SHACL" ; rdfs:seeAlso <https://www.w3.org/TR/shacl/> .
+std:ShEx  a skos:Concept ; skos:inScheme vl:StandardScheme ; skos:prefLabel "ShEx" ; rdfs:seeAlso <https://shex.io/shex-semantics/> .
 std:SKOS  a skos:Concept ; skos:inScheme vl:StandardScheme ; skos:prefLabel "SKOS" ; rdfs:seeAlso <https://www.w3.org/TR/skos-reference/> .
+std:SKOS-XL  a skos:Concept ; skos:inScheme vl:StandardScheme ; skos:prefLabel "SKOS-XL" ; rdfs:seeAlso <https://www.w3.org/TR/skos-reference/#xl> .
 std:SPARQL-1-1  a skos:Concept ; skos:inScheme vl:StandardScheme ; skos:prefLabel "SPARQL 1.1" ; rdfs:seeAlso <https://www.w3.org/TR/sparql11-query/> .
 std:SPARQL-star  a skos:Concept ; skos:inScheme vl:StandardScheme ; skos:prefLabel "SPARQL 1.2" ; rdfs:seeAlso <https://www.w3.org/TR/sparql12-query/> .
 
@@ -436,6 +450,7 @@ lang:JavaScript-Node.js  a vl:ProgrammingLanguage ; rdfs:label "JavaScript (Node
 lang:Managed-Service  a vl:ProgrammingLanguage ; rdfs:label "Managed Service" .
 lang:PHP  a vl:ProgrammingLanguage ; rdfs:label "PHP" .
 lang:Python  a vl:ProgrammingLanguage ; rdfs:label "Python" .
+lang:Prolog  a vl:ProgrammingLanguage ; rdfs:label "Prolog" .
 lang:Rust  a vl:ProgrammingLanguage ; rdfs:label "Rust" .
 lang:SQL  a vl:ProgrammingLanguage ; rdfs:label "SQL" .
 lang:Scala  a vl:ProgrammingLanguage ; rdfs:label "Scala" .
@@ -467,8 +482,10 @@ subcat:Linked-Data-Platform  a skos:Concept ; skos:inScheme vl:SubcategoryScheme
 subcat:Linked-Data-Server  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "Linked Data Server" .
 subcat:Managed-Graph-Database  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "Managed Graph Database" .
 subcat:Multi-Model-Database  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "Multi-Model Database" .
+subcat:N3-Reasoner  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "N3 Reasoner" .
 subcat:OWL-Reasoner  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "OWL Reasoner" .
 subcat:Ontology-Editor  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "Ontology Editor" .
+subcat:Ontology-Engineering-Tool  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "Ontology Engineering Tool" .
 subcat:Ontology-Editor-KG-Builder  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "Ontology Editor / KG Builder" .
 subcat:Ontology-IDE  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "Ontology IDE" .
 subcat:Ontology-Validator  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "Ontology Validator" .
@@ -958,6 +975,35 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:supportsStandard  std:SPARQL-1-1 ;
     vl:supportsStandard  std:SPARQL-star ;
     vl:firstRelease      2004 .
+
+<EYE>  a vl:Framework ;
+    schema:name         "EYE" ;
+    schema:description  "Euler Yet another proof Engine — a Notation3 reasoner performing forward and backward chaining along Euler paths, implemented in SWI-Prolog. Supports N3 rules, RDF Surfaces, proof generation, and has JS/WASM (eye-js), Rust (Eyeron), and Python (Pyling) ports." ;
+    schema:url          <https://eyereasoner.github.io/eye/> ;
+    vl:subcategory      subcat:N3-Reasoner ;
+    vl:language          lang:Prolog ;
+    vl:license           license:MIT ;
+    vl:pricing           pricingm:Open-Source ;
+    vl:github            <https://github.com/eyereasoner/eye> ;
+    vl:logoHint          "EYE reasoner Euler logo" ;
+    vl:logoUrl           <https://github.com/eyereasoner.png?size=64> ;
+    vl:hasDemo           true ;
+    vl:demoUrl           <https://editor.notation3.org/> ;
+    vl:hasBenchmark      false ;
+    vl:speedNote         "Performs well with high rule-to-data ratios. Prolog execution engine with efficient Euler path pruning" ;
+    vl:scaleNote         "Best suited for rule-heavy workloads on small to medium datasets. WASM port enables browser-side reasoning" ;
+    vl:speedTier         speed:fast ;
+    vl:scaleTier         scale:medium ;
+    vl:region            region:Europe ;
+    vl:country           country:Belgium ;
+    vl:focusArea         focus:Backward-chaining ;
+    vl:focusArea         focus:Euler-path-reasoning ;
+    vl:focusArea         focus:Forward-chaining ;
+    vl:focusArea         focus:N3-reasoning ;
+    vl:focusArea         focus:Proof-generation ;
+    vl:supportsStandard  std:N3 ;
+    vl:supportsStandard  std:RDF-1-1 ;
+    vl:firstRelease      2009 .
 
 <Fluree>  a vl:Database ;
     schema:name         "Fluree" ;
@@ -1543,6 +1589,36 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:supportsStandard  std:RDF-star ;
     vl:firstRelease      2013 .
 
+<Open-Ontologies>  a vl:Tool, vl:Framework ;
+    schema:name         "Open Ontologies" ;
+    schema:description  "Rust-based ontology engineering platform exposing 70+ tools via MCP (Model Context Protocol). Features OWL 2 DL tableaux reasoner, SHACL validation, SPARQL 1.1 (via embedded Oxigraph), ontology diff, lint, versioning, alignment, lineage tracking, and a desktop Studio IDE." ;
+    schema:url          <https://github.com/fabio-rovai/open-ontologies> ;
+    vl:subcategory      subcat:Ontology-Engineering-Tool ;
+    vl:language          lang:Rust ;
+    vl:license           license:MIT ;
+    vl:pricing           pricingm:Open-Source ;
+    vl:github            <https://github.com/fabio-rovai/open-ontologies> ;
+    vl:logoHint          "Open Ontologies logo" ;
+    vl:logoUrl           <https://github.com/fabio-rovai.png?size=64> ;
+    vl:hasDemo           false ;
+    vl:hasBenchmark      false ;
+    vl:speedNote         "Rust + in-memory Oxigraph. Fast for ontology-scale workloads" ;
+    vl:scaleNote         "In-memory graph — suited for ontology engineering, not large-scale data processing" ;
+    vl:speedTier         speed:fast ;
+    vl:scaleTier         scale:medium ;
+    vl:region            region:Europe ;
+    vl:country           country:Italy ;
+    vl:focusArea         focus:MCP-server ;
+    vl:focusArea         focus:OWL-reasoning ;
+    vl:focusArea         focus:SHACL-validation ;
+    vl:focusArea         focus:Tableaux-reasoning ;
+    vl:focusArea         focus:Version-control ;
+    vl:supportsStandard  std:OWL-2 ;
+    vl:supportsStandard  std:RDF-1-1 ;
+    vl:supportsStandard  std:SHACL ;
+    vl:supportsStandard  std:SPARQL-1-1 ;
+    vl:firstRelease      2026 .
+
 <Ontop>  a vl:Database ;
     schema:name         "Ontop" ;
     schema:description  "Open-source Virtual Knowledge Graph system that translates SPARQL queries to SQL over relational databases using R2RML mappings" ;
@@ -2078,6 +2154,34 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:supportsStandard  std:SPARQL-1-1 ;
     vl:firstRelease      2015 .
 
+<Rudof>  a vl:Framework ;
+    schema:name         "Rudof" ;
+    schema:description  "Rust library and CLI for RDF data shapes: ShEx validation, SHACL validation, DCTap processing, and conversions between data modelling formalisms. Python bindings (pyrudof), UML/HTML generation, SPARQL endpoint validation (e.g. Wikidata). ISWC 2024 demo paper." ;
+    schema:url          <https://rudof-project.github.io/rudof/> ;
+    vl:subcategory      subcat:Rust-Library ;
+    vl:language          lang:Rust ;
+    vl:license           license:Apache-2.0-MIT ;
+    vl:pricing           pricingm:Open-Source ;
+    vl:github            <https://github.com/rudof-project/rudof> ;
+    vl:logoHint          "Rudof RDF shapes Rust logo" ;
+    vl:logoUrl           <https://github.com/rudof-project.png?size=64> ;
+    vl:hasDemo           false ;
+    vl:hasBenchmark      false ;
+    vl:speedNote         "Rust performance for validation. Modular crate architecture allows embedding specific validators" ;
+    vl:scaleNote         "Can validate against local files or remote SPARQL endpoints (Wikidata tested)" ;
+    vl:speedTier         speed:fast ;
+    vl:scaleTier         scale:medium ;
+    vl:region            region:Europe ;
+    vl:country           country:Spain ;
+    vl:focusArea         focus:Python-bindings ;
+    vl:focusArea         focus:SHACL-validation ;
+    vl:focusArea         focus:ShEx-validation ;
+    vl:focusArea         focus:Shape-conversion ;
+    vl:supportsStandard  std:RDF-1-1 ;
+    vl:supportsStandard  std:SHACL ;
+    vl:supportsStandard  std:ShEx ;
+    vl:firstRelease      2024 .
+
 <Redland-librdf>  a vl:Framework ;
     schema:name         "Redland (librdf)" ;
     schema:description  "Modular C libraries providing RDF graph API (librdf), parser/serializer (Raptor), and SPARQL query engine (Rasqal) with bindings for many languages" ;
@@ -2567,6 +2671,37 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:supportsStandard  std:RDF-1-1 ;
     vl:supportsStandard  std:SPARQL-1-1 ;
     vl:firstRelease      1998 .
+
+<VocBench>  a vl:Tool ;
+    schema:name         "VocBench" ;
+    schema:description  "Collaborative web-based editor for ontologies, thesauri, and lexicons. Backed by the Semantic Turkey framework, funded by the EU ISA2 programme. Supports OWL 2 (Manchester syntax), native SKOS/SKOS-XL, multi-role access control, workflow-based content validation, versioning, and SPARQL querying." ;
+    schema:url          <https://vocbench.uniroma2.it/> ;
+    vl:subcategory      subcat:Collaborative-Ontology-Editor ;
+    vl:language          lang:Java ;
+    vl:language          lang:Web ;
+    vl:license           license:BSD-3-Clause ;
+    vl:pricing           pricingm:Open-Source ;
+    vl:logoHint          "VocBench ontology editor logo" ;
+    vl:logoUrl           <https://www.google.com/s2/favicons?domain=vocbench.uniroma2.it&sz=64> ;
+    vl:hasDemo           false ;
+    vl:hasBenchmark      false ;
+    vl:speedNote         "Web-based platform - responsive for ontology and thesaurus editing workflows" ;
+    vl:scaleNote         "Designed for collaborative vocabulary management. Scales with the backing triple store (GraphDB, Jena, etc.)" ;
+    vl:speedTier         speed:varies ;
+    vl:scaleTier         scale:medium ;
+    vl:region            region:Europe ;
+    vl:country           country:Italy ;
+    vl:focusArea         focus:Collaborative-editing ;
+    vl:focusArea         focus:SKOS-XL ;
+    vl:focusArea         focus:SKOS-management ;
+    vl:focusArea         focus:Thesaurus-management ;
+    vl:focusArea         focus:Workflow-management ;
+    vl:supportsStandard  std:OWL-2 ;
+    vl:supportsStandard  std:RDF-1-1 ;
+    vl:supportsStandard  std:SKOS ;
+    vl:supportsStandard  std:SKOS-XL ;
+    vl:supportsStandard  std:SPARQL-1-1 ;
+    vl:firstRelease      2012 .
 
 <W3C-RDF-Validator>  a vl:Tool ;
     schema:name         "W3C RDF Validator" ;
