@@ -115,6 +115,7 @@ focus:Connectors  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefL
 focus:Consistency-checking  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Consistency checking" .
 focus:Constraint-checking  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Constraint checking" .
 focus:Content-negotiation  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Content negotiation" .
+focus:Cross-environment-runners  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Cross-environment runners" .
 focus:Cypher-queries  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Cypher queries" .
 focus:Data-cataloging  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Data cataloging" .
 focus:Data-exploration  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Data exploration" .
@@ -129,6 +130,7 @@ focus:Database-integration  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; 
 focus:Datalog  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Datalog" .
 focus:Datalog-reasoning  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Datalog reasoning" .
 focus:Decentralized  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Decentralized" .
+focus:Declarative-pipelines  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Declarative pipelines" .
 focus:Developer-experience  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Developer experience" .
 focus:Discussion-threads  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Discussion threads" .
 focus:Docker-ready  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Docker-ready" .
@@ -232,6 +234,7 @@ focus:Plugin-ecosystem  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos
 focus:Prefix-autocompletion  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Prefix autocompletion" .
 focus:Prolog-reasoning  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Prolog reasoning" .
 focus:Prototyping  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Prototyping" .
+focus:Provenance-tracking  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Provenance tracking" .
 focus:Python  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Python" .
 focus:Python-native  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Python-native" .
 focus:Python-JS-bindings  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Python/JS bindings" .
@@ -346,6 +349,7 @@ std:JSON-LD  a skos:Concept ; skos:inScheme vl:StandardScheme ; skos:prefLabel "
 std:LDP  a skos:Concept ; skos:inScheme vl:StandardScheme ; skos:prefLabel "LDP" ; rdfs:seeAlso <https://www.w3.org/TR/ldp/> .
 std:N3  a skos:Concept ; skos:inScheme vl:StandardScheme ; skos:prefLabel "N3" ; rdfs:seeAlso <https://www.w3.org/TeamSubmission/n3/> .
 std:OWL-2  a skos:Concept ; skos:inScheme vl:StandardScheme ; skos:prefLabel "OWL 2" ; rdfs:seeAlso <https://www.w3.org/TR/owl2-overview/> .
+std:PROV-O  a skos:Concept ; skos:inScheme vl:StandardScheme ; skos:prefLabel "PROV-O" ; rdfs:seeAlso <https://www.w3.org/TR/prov-o/> .
 std:R2RML  a skos:Concept ; skos:inScheme vl:StandardScheme ; skos:prefLabel "R2RML" ; rdfs:seeAlso <https://www.w3.org/TR/r2rml/> .
 std:RDF-1-1  a skos:Concept ; skos:inScheme vl:StandardScheme ; skos:prefLabel "RDF 1.1" ; rdfs:seeAlso <https://www.w3.org/TR/rdf11-concepts/> .
 std:RDF-star  a skos:Concept ; skos:inScheme vl:StandardScheme ; skos:prefLabel "RDF 1.2" ; rdfs:seeAlso <https://www.w3.org/TR/rdf12-concepts/> .
@@ -465,6 +469,7 @@ subcat:Csharp-.NET-Library  a skos:Concept ; skos:inScheme vl:SubcategoryScheme 
 subcat:Cpp-Java-Library  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "C++ / Java Library" .
 subcat:Collaborative-Ontology-Editor  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "Collaborative Ontology Editor" .
 subcat:Data-Governance-Platform  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "Data Governance Platform" .
+subcat:Data-Pipeline-Framework  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "Data Pipeline Framework" .
 subcat:Graph-Database-plus-RDF  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "Graph Database + RDF" .
 subcat:Graph-Visualization  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "Graph Visualization" .
 subcat:Graph-Visualization-IDE  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "Graph Visualization / IDE" .
@@ -2032,6 +2037,43 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:supportsStandard  std:N3 ;
     vl:supportsStandard  std:RDF-1-1 ;
     vl:firstRelease      2014 .
+
+<RDF-Connect>  a vl:Framework ;
+    schema:name         "RDF-Connect" ;
+    schema:description  "Declarative framework for streaming, cross-environment data processing pipelines described in RDF. A language-agnostic orchestrator manages the pipeline lifecycle over a gRPC protocol, with runners for JavaScript/TypeScript, JVM, Python, and Rust, SHACL-validated processor interfaces, and native PROV-O provenance" ;
+    schema:url          <https://rdf-connect.github.io> ;
+    vl:subcategory      subcat:Data-Pipeline-Framework ;
+    vl:language          lang:TypeScript ;
+    vl:language          lang:Java ;
+    vl:language          lang:Python ;
+    vl:language          lang:Rust ;
+    vl:license           license:MIT ;
+    vl:pricing           pricingm:Open-Source ;
+    vl:github            <https://github.com/rdf-connect> ;
+    vl:logoHint          "RDF-Connect pipeline framework logo" ;
+    vl:logoUrl           <https://github.com/rdf-connect.png?size=64> ;
+    vl:hasDemo           true ;
+    vl:demoUrl           <https://github.com/rdf-connect/example-pipelines> ;
+    vl:hasBenchmark      false ;
+    vl:speedNote         "Streaming, per-record processing keeps latency and memory low. Overall throughput depends on the configured processors and runners rather than the orchestrator" ;
+    vl:scaleNote         "Designed for continuous, cross-environment pipelines. Scales by composing modular processors and distributing work across language-specific runners" ;
+    vl:speedTier         speed:varies ;
+    vl:scaleTier         scale:varies ;
+    vl:region            region:Europe ;
+    vl:country           country:Belgium ;
+    vl:focusArea         focus:Cross-environment-runners ;
+    vl:focusArea         focus:Data-pipelines ;
+    vl:focusArea         focus:Declarative-pipelines ;
+    vl:focusArea         focus:Knowledge-graph-construction ;
+    vl:focusArea         focus:Modular-architecture ;
+    vl:focusArea         focus:Provenance-tracking ;
+    vl:focusArea         focus:SHACL-validation ;
+    vl:focusArea         focus:Stream-processing ;
+    vl:supportsStandard  std:JSON-LD ;
+    vl:supportsStandard  std:PROV-O ;
+    vl:supportsStandard  std:RDF-1-1 ;
+    vl:supportsStandard  std:SHACL ;
+    vl:firstRelease      2024 .
 
 <RDF4J-Workbench>  a vl:Tool ;
     schema:name         "RDF4J Workbench" ;
