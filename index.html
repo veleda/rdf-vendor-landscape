@@ -6,7 +6,6 @@
 <title>RDF Vendor Landscape — Navigate the Semantic Web Ecosystem</title>
 <meta name="description" content="A comprehensive guide to RDF databases, frameworks, and tools. Compare triple stores, libraries across all languages, pricing, licenses, and benchmark performance.">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
   :root {
     --bg: #f8f9fb;
@@ -195,27 +194,6 @@
   .wizard-result-card .wr-why { font-size: 0.82rem; color: var(--text-muted); line-height: 1.45; }
   .wizard-result-card .wr-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
 
-  /* Benchmark Section */
-  .benchmark-section { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin-bottom: 48px; box-shadow: var(--shadow); }
-  .benchmark-controls { display: flex; gap: 8px; flex-wrap: wrap; }
-  .bench-tab { padding: 6px 16px; border-radius: 6px; border: 1px solid var(--border); background: #fff; color: var(--text-muted); font-size: 0.82rem; cursor: pointer; transition: all 0.2s; }
-  .bench-tab:hover { border-color: var(--accent); color: var(--text); }
-  .bench-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .chart-box { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
-  .chart-box h3 { font-size: 0.95rem; color: var(--text); margin-bottom: 12px; font-weight: 600; }
-  .chart-box canvas { width: 100% !important; height: 300px !important; }
-
-  /* Benchmark Table */
-  .bench-table-wrap { overflow-x: auto; margin-top: 20px; }
-  .bench-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
-  .bench-table th, .bench-table td { padding: 8px 12px; text-align: right; border-bottom: 1px solid var(--border); white-space: nowrap; }
-  .bench-table th { color: var(--text-dim); font-weight: 600; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.05em; position: sticky; top: 0; background: #fff; }
-  .bench-table th:first-child, .bench-table td:first-child { text-align: left; font-weight: 600; color: var(--text); position: sticky; left: 0; background: #fff; z-index: 1; }
-  .bench-table td { color: var(--text-muted); font-family: 'SF Mono', 'Fira Code', monospace; }
-  .bench-table tr:hover td { background: var(--bg-surface); }
-  .val-best { color: var(--green); font-weight: 700; }
-  .val-na { color: var(--text-dim); font-style: italic; }
 
   /* Footer */
   footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.85rem; }
@@ -261,7 +239,6 @@
   @media (max-width: 768px) {
     .hero h1 { font-size: 1.8rem; }
     .vendor-grid { grid-template-columns: 1fr; }
-    .chart-grid { grid-template-columns: 1fr; }
     .stats-bar { gap: 16px; }
   }
 
@@ -434,7 +411,7 @@
   <button class="nav-tab" data-section="database">Databases</button>
   <button class="nav-tab" data-section="framework">Frameworks</button>
   <button class="nav-tab" data-section="tool">Tools</button>
-  <button class="nav-tab" data-section="benchmark">Benchmark</button>
+  <a class="nav-tab" href="https://datatreehouse.github.io/trainmarks/" target="_blank" rel="noopener">Benchmark ↗</a>
   <button class="nav-tab" data-section="sparql">SPARQL</button>
 </div>
 
@@ -510,36 +487,6 @@
     </div>
   </div>
 
-  <!-- Benchmark Section -->
-  <div id="benchmark-listing" class="hidden">
-    <div class="section">
-      <div class="section-header"><h2>Performance Benchmark</h2><span class="count">11 frameworks tested</span></div>
-      <p style="color:var(--text-muted);margin-bottom:20px;font-size:0.92rem;">
-        Comparing I/O performance (read/write Turtle &amp; N-Triples) and SPARQL query execution across three dataset scales (100K, 1M, 10M triples). Lower is better. Log scale recommended for frameworks with very different speeds.
-      </p>
-    </div>
-
-    <div class="benchmark-section">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
-        <div class="benchmark-controls" id="scale-tabs">
-          <button class="bench-tab active" data-scale="medium">100K Triples</button>
-          <button class="bench-tab" data-scale="large">1M Triples</button>
-          <button class="bench-tab" data-scale="xlarge">10M Triples</button>
-        </div>
-        <label class="toggle-label"><input type="checkbox" id="log-toggle"> Log scale</label>
-      </div>
-      <div class="chart-grid">
-        <div class="chart-box"><h3>Read Performance (seconds)</h3><canvas id="chart-read"></canvas></div>
-        <div class="chart-box"><h3>Write Performance (seconds)</h3><canvas id="chart-write"></canvas></div>
-        <div class="chart-box"><h3>SPARQL Query Performance (seconds)</h3><canvas id="chart-query"></canvas></div>
-        <div class="chart-box"><h3>Overall Comparison (seconds)</h3><canvas id="chart-overall"></canvas></div>
-      </div>
-      <div class="bench-table-wrap" style="margin-top:28px;">
-        <h3 style="font-size:1rem;margin-bottom:12px;color:var(--text);">Detailed Results</h3>
-        <table class="bench-table" id="bench-table"></table>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- SPARQL Editor -->
@@ -673,421 +620,6 @@ const VENDORS = [
   {"name": "Zazuko Ontology Editor", "category": "tool", "categories": ["tool"], "subcategory": "Ontology Editor", "language": "GitHub-based / Web", "license": "Commercial / Open Source", "pricing": "Free (hosted)", "website": "https://zazuko.com/products/ontology-editor/", "github": "", "description": "Web-based collaborative ontology editor backed by GitHub for version control, producing Turtle format ontology definitions", "hasDemo": true, "demoUrl": "https://editor.zazuko.com/", "hasBenchmark": false, "logoHint": "Zazuko ontology editor logo", "logoUrl": "https://www.google.com/s2/favicons?domain=zazuko.com&sz=64", "focusAreas": ["Collaborative editing", "GitHub-backed", "Turtle output", "Version control"], "speedNote": "Web-based editor - responsive for typical ontologies", "scaleNote": "Designed for ontology editing, not data processing", "standards": ["RDF 1.1", "SHACL"], "region": "Europe", "country": "Switzerland", "flag": "🇨🇭", "speedTier": "varies", "scaleTier": "small", "firstRelease": 2020, "reviewUrl": null},
   {"name": "Zazuko Trifid", "category": "tool", "categories": ["tool"], "subcategory": "Linked Data Server", "language": "JavaScript (Node.js)", "license": "Apache 2.0", "pricing": "Open Source", "website": "https://zazuko.com/products/trifid/", "github": "https://github.com/zazuko/trifid", "description": "Lightweight Linked Data server and proxy for dereferencing URIs over HTTP with built-in SPARQL proxy, YASGUI, and graph explorer", "hasDemo": false, "demoUrl": null, "hasBenchmark": false, "logoHint": "Zazuko Trifid linked data logo", "logoUrl": "https://github.com/zazuko.png?size=64", "focusAreas": ["Content negotiation", "Linked Data publishing", "SPARQL proxy", "URI dereferencing"], "speedNote": "Lightweight Node.js server - fast for serving individual resources. Proxies to backend SPARQL store", "scaleNote": "Proxy architecture - scales with the backing triple store", "standards": ["JSON-LD", "LDP", "RDF 1.1", "SPARQL 1.1"], "region": "Europe", "country": "Switzerland", "flag": "🇨🇭", "speedTier": "moderate", "scaleTier": "medium", "firstRelease": 2016, "reviewUrl": null},
 ];
-
-const BENCHMARK = {
-  "dotnetrdf": {
-    "medium": {
-      "read_turtle": 1.4758778,
-      "write_turtle": 0.3012628,
-      "write_ntriples": 0.4234584,
-      "read_ntriples": 0.947343,
-      "query_q1_count": 0.0582379,
-      "query_q2_customer_orders": 0.0828655,
-      "query_q3_join_3_entities": 0.0319075,
-      "query_q4_optional_aggregation": 0.0844744,
-      "query_q5_construct": 0.021749
-    },
-    "large": {
-      "read_turtle": 10.542993,
-      "write_turtle": 2.6806775,
-      "write_ntriples": 1.9620858,
-      "read_ntriples": 9.2710521,
-      "query_q1_count": 0.6226751,
-      "query_q2_customer_orders": 0.7874975,
-      "query_q3_join_3_entities": 0.4222567,
-      "query_q4_optional_aggregation": 0.8849907,
-      "query_q5_construct": 0.3385048
-    },
-    "xlarge": {
-      "read_turtle": null,
-      "write_turtle": null,
-      "write_ntriples": null,
-      "read_ntriples": null,
-      "query_q1_count": null,
-      "query_q2_customer_orders": null,
-      "query_q3_join_3_entities": null,
-      "query_q4_optional_aggregation": null,
-      "query_q5_construct": null
-    }
-  },
-  "graphdb": {
-    "medium": {
-      "read_turtle": 4.366650541000126,
-      "write_turtle": null,
-      "write_ntriples": null,
-      "read_ntriples": 3.676176333996409,
-      "query_q1_count": 0.02573929199570557,
-      "query_q2_customer_orders": 0.030450708996795584,
-      "query_q3_join_3_entities": 0.010329249998903833,
-      "query_q4_optional_aggregation": 0.02932366700406419,
-      "query_q5_construct": 0.04715454200049862
-    },
-    "large": {
-      "read_turtle": 7.622762957995292,
-      "write_turtle": null,
-      "write_ntriples": null,
-      "read_ntriples": 7.629481416995986,
-      "query_q1_count": 0.12424399999872549,
-      "query_q2_customer_orders": 0.2356467089994112,
-      "query_q3_join_3_entities": 0.050692292003077455,
-      "query_q4_optional_aggregation": 0.2669607920033741,
-      "query_q5_construct": 0.41685320800024783
-    },
-    "xlarge": {
-      "read_turtle": 60.173690915995394,
-      "write_turtle": null,
-      "write_ntriples": null,
-      "read_ntriples": 54.21720274999825,
-      "query_q1_count": 1.2435235420052777,
-      "query_q2_customer_orders": 3.0184883330002776,
-      "query_q3_join_3_entities": 0.6331353749992559,
-      "query_q4_optional_aggregation": 3.577730042001349,
-      "query_q5_construct": 4.5421648750052555
-    }
-  },
-  "jena": {
-    "medium": {
-      "read_turtle": 0.1837,
-      "write_turtle": 0.1505,
-      "write_ntriples": 0.0868,
-      "read_ntriples": 0.2131,
-      "query_q1_count": 0.0164,
-      "query_q2_customer_orders": 0.0206,
-      "query_q3_join_3_entities": 0.0074,
-      "query_q4_optional_aggregation": 0.0232,
-      "query_q5_construct": 0.0045
-    },
-    "large": {
-      "read_turtle": 1.9101,
-      "write_turtle": 0.7444,
-      "write_ntriples": 0.3977,
-      "read_ntriples": 1.662,
-      "query_q1_count": 0.1881,
-      "query_q2_customer_orders": 0.1949,
-      "query_q3_join_3_entities": 0.0248,
-      "query_q4_optional_aggregation": 0.1942,
-      "query_q5_construct": 0.0366
-    },
-    "xlarge": {
-      "read_turtle": 18.5777,
-      "write_turtle": 6.6374,
-      "write_ntriples": 3.8204,
-      "read_ntriples": 19.1688,
-      "query_q1_count": 2.0216,
-      "query_q2_customer_orders": 2.5581,
-      "query_q3_join_3_entities": 0.3059,
-      "query_q4_optional_aggregation": 2.2698,
-      "query_q5_construct": 0.3415
-    }
-  },
-  "maplib": {
-    "medium": {
-      "read_turtle": 0.13459016699925996,
-      "write_turtle": 0.10073658399778651,
-      "write_ntriples": 0.016257458002655767,
-      "read_ntriples": 0.07387466599902837,
-      "query_q1_count": 0.0034904580024885945,
-      "query_q2_customer_orders": 0.0018733749966486357,
-      "query_q3_join_3_entities": 0.003200500003003981,
-      "query_q4_optional_aggregation": 0.00377512499835575,
-      "query_q5_construct": 0.00872733400319703,
-      "query_q6_construct_union": 0.00776866700471146
-    },
-    "large": {
-      "read_turtle": 0.8220528750025551,
-      "write_turtle": 0.681974209001055,
-      "write_ntriples": 0.07426220899651526,
-      "read_ntriples": 0.8274188330033212,
-      "query_q1_count": 0.010086166999826673,
-      "query_q2_customer_orders": 0.0040643749962328,
-      "query_q3_join_3_entities": 0.00685741600318579,
-      "query_q4_optional_aggregation": 0.007851749993278645,
-      "query_q5_construct": 0.01649395799904596,
-      "query_q6_construct_union": 0.011741916998289526
-    },
-    "xlarge": {
-      "read_turtle": 10.488289832996088,
-      "write_turtle": 7.537426167000376,
-      "write_ntriples": 0.8142818749984144,
-      "read_ntriples": 10.402776041002653,
-      "query_q1_count": 0.0770453750010347,
-      "query_q2_customer_orders": 0.020059624999703374,
-      "query_q3_join_3_entities": 0.04026754199730931,
-      "query_q4_optional_aggregation": 0.04713662499852944,
-      "query_q5_construct": 0.08023420899553457,
-      "query_q6_construct_union": 0.08112495800014585
-    }
-  },
-  "maplib_disk": {
-    "medium": {
-      "read_turtle": 0.41225979199953144,
-      "write_turtle": 1.7379467920036404,
-      "write_ntriples": 0.09257720800087554,
-      "read_ntriples": 0.3598965419951128,
-      "query_q1_count": 0.0627125410028384,
-      "query_q2_customer_orders": 0.0064427499964949675,
-      "query_q3_join_3_entities": 0.019996415998321027,
-      "query_q4_optional_aggregation": 0.015938791999360546,
-      "query_q5_construct": 0.08051625000371132,
-      "query_q6_construct_union": 0.057851915997161996
-    },
-    "large": {
-      "read_turtle": 1.3974805420002667,
-      "write_turtle": 13.307958042001701,
-      "write_ntriples": 0.25056758299615467,
-      "read_ntriples": 1.4016252500005066,
-      "query_q1_count": 0.07300545799807878,
-      "query_q2_customer_orders": 0.008144790997903328,
-      "query_q3_join_3_entities": 0.024407333999988623,
-      "query_q4_optional_aggregation": 0.02152274999389192,
-      "query_q5_construct": 0.10275545799959218,
-      "query_q6_construct_union": 0.0698862090066541
-    },
-    "xlarge": {
-      "read_turtle": 13.287011041000369,
-      "write_turtle": 218.1325508749942,
-      "write_ntriples": 1.6613356669986388,
-      "read_ntriples": 14.069998124999984,
-      "query_q1_count": 0.16066483299800893,
-      "query_q2_customer_orders": 0.02581366700178478,
-      "query_q3_join_3_entities": 0.061161499994341284,
-      "query_q4_optional_aggregation": 0.06240341599914245,
-      "query_q5_construct": 0.281953291996615,
-      "query_q6_construct_union": 0.14403324999875622
-    }
-  },
-  "neo4j": {
-    "medium": {
-      "read_turtle": 1.2821869170002174,
-      "write_turtle": null,
-      "read_ntriples": 0.5425938330008648,
-      "write_ntriples": null,
-      "query_q5_construct": null,
-      "query_q1_count": 0.004699749995779712,
-      "query_q2_customer_orders": 0.02048595800442854,
-      "query_q3_join_3_entities": 0.007968375000928063,
-      "query_q4_optional_aggregation": 0.0045443749986588955
-    },
-    "large": {
-      "read_turtle": 6.879482292002649,
-      "write_turtle": null,
-      "read_ntriples": 5.632301750003535,
-      "write_ntriples": null,
-      "query_q5_construct": null,
-      "query_q1_count": 0.004907500006083865,
-      "query_q2_customer_orders": 0.08386366700142389,
-      "query_q3_join_3_entities": 0.03150462500343565,
-      "query_q4_optional_aggregation": 0.007470167001883965
-    },
-    "xlarge": {
-      "read_turtle": 73.53620075000072,
-      "write_turtle": null,
-      "read_ntriples": 59.21627483400516,
-      "write_ntriples": null,
-      "query_q5_construct": null,
-      "query_q1_count": 0.004117415999644436,
-      "query_q2_customer_orders": 0.8795726250027656,
-      "query_q3_join_3_entities": 0.276334208996559,
-      "query_q4_optional_aggregation": 0.009713915998872835
-    }
-  },
-  "oxigraph": {
-    "medium": {
-      "read_turtle": 0.10939712500112364,
-      "write_turtle": 0.02832625000155531,
-      "write_ntriples": 0.0315040420027799,
-      "read_ntriples": 0.10481354099465534,
-      "query_q1_count": 0.008068499999353662,
-      "query_q2_customer_orders": 0.011819500003184658,
-      "query_q3_join_3_entities": 0.0021393749993876554,
-      "query_q4_optional_aggregation": 0.01033679200190818,
-      "query_q5_construct": 0.003621250005380716,
-      "query_q6_construct_union": 0.022037624999939
-    },
-    "large": {
-      "read_turtle": 1.356210000005376,
-      "write_turtle": 0.2859643749980023,
-      "write_ntriples": 0.287850000000617,
-      "read_ntriples": 1.2638351249988773,
-      "query_q1_count": 0.08444383299502078,
-      "query_q2_customer_orders": 0.1581274999989546,
-      "query_q3_join_3_entities": 0.03205795800022315,
-      "query_q4_optional_aggregation": 0.15568016600445844,
-      "query_q5_construct": 0.05397445800190326,
-      "query_q6_construct_union": 0.3309546250020503
-    },
-    "xlarge": {
-      "read_turtle": 16.323795999996946,
-      "write_turtle": 3.3822309999959543,
-      "write_ntriples": 3.361206832996686,
-      "read_ntriples": 16.868445416999748,
-      "query_q1_count": 0.852115458001208,
-      "query_q2_customer_orders": 2.3519472499974654,
-      "query_q3_join_3_entities": 0.42124424999929033,
-      "query_q4_optional_aggregation": 1.7848637500064797,
-      "query_q5_construct": 0.7836099170017405,
-      "query_q6_construct_union": 3.858251500001643
-    }
-  },
-  "qlever": {
-    "medium": {
-      "read_turtle": 0.7287227499982691,
-      "write_turtle": null,
-      "write_ntriples": null,
-      "read_ntriples": 0.47633700000005774,
-      "query_q1_count": 0.0016052499995566905,
-      "query_q2_customer_orders": 0.0075985419971402735,
-      "query_q3_join_3_entities": 0.011487292002129834,
-      "query_q4_optional_aggregation": 0.00823800000216579,
-      "query_q5_construct": 0.013223000001744367
-    },
-    "large": {
-      "read_turtle": 1.265258207997249,
-      "write_turtle": null,
-      "write_ntriples": null,
-      "read_ntriples": 0.9866042920039035,
-      "query_q1_count": 0.0019862080007442273,
-      "query_q2_customer_orders": 0.0029397910038824193,
-      "query_q3_join_3_entities": 0.006705041996610817,
-      "query_q4_optional_aggregation": 0.0040452920002280734,
-      "query_q5_construct": 0.05198854199989
-    },
-    "xlarge": {
-      "read_turtle": 7.985183459000837,
-      "write_turtle": null,
-      "write_ntriples": null,
-      "read_ntriples": 7.773621874999662,
-      "query_q1_count": 0.001496208002208732,
-      "query_q2_customer_orders": 0.0022003750054864213,
-      "query_q3_join_3_entities": 0.004842042006202973,
-      "query_q4_optional_aggregation": 0.0027655839949147776,
-      "query_q5_construct": 0.5878562500001863
-    }
-  },
-  "rdf4j": {
-    "medium": {
-      "read_turtle": 0.2089,
-      "write_turtle": 0.2822,
-      "write_ntriples": 0.1872,
-      "read_ntriples": 0.1326,
-      "query_q1_count": 0.0062,
-      "query_q2_customer_orders": 0.0136,
-      "query_q3_join_3_entities": 0.0041,
-      "query_q4_optional_aggregation": 0.0283,
-      "query_q5_construct": 0.0091
-    },
-    "large": {
-      "read_turtle": 2.5458,
-      "write_turtle": 1.9248,
-      "write_ntriples": 1.6898,
-      "read_ntriples": 1.3343,
-      "query_q1_count": 0.0467,
-      "query_q2_customer_orders": 0.0599,
-      "query_q3_join_3_entities": 0.0103,
-      "query_q4_optional_aggregation": 0.0753,
-      "query_q5_construct": 0.0202
-    },
-    "xlarge": {
-      "read_turtle": 25.877,
-      "write_turtle": 19.1715,
-      "write_ntriples": 12.7941,
-      "read_ntriples": 13.5204,
-      "query_q1_count": 0.9277,
-      "query_q2_customer_orders": 0.858,
-      "query_q3_join_3_entities": 0.1604,
-      "query_q4_optional_aggregation": 1.1442,
-      "query_q5_construct": 0.2729
-    }
-  },
-  "rdflib": {
-    "medium": {
-      "read_turtle": 1.9941395830028341,
-      "write_turtle": 1.1998933329996362,
-      "write_ntriples": 0.18200837499898626,
-      "read_ntriples": 1.0764362919981068,
-      "query_q1_count": 0.3800498749988037,
-      "query_q2_customer_orders": 0.39946162499836646,
-      "query_q3_join_3_entities": 0.10356966700055636,
-      "query_q4_optional_aggregation": 0.5647154170001158,
-      "query_q5_construct": 0.12184079199869302
-    },
-    "large": {
-      "read_turtle": 21.201710666999134,
-      "write_turtle": 13.248701042000903,
-      "write_ntriples": 1.8575817500022822,
-      "read_ntriples": 11.692959916999826,
-      "query_q1_count": 3.9384925000013027,
-      "query_q2_customer_orders": 4.14812345899918,
-      "query_q3_join_3_entities": 1.3741155419993447,
-      "query_q4_optional_aggregation": 5.9155014579991985,
-      "query_q5_construct": 1.5307229589998315
-    },
-    "xlarge": {
-      "read_turtle": 220.72935637499904,
-      "write_turtle": 156.8125589170013,
-      "write_ntriples": 20.028644416001043,
-      "read_ntriples": 129.09568404200036,
-      "query_q1_count": 40.56176187500023,
-      "query_q2_customer_orders": 42.92520345799858,
-      "query_q3_join_3_entities": 16.409335291999014,
-      "query_q4_optional_aggregation": 63.37381608299984,
-      "query_q5_construct": 17.308353583997814
-    }
-  },
-  "virtuoso": {
-    "medium": {
-      "read_turtle": 0.6771223339965218,
-      "write_turtle": null,
-      "write_ntriples": null,
-      "read_ntriples": 1.0618937079998432,
-      "query_q1_count": 0.0019413339978200383,
-      "query_q2_customer_orders": 0.0038769169987062924,
-      "query_q3_join_3_entities": 0.0035964999988209456,
-      "query_q4_optional_aggregation": 0.013424666998616885,
-      "query_q5_construct": 0.024198499995691236
-    },
-    "large": {
-      "read_turtle": 1.9925216250048834,
-      "write_turtle": null,
-      "write_ntriples": null,
-      "read_ntriples": 6.71709112499957,
-      "query_q1_count": 0.005969041994831059,
-      "query_q2_customer_orders": 0.01947812499565771,
-      "query_q3_join_3_entities": 0.0073043749944190495,
-      "query_q4_optional_aggregation": 0.14773266699921805,
-      "query_q5_construct": 0.2645860420016106
-    },
-    "xlarge": {
-      "read_turtle": 14.507094291999238,
-      "write_turtle": null,
-      "write_ntriples": null,
-      "read_ntriples": 77.58787895799469,
-      "query_q1_count": 0.04284629200265044,
-      "query_q2_customer_orders": 0.053116916002181824,
-      "query_q3_join_3_entities": 0.16385608300333843,
-      "query_q4_optional_aggregation": 2.3057760410010815,
-      "query_q5_construct": 3.52554879199306
-    }
-  }
-};
-
-const FW_NAMES = {
-  maplib: 'maplib', maplib_disk: 'maplib (disk)', oxigraph: 'Oxigraph', rdflib: 'rdflib',
-  jena: 'Apache Jena', rdf4j: 'Eclipse RDF4J', qlever: 'QLever', virtuoso: 'Virtuoso',
-  graphdb: 'GraphDB', dotnetrdf: 'dotNetRDF', neo4j: 'Neo4j + n10s'
-};
-
-const FW_COLORS = {
-  maplib: '#4f6cf7', maplib_disk: '#7c8cf7', oxigraph: '#0891b2', rdflib: '#b45309',
-  jena: '#dc2626', rdf4j: '#7c3aed', qlever: '#16a34a', virtuoso: '#ea580c',
-  graphdb: '#c026d3', dotnetrdf: '#059669', neo4j: '#2563eb'
-};
-
-const OP_LABELS = {
-  read_turtle: 'Read TTL', write_turtle: 'Write TTL', read_ntriples: 'Read NT', write_ntriples: 'Write NT',
-  query_q1_count: 'Q1 COUNT', query_q2_customer_orders: 'Q2 Aggregation', query_q3_join_3_entities: 'Q3 Join',
-  query_q4_optional_aggregation: 'Q4 OPTIONAL', query_q5_construct: 'Q5 CONSTRUCT'
-};
 
 // ======================= HELPERS =======================
 function isOpenSource(v) {
@@ -1315,108 +847,6 @@ function clearRadialFilter() {
   renderVendors();
 }
 
-// ======================= BENCHMARK CHARTS =======================
-let charts = {};
-let currentScale = 'medium';
-let logScale = false;
-
-function fmtTime(s) {
-  if (s === null || s === undefined) return 'N/A';
-  if (s < 0.001) return (s * 1000000).toFixed(0) + ' µs';
-  if (s < 1) return (s * 1000).toFixed(1) + ' ms';
-  if (s < 60) return s.toFixed(2) + ' s';
-  return (s / 60).toFixed(1) + ' min';
-}
-
-function getChartData(ops) {
-  const frameworks = Object.keys(BENCHMARK);
-  const datasets = frameworks.map(fw => ({
-    label: FW_NAMES[fw] || fw,
-    data: ops.map(op => {
-      const v = BENCHMARK[fw]?.[currentScale]?.[op];
-      return (v !== null && v !== undefined && typeof v === 'number') ? v : null;
-    }),
-    backgroundColor: FW_COLORS[fw] || '#999',
-    borderColor: FW_COLORS[fw] || '#999',
-    borderWidth: 1,
-    borderRadius: 3,
-  })).filter(ds => ds.data.some(v => v !== null));
-  return { labels: ops.map(op => OP_LABELS[op] || op), datasets };
-}
-
-function makeChart(canvasId, ops) {
-  const ctx = document.getElementById(canvasId);
-  if (charts[canvasId]) charts[canvasId].destroy();
-  charts[canvasId] = new Chart(ctx, {
-    type: 'bar',
-    data: getChartData(ops),
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + fmtTime(ctx.raw) } }
-      },
-      scales: {
-        x: { ticks: { color: '#5a5e72', font: { size: 11 } }, grid: { color: '#e2e5ef' } },
-        y: {
-          type: logScale ? 'logarithmic' : 'linear',
-          ticks: { color: '#5a5e72', font: { size: 11 }, callback: v => fmtTime(v) },
-          grid: { color: '#e2e5ef' },
-          title: { display: true, text: 'Time (lower is better)', color: '#8b8fa3', font: { size: 11 } }
-        }
-      }
-    }
-  });
-}
-
-function renderCharts() {
-  makeChart('chart-read', ['read_turtle', 'read_ntriples']);
-  makeChart('chart-write', ['write_turtle', 'write_ntriples']);
-  makeChart('chart-query', ['query_q1_count', 'query_q2_customer_orders', 'query_q3_join_3_entities', 'query_q4_optional_aggregation']);
-  makeChart('chart-overall', ['read_turtle', 'write_turtle', 'query_q1_count', 'query_q3_join_3_entities']);
-  renderBenchTable();
-  renderLegend();
-}
-
-function renderBenchTable() {
-  const ops = ['read_turtle','write_turtle','read_ntriples','write_ntriples','query_q1_count','query_q2_customer_orders','query_q3_join_3_entities','query_q4_optional_aggregation','query_q5_construct'];
-  const frameworks = Object.keys(BENCHMARK);
-  const bests = {};
-  ops.forEach(op => {
-    let min = Infinity;
-    frameworks.forEach(fw => { const v = BENCHMARK[fw]?.[currentScale]?.[op]; if (typeof v === 'number' && v < min) min = v; });
-    bests[op] = min;
-  });
-  let html = '<thead><tr><th>Framework</th>';
-  ops.forEach(op => html += '<th>' + (OP_LABELS[op] || op) + '</th>');
-  html += '</tr></thead><tbody>';
-  frameworks.forEach(fw => {
-    html += '<tr><td>' + (FW_NAMES[fw] || fw) + '</td>';
-    ops.forEach(op => {
-      const v = BENCHMARK[fw]?.[currentScale]?.[op];
-      if (v === null || v === undefined) { html += '<td class="val-na">N/A</td>'; }
-      else { html += '<td class="' + (Math.abs(v - bests[op]) < 0.0001 ? 'val-best' : '') + '">' + fmtTime(v) + '</td>'; }
-    });
-    html += '</tr>';
-  });
-  html += '</tbody>';
-  document.getElementById('bench-table').innerHTML = html;
-}
-
-function renderLegend() {
-  const existing = document.getElementById('chart-legend');
-  if (existing) existing.remove();
-  const legend = document.createElement('div');
-  legend.id = 'chart-legend';
-  legend.style.cssText = 'display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:center;padding:16px 0 0;';
-  Object.keys(BENCHMARK).forEach(fw => {
-    const item = document.createElement('div');
-    item.style.cssText = 'display:flex;align-items:center;gap:5px;font-size:0.8rem;color:var(--text-muted);';
-    item.innerHTML = '<span style="width:12px;height:12px;border-radius:3px;background:' + FW_COLORS[fw] + ';display:inline-block;"></span>' + (FW_NAMES[fw] || fw);
-    legend.appendChild(item);
-  });
-  document.querySelector('.chart-grid').after(legend);
-}
 
 // ======================= EVENT LISTENERS =======================
 document.querySelectorAll('.nav-tab').forEach(tab => {
@@ -1424,11 +854,9 @@ document.querySelectorAll('.nav-tab').forEach(tab => {
     document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     const sec = tab.dataset.section;
-    document.getElementById('vendor-listing').classList.toggle('hidden', sec === 'benchmark' || sec === 'sparql');
-    document.getElementById('benchmark-listing').classList.toggle('hidden', sec !== 'benchmark');
+    document.getElementById('vendor-listing').classList.toggle('hidden', sec === 'sparql');
     document.getElementById('sparql-listing').classList.toggle('hidden', sec !== 'sparql');
-    if (sec === 'benchmark') renderCharts();
-    else if (sec === 'sparql') initSparqlEngine();
+    if (sec === 'sparql') initSparqlEngine();
     else renderVendors();
   });
 });
@@ -1461,13 +889,6 @@ setupMultiSelectFilter('license-filters');
 setupMultiSelectFilter('region-filters');
 setupMultiSelectFilter('standards-filters');
 document.getElementById('benchmarked-only').addEventListener('change', renderVendors);
-document.querySelectorAll('#scale-tabs .bench-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('#scale-tabs .bench-tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active'); currentScale = tab.dataset.scale; renderCharts();
-  });
-});
-document.getElementById('log-toggle').addEventListener('change', (e) => { logScale = e.target.checked; renderCharts(); });
 
 // ======================= RADIAL CHART (clickable) =======================
 (function() {
@@ -1594,7 +1015,6 @@ document.getElementById('log-toggle').addEventListener('change', (e) => { logSca
         document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
         allTab.classList.add('active');
         document.getElementById('vendor-listing').classList.remove('hidden');
-        document.getElementById('benchmark-listing').classList.add('hidden');
         document.getElementById('sparql-listing').classList.add('hidden');
       }
       renderVendors();
@@ -1636,8 +1056,7 @@ document.getElementById('log-toggle').addEventListener('change', (e) => { logSca
           document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
           allTab.classList.add('active');
           document.getElementById('vendor-listing').classList.remove('hidden');
-          document.getElementById('benchmark-listing').classList.add('hidden');
-          document.getElementById('sparql-listing').classList.add('hidden');
+            document.getElementById('sparql-listing').classList.add('hidden');
         }
         renderVendors();
         document.getElementById('vendor-listing').scrollIntoView({ behavior: 'smooth', block: 'start' });
