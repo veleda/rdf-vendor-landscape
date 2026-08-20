@@ -942,6 +942,38 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:supportsStandard  std:SPARQL-1-1 ;
     vl:firstRelease      2011 .
 
+<eccenca-Corporate-Memory>  a vl:Tool ;
+    schema:name         "eccenca Corporate Memory" ;
+    schema:description  "Enterprise knowledge graph platform for building, managing, and consuming RDF/Linked Data knowledge graphs. Integrates heterogeneous data sources, provides SPARQL-driven data pipelines, mapping, validation, governance workflows, and a low-code UI. Connects to any SPARQL 1.1-compliant triple store." ;
+    schema:url          <https://eccenca.com/> ;
+    vl:subcategory      subcat:Knowledge-Graph-Platform ;
+    vl:language          lang:Java ;
+    vl:language          lang:Web ;
+    vl:license           license:Commercial ;
+    vl:pricing           pricingm:Commercial-contact-for-pricing ;
+    vl:logoHint          "eccenca Corporate Memory logo" ;
+    vl:logoUrl           <https://www.google.com/s2/favicons?domain=eccenca.com&sz=64> ;
+    vl:hasDemo           false ;
+    vl:hasBenchmark      false ;
+    vl:speedNote         "Enterprise platform - performance depends on the backing triple store (GraphDB, Stardog, Virtuoso, etc.)" ;
+    vl:scaleNote         "Enterprise-grade. Designed for large-scale data integration and governance across organizations" ;
+    vl:speedTier         speed:varies ;
+    vl:scaleTier         scale:large ;
+    vl:region            region:Europe ;
+    vl:country           country:Germany ;
+    vl:focusArea         focus:Data-governance ;
+    vl:focusArea         focus:Data-integration ;
+    vl:focusArea         focus:Enterprise ;
+    vl:focusArea         focus:Knowledge-graph-platform ;
+    vl:focusArea         focus:Low-code ;
+    vl:focusArea         focus:SHACL-validation ;
+    vl:supportsStandard  std:JSON-LD ;
+    vl:supportsStandard  std:OWL-2 ;
+    vl:supportsStandard  std:RDF-1-1 ;
+    vl:supportsStandard  std:SHACL ;
+    vl:supportsStandard  std:SPARQL-1-1 ;
+    vl:firstRelease      2014 .
+
 <Eclipse-RDF4J>  a vl:Framework ;
     schema:name         "Eclipse RDF4J" ;
     schema:description  "Eclipse framework for processing and handling RDF data, with parsers, triple stores (memory, native, LMDB), SPARQL query engine, and reasoning" ;
