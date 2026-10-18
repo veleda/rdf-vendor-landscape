@@ -2410,6 +2410,45 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:supportsStandard  std:SPARQL-1-1 ;
     vl:firstRelease      2020 .
 
+<sparq>  a vl:Database, vl:Framework ;
+    schema:name         "sparq" ;
+    schema:description  "RDF triplestore and SPARQL 1.1/1.2 engine written in Rust. Usable as an embeddable library, CLI, SPARQL Protocol and Graph Store Protocol HTTP server, Python package and JavaScript/WebAssembly build. Includes RDFS, OWL 2 RL and N3 reasoning, SHACL validation, full-text, GeoSPARQL and vector search, RSP-QL stream processing and a memory-mapped on-disk index." ;
+    schema:url          <https://sparq.jeswr.org/> ;
+    vl:subcategory      subcat:Triple-Store-Embeddable-Library ;
+    vl:language          lang:Rust ;
+    vl:license           license:MIT ;
+    vl:pricing           pricingm:Open-Source ;
+    vl:github            <https://github.com/sparq-org/sparq> ;
+    vl:logoHint          "sparq RDF logo" ;
+    vl:logoUrl           <https://github.com/sparq-org.png?size=64> ;
+    vl:hasDemo           true ;
+    vl:demoUrl           <https://sparq.jeswr.org/app/> ;
+    vl:hasBenchmark      false ;
+    vl:speedNote         "Rust engine; the project publishes its own benchmark dashboard. Not yet in the trainmarks suite" ;
+    vl:scaleNote         "In-memory or memory-mapped on-disk store. Experimental, pre-1.0 project with an unstable API" ;
+    vl:speedTier         speed:varies ;
+    vl:scaleTier         scale:varies ;
+    vl:region            region:Europe ;
+    vl:country           country:UK ;
+    vl:focusArea         focus:Browser-ready ;
+    vl:focusArea         focus:Embeddable ;
+    vl:focusArea         focus:Full-text-search ;
+    vl:focusArea         focus:GeoSPARQL ;
+    vl:focusArea         focus:HTTP-endpoint ;
+    vl:focusArea         focus:N3-reasoning ;
+    vl:focusArea         focus:Python-JS-bindings ;
+    vl:focusArea         focus:RDF-streaming ;
+    vl:focusArea         focus:SHACL-validation ;
+    vl:focusArea         focus:SPARQL-server ;
+    vl:supportsStandard  std:N3 ;
+    vl:supportsStandard  std:OWL-2 ;
+    vl:supportsStandard  std:RDF-1-1 ;
+    vl:supportsStandard  std:RDF-star ;
+    vl:supportsStandard  std:SHACL ;
+    vl:supportsStandard  std:SPARQL-1-1 ;
+    vl:supportsStandard  std:SPARQL-star ;
+    vl:firstRelease      2026 .
+
 <Stardog>  a vl:Database ;
     schema:name         "Stardog" ;
     schema:description  "Enterprise knowledge graph platform combining graph database with AI toolkit, supporting SPARQL, GraphQL, and OWL reasoning" ;
