@@ -2228,6 +2228,35 @@ pricingm:Subscription-free-for-students-teachers-OSS  a vl:PricingModel ; rdfs:l
     vl:supportsStandard  std:SPARQL-1-1 ;
     vl:firstRelease      2025 .
 
+<Semantechs-Turtle-Editor-Viewer>  a vl:Tool ;
+    schema:name         "Turtle Editor Viewer (Semantechs)" ;
+    schema:description  "Browser-based RDF editor and graph visualiser. Edits Turtle, RDF/XML and JSON-LD, draws the graph with Graphviz layouts, and has a SPARQL panel with query explain, SHACL validation against a shapes graph, and optional RDFS or rule-based inference. Data and shapes can be loaded from a URL." ;
+    schema:url          <https://semantechs.co.uk/turtle-editor-viewer/> ;
+    vl:subcategory      subcat:RDF-Editor ;
+    vl:language          lang:JavaScript ;
+    vl:language          lang:Web ;
+    vl:license           license:Free-Web-Service ;
+    vl:pricing           pricingm:Free-Web-Service ;
+    vl:logoHint          "Semantechs logo" ;
+    vl:logoUrl           <https://www.google.com/s2/favicons?domain=semantechs.co.uk&sz=64> ;
+    vl:hasDemo           true ;
+    vl:demoUrl           <https://semantechs.co.uk/turtle-editor-viewer/> ;
+    vl:hasBenchmark      false ;
+    vl:speedNote         "Runs entirely in the browser; responsive for typical files and shapes" ;
+    vl:scaleNote         "Designed for editing, exploring and validating small to medium graphs, not bulk processing" ;
+    vl:region            region:Europe ;
+    vl:country           country:UK ;
+    vl:focusArea         focus:Browser-ready ;
+    vl:focusArea         focus:RDF-visualization ;
+    vl:focusArea         focus:Rule-based-reasoning ;
+    vl:focusArea         focus:SHACL-validation ;
+    vl:focusArea         focus:SPARQL-editor ;
+    vl:focusArea         focus:Turtle-editing ;
+    vl:supportsStandard  std:JSON-LD ;
+    vl:supportsStandard  std:RDF-1-1 ;
+    vl:supportsStandard  std:SHACL ;
+    vl:supportsStandard  std:SPARQL-1-1 .
+
 <SHACL-Play>  a vl:Tool ;
     schema:name         "SHACL Play" ;
     schema:description  "Free online SHACL toolkit by Sparna for validation, documentation generation, UML diagram generation, and SHACL profile derivation from RDF data" ;
