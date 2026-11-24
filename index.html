@@ -295,7 +295,7 @@
     <p>Every large data platform now ships an "ontology" for AI agents. Only Oracle, SAP and AWS support the W3C standards behind one.</p>
     <span class="fold-toggle"></span>
   </summary>
-  <p>In 2026 every large data platform started talking about ontologies. Microsoft, Databricks, Snowflake, Google and Neo4j all shipped an "ontology" or "context layer" to give AI agents shared business meaning. Very few of them mean W3C ontologies. Most are proprietary entity-relationship models, and several vendors have published new formats of their own instead of adopting RDF, OWL and SHACL.</p>
+  <p>In 2026 every large data platform started talking about ontologies. Microsoft, Databricks, Snowflake, Google, NVIDIA and Neo4j all shipped an "ontology" or "context layer" to give AI agents shared business meaning. Very few of them mean W3C ontologies. Most are proprietary entity-relationship models, and several vendors have published new formats of their own instead of adopting RDF, OWL and SHACL.</p>
 
   <div class="bigtech-section">
     <h3>Major platform landscape <span style="font-weight:400;font-size:0.85rem;color:var(--text-muted);">(updated November 2026)</span></h3>
@@ -337,6 +337,14 @@
         <div class="bt-info">
           <div class="bt-name">Google Cloud</div>
           <div class="bt-desc">Spanner Graph and BigQuery Graph are property graphs queried with ISO GQL. Knowledge Catalog (formerly Dataplex) builds a metadata "context graph" and now ingests semantic models from LookML, dbt, Snowflake, Databricks and SAP. Google also published OKF, a Markdown-based knowledge format (see below). No SPARQL anywhere.</div>
+          <span class="bt-verdict bt-no-rdf">No native RDF support</span>
+        </div>
+      </div>
+      <div class="bigtech-card">
+        <img src="https://www.google.com/s2/favicons?domain=nvidia.com&sz=64" alt="NVIDIA">
+        <div class="bt-info">
+          <div class="bt-name">NVIDIA Auto-Ontology</div>
+          <div class="bt-desc">Open-source library in NVIDIA's Agent Knowledge Foundation (October 2026), built on its February 2026 acquisition of Illumex. Generates an ontology and semantic catalog from table metadata in Databricks, Snowflake, Postgres or DuckDB, stores it in Postgres, and turns questions into SQL. Exposed to agents through REST and MCP. No SPARQL.</div>
           <span class="bt-verdict bt-no-rdf">No native RDF support</span>
         </div>
       </div>
