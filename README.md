@@ -1,8 +1,10 @@
 # RDF Vendor Landscape
 
-A comprehensive, interactive guide to 68 databases, frameworks, and tools in the RDF and semantic web ecosystem. Built as a single-page website with filtering, comparison, benchmarks, and an in-browser SPARQL editor.
+**https://veleda.github.io/rdf-vendor-landscape/**
 
-**Live site:** [rdf-vendor-landscape](https://veleda.github.io/rdf-vendor-landscape/)
+A comprehensive, interactive guide to more than 80 databases, frameworks, and tools in the RDF and semantic web ecosystem. Built as a single-page website with filtering, comparison, benchmarks, and an in-browser SPARQL editor.
+
+The landscape covers software. For tutorials, books, vocabularies and other learning material, see the community-maintained [Awesome Semantic Web](https://github.com/semantalytics/awesome-semantic-web) list.
 
 
 ## How it works
@@ -33,7 +35,7 @@ Contributions are welcome and encouraged! Whether you want to add a missing vend
 
 1. Edit `vendors.ttl` directly. Each vendor is a block of RDF triples following a consistent pattern. Look at any existing vendor entry as a template.
 
-2. Run the build to regenerate the site:
+2. Run the build to regenerate the site (it also stamps the current month into the page footer):
 
 ```bash
 pip install maplib

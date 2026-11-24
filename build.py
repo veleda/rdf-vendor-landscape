@@ -8,7 +8,7 @@ Usage:
     python build.py --check      # dry-run: prints JSON but does not write
 """
 
-import json, re, sys, pathlib
+import json, re, sys, pathlib, datetime
 from maplib import Model
 
 HERE = pathlib.Path(__file__).parent
@@ -57,7 +57,7 @@ def query_vendors(m: Model) -> list[dict]:
                ?github ?logoHint ?logoUrl
                ?hasDemo ?demoUrl ?hasBenchmark
                ?speedNote ?scaleNote ?warning
-               ?speedLabel ?scaleLabel
+               ?statusLabel
                ?regionLabel ?countryLabel ?flag
                ?firstRelease ?reviewUrl
         WHERE {
@@ -78,8 +78,7 @@ def query_vendors(m: Model) -> list[dict]:
             OPTIONAL { ?v vl:speedNote   ?speedNote }
             OPTIONAL { ?v vl:scaleNote   ?scaleNote }
             OPTIONAL { ?v vl:warning     ?warning }
-            OPTIONAL { ?v vl:speedTier   ?st . ?st rdfs:label ?speedLabel }
-            OPTIONAL { ?v vl:scaleTier   ?sc . ?sc rdfs:label ?scaleLabel }
+            OPTIONAL { ?v vl:status      ?stt . ?stt skos:prefLabel ?statusLabel }
             OPTIONAL { ?v vl:region      ?rg . ?rg skos:prefLabel ?regionLabel }
             OPTIONAL { ?v vl:country     ?co . ?co skos:prefLabel ?countryLabel }
             OPTIONAL { ?v vl:country     ?co2 . ?co2 vl:flag ?flag }
@@ -166,13 +165,13 @@ def query_vendors(m: Model) -> list[dict]:
             "region":       row.get("regionLabel") or "",
             "country":      row.get("countryLabel") or "",
             "flag":         row.get("flag") or "",
-            "speedTier":    row.get("speedLabel") or "",
-            "scaleTier":    row.get("scaleLabel") or "",
             "firstRelease": int(row["firstRelease"]) if row.get("firstRelease") else None,
             "reviewUrl":    strip_iri(row.get("reviewUrl") or "") or None,
         }
         if row.get("warning"):
             v["warning"] = row["warning"]
+        if row.get("statusLabel"):
+            v["status"] = row["statusLabel"]
         seen[v_iri] = v
 
     vendors = list(seen.values())
@@ -197,6 +196,11 @@ def inject_into_html(js_block: str) -> None:
     if not match:
         raise RuntimeError("Could not find 'const VENDORS = [...];\' block in index.html")
     html = html[:match.start()] + js_block + html[match.end():]
+    # Stamp the build month into the footer so it can never go stale again
+    stamp = datetime.date.today().strftime("%B %Y")
+    html, n = re.subn(r'(<span id="last-updated">)[^<]*(</span>)', r"\g<1>" + stamp + r"\g<2>", html)
+    if n != 1:
+        raise RuntimeError("Could not find the <span id=\"last-updated\"> footer marker in index.html")
     HTML_PATH.write_text(html, encoding="utf-8")
 
 

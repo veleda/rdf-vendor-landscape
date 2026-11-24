@@ -4,8 +4,7 @@
 @prefix std:     <http://data.veronahe.no/standard/> .
 @prefix region:  <http://data.veronahe.no/region/> .
 @prefix country: <http://data.veronahe.no/country/> .
-@prefix speed:   <http://data.veronahe.no/speed/> .
-@prefix scale:   <http://data.veronahe.no/scale/> .
+@prefix status:  <http://data.veronahe.no/status/> .
 @prefix license: <http://data.veronahe.no/license/> .
 @prefix lang:    <http://data.veronahe.no/language/> .
 @prefix subcat:  <http://data.veronahe.no/subcategory/> .
@@ -29,8 +28,6 @@ vl:Tool         a owl:Class ; rdfs:subClassOf vl:Vendor ; rdfs:label "Tool" .
 vl:License          a owl:Class ; rdfs:label "License" .
 vl:ProgrammingLanguage a owl:Class ; rdfs:label "Programming Language" .
 vl:PricingModel     a owl:Class ; rdfs:label "Pricing Model" .
-vl:SpeedTier        a owl:Class ; rdfs:label "Speed Tier" .
-vl:ScaleTier        a owl:Class ; rdfs:label "Scale Tier" .
 
 # -- SKOS Concept Schemes -----------------------------------------------
 vl:FocusAreaScheme    a skos:ConceptScheme ; rdfs:label "Focus Areas" ; skos:prefLabel "Focus Areas" .
@@ -38,6 +35,7 @@ vl:SubcategoryScheme  a skos:ConceptScheme ; rdfs:label "Subcategories" ; skos:p
 vl:StandardScheme     a skos:ConceptScheme ; rdfs:label "W3C/Community Standards" ; skos:prefLabel "W3C/Community Standards" .
 vl:RegionScheme       a skos:ConceptScheme ; rdfs:label "Regions" ; skos:prefLabel "Regions" .
 vl:CountryScheme      a skos:ConceptScheme ; rdfs:label "Countries" ; skos:prefLabel "Countries" .
+vl:StatusScheme       a skos:ConceptScheme ; rdfs:label "Project statuses" ; skos:prefLabel "Project statuses" .
 
 # -- Properties (all with domain and range) -----------------------------
 
@@ -58,10 +56,9 @@ vl:region           a owl:ObjectProperty ; rdfs:label "Region" ;
     rdfs:domain vl:Vendor ; rdfs:range skos:Concept .
 vl:country          a owl:ObjectProperty ; rdfs:label "Country" ;
     rdfs:domain vl:Vendor ; rdfs:range skos:Concept .
-vl:speedTier        a owl:ObjectProperty ; rdfs:label "Speed tier" ;
-    rdfs:domain vl:Vendor ; rdfs:range vl:SpeedTier .
-vl:scaleTier        a owl:ObjectProperty ; rdfs:label "Scale tier" ;
-    rdfs:domain vl:Vendor ; rdfs:range vl:ScaleTier .
+vl:status           a owl:ObjectProperty ; rdfs:label "Project status" ;
+    rdfs:comment "Lifecycle status of a project. Only set when the project is no longer active; absence means actively maintained." ;
+    rdfs:domain vl:Vendor ; rdfs:range skos:Concept .
 
 # Datatype properties
 vl:github           a owl:DatatypeProperty ; rdfs:label "GitHub URL" ;
@@ -114,6 +111,7 @@ focus:Compressed-RDF  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:p
 focus:Connectors  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Connectors" .
 focus:Consistency-checking  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Consistency checking" .
 focus:Constraint-checking  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Constraint checking" .
+focus:Conformance-testing  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Conformance testing" .
 focus:Content-negotiation  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Content negotiation" .
 focus:Cypher-queries  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Cypher queries" .
 focus:Data-cataloging  a skos:Concept ; skos:inScheme vl:FocusAreaScheme ; skos:prefLabel "Data cataloging" .
@@ -385,18 +383,12 @@ country:Spain  a skos:Concept ; skos:inScheme vl:CountryScheme ; skos:prefLabel 
 country:Switzerland  a skos:Concept ; skos:inScheme vl:CountryScheme ; skos:prefLabel "Switzerland" ; vl:flag "🇨🇭" .
 country:UK  a skos:Concept ; skos:inScheme vl:CountryScheme ; skos:prefLabel "UK" ; vl:flag "🇬🇧" .
 country:USA  a skos:Concept ; skos:inScheme vl:CountryScheme ; skos:prefLabel "USA" ; vl:flag "🇺🇸" .
+country:European-Union  a skos:Concept ; skos:inScheme vl:CountryScheme ; skos:prefLabel "European Union" ; vl:flag "🇪🇺" .
 
-# -- Speed tiers -------------------------------------------------------
-speed:fast  a vl:SpeedTier ; rdfs:label "fast" .
-speed:moderate  a vl:SpeedTier ; rdfs:label "moderate" .
-speed:slow  a vl:SpeedTier ; rdfs:label "slow" .
-speed:varies  a vl:SpeedTier ; rdfs:label "varies" .
+# -- Project statuses ---------------------------------------------------
+status:archived  a skos:Concept ; skos:inScheme vl:StatusScheme ; skos:prefLabel "Archived" ;
+    skos:definition "The source repository is archived or read-only and the project receives no further releases. Kept in the landscape because existing deployments still run it." .
 
-# -- Scale tiers -------------------------------------------------------
-scale:large  a vl:ScaleTier ; rdfs:label "large" .
-scale:medium  a vl:ScaleTier ; rdfs:label "medium" .
-scale:small  a vl:ScaleTier ; rdfs:label "small" .
-scale:varies  a vl:ScaleTier ; rdfs:label "varies" .
 
 # -- Licenses ----------------------------------------------------------
 license:AGPL-v3-Commercial  a vl:License ; rdfs:label "AGPL v3 / Commercial" .
@@ -418,6 +410,7 @@ license:Commercial-SAP-HANA-Cloud-subscription  a vl:License ; rdfs:label "Comme
 license:Commercial-SaaS  a vl:License ; rdfs:label "Commercial (SaaS)" .
 license:Commercial-Open-Source  a vl:License ; rdfs:label "Commercial / Open Source" .
 license:Eclipse-Public-License-2.0  a vl:License ; rdfs:label "Eclipse Public License 2.0" .
+license:EUPL-1-2  a vl:License ; rdfs:label "EUPL 1.2" .
 license:Free-Web-Service  a vl:License ; rdfs:label "Free (Web Service)" .
 license:GPL-v2  a vl:License ; rdfs:label "GPL v2" .
 license:GPL-v2-Open-Source-Commercial  a vl:License ; rdfs:label "GPL v2 (Open Source) / Commercial" .
@@ -467,6 +460,7 @@ subcat:Collaborative-Ontology-Editor  a skos:Concept ; skos:inScheme vl:Subcateg
 subcat:Data-Governance-Platform  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "Data Governance Platform" .
 subcat:Graph-Database-plus-RDF  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "Graph Database + RDF" .
 subcat:Graph-Visualization  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "Graph Visualization" .
+subcat:IDE-Plugin  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "IDE Plugin" .
 subcat:Graph-Visualization-IDE  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "Graph Visualization / IDE" .
 subcat:In-Memory-Triple-Store-Reasoner  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "In-Memory Triple Store / Reasoner" .
 subcat:JSON-LD-Editor-Validator  a skos:Concept ; skos:inScheme vl:SubcategoryScheme ; skos:prefLabel "JSON-LD Editor / Validator" .
@@ -549,6 +543,7 @@ pricingm:Open-Source-Free-hosted  a vl:PricingModel ; rdfs:label "Open Source / 
 pricingm:Pay-per-use-from-0.348-instance-hour  a vl:PricingModel ; rdfs:label "Pay-per-use (from ~$0.348/instance-hour)" .
 pricingm:Source-Available-plus-Commercial-Fluree-Platform  a vl:PricingModel ; rdfs:label "Source Available + Commercial (Fluree Platform)" .
 pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:PricingModel ; rdfs:label "Stardog Free (1-year renewable license) + Commercial Enterprise" .
+pricingm:Subscription-free-for-students-teachers-OSS  a vl:PricingModel ; rdfs:label "Subscription (free for students, teachers and open source projects)" .
 
 # ======================================================================
 # Vendors
@@ -570,8 +565,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Solid performance especially for complex reasoning queries. Geospatial and temporal indexing are fast" ;
     vl:scaleNote         "Handles billions of triples. Multi-master replication for horizontal scaling" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:large ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:Federated-queries ;
@@ -602,8 +595,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Managed service - performance depends on instance size. Competitive but not the fastest per dollar" ;
     vl:scaleNote         "Scales via AWS infrastructure. Serverless option auto-scales. No upper limit on data size" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:large ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:Gremlin ;
@@ -629,8 +620,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Very fast for analytical/aggregation queries - designed for OLAP-style workloads on graph data" ;
     vl:scaleNote         "In-memory architecture. Free edition limited to 16GB. Scales via distributed memory in enterprise" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:large ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:Data-integration ;
@@ -659,8 +648,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "API layer only - performance depends entirely on the backing implementation (Jena, RDF4J, etc.)" ;
     vl:scaleNote         "No storage - delegates to backing implementation" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:varies ;
     vl:region            region:Global ;
     vl:country           country:Global ;
     vl:focusArea         focus:Jena-RDF4J-interop ;
@@ -684,8 +671,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      true ;
     vl:speedNote         "Solid Java performance for I/O and queries. JVM warmup cost but good sustained throughput" ;
     vl:scaleNote         "Mature and proven at scale with TDB2. Handles hundreds of millions of triples in production" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:UK ;
     vl:focusArea         focus:Fuseki-server ;
@@ -717,8 +702,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Same engine as Jena, with HTTP overhead. TDB2 backend gives good persistent storage performance" ;
     vl:scaleNote         "Production-proven with TDB2. Handles hundreds of millions of triples" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Europe ;
     vl:country           country:UK ;
     vl:focusArea         focus:Graph-Store-Protocol ;
@@ -749,8 +732,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Slow by modern standards. PHP + MySQL overhead. Largely superseded by other tools" ;
     vl:scaleNote         "MySQL-backed, limited by PHP memory. Suitable for small datasets only" ;
-    vl:speedTier         speed:slow ;
-    vl:scaleTier         scale:small ;
     vl:region            region:Europe ;
     vl:country           country:Germany ;
     vl:focusArea         focus:Legacy-PHP-projects ;
@@ -778,8 +759,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Java-based platform - performance depends on backing SPARQL store" ;
     vl:scaleNote         "Scales with the backing triple store. Cloud option available for managed deployments" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:Denmark ;
     vl:focusArea         focus:Faceted-search ;
@@ -795,21 +774,20 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
 
 <Blazegraph>  a vl:Database ;
     schema:name         "Blazegraph" ;
-    schema:description  "High-performance graph database supporting RDF/SPARQL; powers the Wikidata Query Service. No longer actively maintained (archived 2026)." ;
+    schema:description  "High-performance graph database supporting RDF/SPARQL; still powers the Wikidata Query Service. No active development since 2020; the GitHub repository was archived by its owner in March 2026." ;
     schema:url          <https://blazegraph.com/> ;
     vl:subcategory      subcat:Triple-Store ;
     vl:language          lang:Java ;
     vl:license           license:GPL-v2 ;
     vl:pricing           pricingm:Open-Source-unmaintained-since-2020 ;
     vl:github            <https://github.com/blazegraph/database> ;
+    vl:status            status:archived ;
     vl:logoHint          "Blazegraph logo" ;
     vl:logoUrl           <https://github.com/blazegraph.png?size=64> ;
     vl:hasDemo           false ;
     vl:hasBenchmark      false ;
     vl:speedNote         "Good performance - powers Wikidata Query Service. Optimized for read-heavy workloads" ;
     vl:scaleNote         "Handles billions of triples (proven by Wikidata). Unmaintained since 2020 - no future improvements" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:large ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:Full-text-search ;
@@ -836,8 +814,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Moderate - JS/TS overhead vs. native engines. Strength is querying heterogeneous sources, not raw speed" ;
     vl:scaleNote         "Designed for federated querying across many small sources, not for querying a single massive dataset" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:Belgium ;
     vl:focusArea         focus:Browser-ready ;
@@ -869,8 +845,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Cloud-hosted SaaS; SPARQL queries run over catalog metadata and linked datasets" ;
     vl:scaleNote         "Enterprise-grade. Used by large organizations for metadata management across thousands of datasets" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:large ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:Data-cataloging ;
@@ -900,8 +874,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      true ;
     vl:speedNote         "Moderate for .NET - pure managed code. I/O is reasonable but SPARQL is slower than Java alternatives" ;
     vl:scaleNote         "In-memory store struggles above ~5M triples. Best as a client library connecting to external stores" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:small ;
     vl:region            region:Europe ;
     vl:country           country:UK ;
     vl:focusArea         focus:NET-ecosystem ;
@@ -929,8 +901,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Adequate for PHP web applications. Not performance-oriented" ;
     vl:scaleNote         "Designed for consuming small amounts of Linked Data in web apps, not bulk processing" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:small ;
     vl:region            region:Europe ;
     vl:country           country:UK ;
     vl:focusArea         focus:Linked-Data-consumption ;
@@ -957,8 +927,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Enterprise platform - performance depends on the backing triple store (GraphDB, Stardog, Virtuoso, etc.)" ;
     vl:scaleNote         "Enterprise-grade. Designed for large-scale data integration and governance across organizations" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Europe ;
     vl:country           country:Germany ;
     vl:focusArea         focus:Data-governance ;
@@ -989,8 +957,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      true ;
     vl:speedNote         "Comparable to Jena for most operations. LMDB store mode improves disk performance significantly" ;
     vl:scaleNote         "Production-grade. LMDB native store handles large datasets well. Used by GraphDB under the hood" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:Netherlands ;
     vl:focusArea         focus:LMDB-backend ;
@@ -1024,8 +990,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Performs well with high rule-to-data ratios. Prolog execution engine with efficient Euler path pruning" ;
     vl:scaleNote         "Best suited for rule-heavy workloads on small to medium datasets. WASM port enables browser-side reasoning" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:Belgium ;
     vl:focusArea         focus:Backward-chaining ;
@@ -1052,8 +1016,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Claims 2M+ facts/second bulk import. Rust rewrite (v4) for performance" ;
     vl:scaleNote         "Claims billions of graph facts on commodity hardware" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:large ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:Full-text-search ;
@@ -1086,8 +1048,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Desktop IDE - query speed depends on the connected database backend" ;
     vl:scaleNote         "Client-side tool for exploration and querying. Visualization handles moderate graph sizes" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:varies ;
     vl:region            region:Europe ;
     vl:country           country:UK ;
     vl:focusArea         focus:Cypher-queries ;
@@ -1114,8 +1074,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      true ;
     vl:speedNote         "Moderate - reasoning overhead slows it vs. pure stores. Good for enterprise workloads with inference" ;
     vl:scaleNote         "Enterprise-grade. Handles billions of triples in cluster mode. Free edition limited to single-node" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Europe ;
     vl:country           country:Bulgaria ;
     vl:focusArea         focus:Connectors ;
@@ -1149,8 +1107,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "High-performance streaming parser for JavaScript. Claims fastest JS RDF throughput" ;
     vl:scaleNote         "Streaming architecture handles arbitrarily large files. Parser only - no query engine" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:RDF-parsing ;
@@ -1174,8 +1130,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Desktop visualization tool - performance tied to AllegroGraph backend" ;
     vl:scaleNote         "Visualizes subsets of larger graphs - not designed to render millions of nodes" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:varies ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:AllegroGraph-integration ;
@@ -1202,8 +1156,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Extremely fast triple-pattern lookups on compressed data. 5-10x smaller than raw Turtle/NT" ;
     vl:scaleNote         "Handles billions of triples in compressed form. Read-only - no updates without rebuilding" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Europe ;
     vl:country           country:Spain ;
     vl:focusArea         focus:Archival ;
@@ -1228,8 +1180,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Often faster than Pellet for classification. Hypertableau algorithm handles complex ontologies well" ;
     vl:scaleNote         "In-memory - performs well on complex ontologies but bounded by available RAM" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:small ;
     vl:region            region:Europe ;
     vl:country           country:UK ;
     vl:focusArea         focus:Classification ;
@@ -1255,8 +1205,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Browser-based - handles small to medium RDF documents for visualization and validation" ;
     vl:scaleNote         "Client-side tool - suitable for individual documents, not large datasets" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:small ;
     vl:region            region:Europe ;
     vl:country           country:Germany ;
     vl:focusArea         focus:Format-conversion ;
@@ -1265,6 +1213,30 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:focusArea         focus:Validation ;
     vl:supportsStandard  std:RDF-1-1 ;
     vl:firstRelease      2021 .
+
+<ITB-SHACL-Validator>  a vl:Tool ;
+    schema:name         "ITB SHACL Validator" ;
+    schema:description  "SHACL validation service from the European Commission's Interoperability Test Bed (DG DIGIT). Validates RDF content against SHACL shapes through a web UI, REST and SOAP APIs, and a command-line tool, and can also check SHACL shapes themselves. Published as a Docker image that serves as the base for domain-specific validators, such as the SEMIC validators for DCAT-AP and other EU specifications." ;
+    schema:url          <https://www.itb.ec.europa.eu/shacl/any/upload> ;
+    vl:subcategory      subcat:SHACL-Validator ;
+    vl:language          lang:Java ;
+    vl:license           license:EUPL-1-2 ;
+    vl:pricing           pricingm:Open-Source-Free-hosted ;
+    vl:github            <https://github.com/ISAITB/shacl-validator> ;
+    vl:logoHint          "European Commission Interoperability Test Bed logo" ;
+    vl:logoUrl           <https://www.google.com/s2/favicons?domain=ec.europa.eu&sz=64> ;
+    vl:hasDemo           true ;
+    vl:demoUrl           <https://www.itb.ec.europa.eu/shacl/any/upload> ;
+    vl:hasBenchmark      false ;
+    vl:speedNote         "Hosted service for interactive and API-driven checks; speed depends on the shapes and the size of the submitted data" ;
+    vl:scaleNote         "Built for conformance checking of documents and datasets. Self-host the Docker image for heavier or private workloads" ;
+    vl:region            region:Europe ;
+    vl:country           country:European-Union ;
+    vl:focusArea         focus:Conformance-testing ;
+    vl:focusArea         focus:Docker-ready ;
+    vl:focusArea         focus:SHACL-validation ;
+    vl:supportsStandard  std:RDF-1-1 ;
+    vl:supportsStandard  std:SHACL .
 
 <Jelly>  a vl:Framework ;
     schema:name         "Jelly" ;
@@ -1285,8 +1257,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Faster than N-Triples, RDF Thrift, and RDF Protobuf in Jena benchmarks. ~1/6 size of N-Triples" ;
     vl:scaleNote         "Streaming design with O(1) memory: handles datasets of any size. Works over gRPC, Kafka, MQTT" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Europe ;
     vl:country           country:Poland ;
     vl:focusArea         focus:Compressed-RDF ;
@@ -1313,8 +1283,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Browser-based - instant processing for individual JSON-LD documents" ;
     vl:scaleNote         "Testing tool - not for bulk processing" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:small ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:Expansion-compaction ;
@@ -1341,8 +1309,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Adequate for JSON-LD operations. Not designed for high-throughput RDF processing" ;
     vl:scaleNote         "Processes individual JSON-LD documents - not a bulk data tool" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:small ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:Expansion-compaction ;
@@ -1368,8 +1334,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Very fast I/O and queries - Rust-based. Among the quickest for parsing and simple SPARQL" ;
     vl:scaleNote         "Early-stage project. Performance is promising but production-readiness is still developing" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:Belgium ;
     vl:focusArea         focus:Backward-chaining ;
@@ -1396,8 +1360,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Server is lightweight by design - pushes query work to the client. Low server resource usage" ;
     vl:scaleNote         "Designed for scalable publishing - minimal server load even with many concurrent clients" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Europe ;
     vl:country           country:Belgium ;
     vl:focusArea         focus:Client-side-querying ;
@@ -1426,8 +1388,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      true ;
     vl:speedNote         "Very fast - Rust core with Polars/Arrow gives near-native I/O and sub-second SPARQL on millions of triples" ;
     vl:scaleNote         "In-memory by default (bounded by RAM), but disk mode handles billions of triples for larger-than-memory datasets" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Europe ;
     vl:country           country:Norway ;
     vl:focusArea         focus:Chrontext-multi-modal ;
@@ -1458,8 +1418,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Optimized for mixed document/RDF workloads. SPARQL performance is adequate but not its primary strength" ;
     vl:scaleNote         "Enterprise-grade clustering. Handles very large datasets across distributed nodes" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:large ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:Document-RDF ;
@@ -1489,8 +1447,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Browser-based editor - instant preview for small mappings" ;
     vl:scaleNote         "Designed for writing and testing mappings, not production execution" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:small ;
     vl:region            region:Europe ;
     vl:country           country:Belgium ;
     vl:focusArea         focus:Beginner-friendly ;
@@ -1517,8 +1473,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Flexible backend — can sit on top of GraphDB, Neptune, Stardog, or its own built-in store. Query speed depends on the chosen backend" ;
     vl:scaleNote         "Scales with the underlying triple store. Proven in large enterprise deployments" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Europe ;
     vl:country           country:Germany ;
     vl:focusArea         focus:Knowledge-graph-platform ;
@@ -1551,8 +1505,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Fast query processing through worst-case optimal joins. Competitive on Wikidata-scale workloads" ;
     vl:scaleNote         "Handles Wikidata-scale datasets. Persistent disk-based storage" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:large ;
     vl:region            region:South-America ;
     vl:country           country:Chile ;
     vl:focusArea         focus:High-performance ;
@@ -1577,8 +1529,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Good throughput for materialization. Optimized for batch mapping from tabular/JSON/XML sources" ;
     vl:scaleNote         "Handles large mapping jobs well. Designed for ETL pipelines, not runtime querying" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:Spain ;
     vl:focusArea         focus:Heterogeneous-data-sources ;
@@ -1608,8 +1558,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Fast for JavaScript - streaming architecture keeps memory low. One of the fastest JS RDF parsers" ;
     vl:scaleNote         "Streaming design handles large files well. No SPARQL engine - pair with Comunica for queries" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:Belgium ;
     vl:focusArea         focus:RDF-JS-spec ;
@@ -1636,8 +1584,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Rust + in-memory Oxigraph. Fast for ontology-scale workloads" ;
     vl:scaleNote         "In-memory graph — suited for ontology engineering, not large-scale data processing" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:Italy ;
     vl:focusArea         focus:MCP-server ;
@@ -1666,8 +1612,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Query speed depends on the underlying SQL database. Translation overhead is minimal for simple queries" ;
     vl:scaleNote         "Scales with the relational database underneath - no data duplication, no separate RDF storage needed" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Europe ;
     vl:country           country:Italy ;
     vl:focusArea         focus:No-data-duplication ;
@@ -1697,8 +1641,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Visual mapping tool - performance depends on the underlying database and Ontop engine" ;
     vl:scaleNote         "Scales with the relational source - no separate RDF storage" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Europe ;
     vl:country           country:Italy ;
     vl:focusArea         focus:Database-integration ;
@@ -1729,8 +1671,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Web service - analysis typically completes in seconds for normal ontologies" ;
     vl:scaleNote         "Designed for ontology auditing, not data-scale operations" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:small ;
     vl:region            region:Europe ;
     vl:country           country:Spain ;
     vl:focusArea         focus:Best-practices ;
@@ -1756,8 +1696,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Backed by Oracle Database query optimizer; benefits from mature indexing and parallel execution on large datasets" ;
     vl:scaleNote         "Inherits Oracle Database scalability - handles billions of triples in production. RAC clustering for horizontal scaling" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:large ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:Enterprise-integration ;
@@ -1788,8 +1726,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Slow for RDF I/O but convenient for ontology work. Automatic reasoning via HermiT/Pellet" ;
     vl:scaleNote         "SQLite backend helps with larger ontologies but still limited by Python performance" ;
-    vl:speedTier         speed:slow ;
-    vl:scaleTier         scale:small ;
     vl:region            region:Europe ;
     vl:country           country:France ;
     vl:focusArea         focus:HermiT-Pellet ;
@@ -1817,8 +1753,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      true ;
     vl:speedNote         "Good read/write performance from Rust + RocksDB. Mid-pack on SPARQL queries - solid but not the fastest" ;
     vl:scaleNote         "Disk-backed via RocksDB, handles tens of millions of triples well. Not designed for billion-triple scale" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Europe ;
     vl:country           country:France ;
     vl:focusArea         focus:Docker-ready ;
@@ -1850,8 +1784,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Comprehensive reasoner but can be slow on large, complex ontologies. Explanation support is unique" ;
     vl:scaleNote         "In-memory reasoning - bounded by ontology complexity more than triple count" ;
-    vl:speedTier         speed:slow ;
-    vl:scaleTier         scale:small ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:Classification ;
@@ -1880,8 +1812,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Enterprise platform - optimized for taxonomy workflows, NLP enrichment, and content classification" ;
     vl:scaleNote         "Cloud-native enterprise platform. Handles large organizational taxonomies and content volumes" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Europe ;
     vl:country           country:Austria ;
     vl:focusArea         focus:Enterprise-semantic-AI ;
@@ -1913,8 +1843,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Desktop app - responsive for typical ontologies. Can slow down on very large ontologies (>100K axioms)" ;
     vl:scaleNote         "Designed for ontology engineering, not large-scale data processing" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:small ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:OWL-2 ;
@@ -1942,8 +1870,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Validation speed depends on shape complexity and rdflib backend. Adequate for typical ontologies" ;
     vl:scaleNote         "Inherits rdflib's limitations - validation on large graphs can be slow" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Asia-Pacific ;
     vl:country           country:Australia ;
     vl:focusArea         focus:Constraint-checking ;
@@ -1970,8 +1896,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Optimized for large-scale read-heavy workloads. HDT-based partition delivers fast query execution" ;
     vl:scaleNote         "Indexes 17B+ triples (full Wikidata) on a single machine with 10GB RAM and 600GB SSD" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Europe ;
     vl:country           country:France ;
     vl:focusArea         focus:Compressed-RDF ;
@@ -1998,8 +1922,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      true ;
     vl:speedNote         "Exceptionally fast SPARQL - often the fastest in benchmarks, especially on complex queries at scale" ;
     vl:scaleNote         "Designed for billions of triples. Handles full Wikidata (~18B triples) on a single machine" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Europe ;
     vl:country           country:Germany ;
     vl:focusArea         focus:Full-text-search ;
@@ -2025,8 +1947,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Fast C parser - still one of the quickest for RDF/XML. Battle-tested in production since the 2000s" ;
     vl:scaleNote         "Streaming parser with constant memory usage. Handles arbitrarily large files" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:UK ;
     vl:focusArea         focus:N-Triples ;
@@ -2036,6 +1956,32 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:focusArea         focus:Turtle ;
     vl:supportsStandard  std:RDF-1-1 ;
     vl:firstRelease      2001 .
+
+<RDF-and-SPARQL-JetBrains>  a vl:Tool ;
+    schema:name         "RDF and SPARQL (JetBrains plugin)" ;
+    schema:description  "Plugin for JetBrains IDEs (IntelliJ IDEA, PyCharm, WebStorm, DataGrip and others) with language support for Turtle, TriG, N-Triples, N-Quads, SPARQL, Notation3 and ShExC: syntax highlighting and validation, prefix and prefixed-name completion from indexed ontologies, formatting, SHACL validation, and running SPARQL queries against endpoints from inside the IDE. Made by Sharedvocabs Ltd." ;
+    schema:url          <https://rdfandsparql.com/> ;
+    vl:subcategory      subcat:IDE-Plugin ;
+    vl:language          lang:Java ;
+    vl:license           license:Commercial ;
+    vl:pricing           pricingm:Subscription-free-for-students-teachers-OSS ;
+    vl:logoHint          "RDF and SPARQL JetBrains plugin logo" ;
+    vl:logoUrl           <https://www.google.com/s2/favicons?domain=rdfandsparql.com&sz=64> ;
+    vl:hasDemo           false ;
+    vl:hasBenchmark      false ;
+    vl:speedNote         "Runs inside the IDE; queries execute on whichever SPARQL endpoint is configured" ;
+    vl:scaleNote         "Editor tooling for RDF files and queries, not a data store" ;
+    vl:focusArea         focus:Developer-experience ;
+    vl:focusArea         focus:Prefix-autocompletion ;
+    vl:focusArea         focus:SHACL-validation ;
+    vl:focusArea         focus:SPARQL-editor ;
+    vl:focusArea         focus:Syntax-highlighting ;
+    vl:supportsStandard  std:N3 ;
+    vl:supportsStandard  std:RDF-1-1 ;
+    vl:supportsStandard  std:SHACL ;
+    vl:supportsStandard  std:ShEx ;
+    vl:supportsStandard  std:SPARQL-1-1 ;
+    vl:firstRelease      2020 .
 
 <rdf-ext>  a vl:Framework ;
     schema:name         "rdf-ext" ;
@@ -2052,8 +1998,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Convenience-focused rather than performance-focused. Good DX, moderate throughput" ;
     vl:scaleNote         "Stream-based pipelines handle moderate data. Not for high-volume production" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:small ;
     vl:region            region:North-America ;
     vl:country           country:Switzerland ;
     vl:focusArea         focus:Data-pipelines ;
@@ -2081,8 +2025,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Web UI - query performance depends on the RDF4J repository backend" ;
     vl:scaleNote         "Admin tool - scales with the underlying RDF4J server" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:varies ;
     vl:region            region:Europe ;
     vl:country           country:Netherlands ;
     vl:focusArea         focus:Data-exploration ;
@@ -2109,8 +2051,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      true ;
     vl:speedNote         "Slow - pure Python, 10-100x slower than native alternatives. Fine for small datasets and prototyping" ;
     vl:scaleNote         "Struggles above ~1M triples due to memory and CPU. Not suitable for production-scale workloads" ;
-    vl:speedTier         speed:slow ;
-    vl:scaleTier         scale:small ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:Education ;
@@ -2138,8 +2078,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Extremely fast - among the fastest triple stores for both loading and querying with reasoning" ;
     vl:scaleNote         "In-memory, so bounded by RAM. Designed for high-performance reasoning, not raw storage scale" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:UK ;
     vl:focusArea         focus:Datalog ;
@@ -2171,8 +2109,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Moderate .NET performance. Lighter weight than dotNetRDF with simpler API" ;
     vl:scaleNote         "In-memory graph - suitable for small to moderate datasets" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:Italy ;
     vl:focusArea         focus:NET-ecosystem ;
@@ -2201,8 +2137,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Rust performance for validation. Modular crate architecture allows embedding specific validators" ;
     vl:scaleNote         "Can validate against local files or remote SPARQL endpoints (Wikidata tested)" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:Spain ;
     vl:focusArea         focus:Python-bindings ;
@@ -2229,8 +2163,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Native C performance for parsing - historically fast. Showing its age vs. modern Rust alternatives" ;
     vl:scaleNote         "Multiple storage backends (BDB, MySQL, PostgreSQL) offer different scale characteristics" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:UK ;
     vl:focusArea         focus:C-library ;
@@ -2256,8 +2188,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Moderate throughput for mapping. Java-based with room for optimization on large sources" ;
     vl:scaleNote         "Handles moderate-sized mapping jobs. For very large sources, consider streaming alternatives" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:Belgium ;
     vl:focusArea         focus:CSV-JSON-XML-to-RDF ;
@@ -2284,8 +2214,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Runs inside HANA's in-memory columnar engine; designed for fast analytical and graph queries at enterprise scale" ;
     vl:scaleNote         "Cloud-native with SAP HANA Cloud scaling. Aimed at enterprise datasets integrated with SAP business data" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Europe ;
     vl:country           country:Germany ;
     vl:focusArea         focus:Enterprise-ERP-integration ;
@@ -2316,8 +2244,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Web-based tool - validates and generates documentation quickly for typical ontology sizes" ;
     vl:scaleNote         "Designed for interactive use, not bulk processing" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:small ;
     vl:region            region:Europe ;
     vl:country           country:France ;
     vl:focusArea         focus:Documentation-generation ;
@@ -2344,8 +2270,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Browser-based - instant validation for small shapes and data graphs" ;
     vl:scaleNote         "Designed for testing, not production validation" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:small ;
     vl:region            region:Europe ;
     vl:country           country:Germany ;
     vl:focusArea         focus:Interactive-testing ;
@@ -2370,8 +2294,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Rust performance for parsing and graph operations. Less mature than Oxigraph but promising" ;
     vl:scaleNote         "In-memory by default. Good for moderate datasets where type safety and API design matter" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:France ;
     vl:focusArea         focus:Generic-API ;
@@ -2396,8 +2318,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Web-based tool for ontology management and KG construction workflows" ;
     vl:scaleNote         "Designed for industrial ontology management. Scales with the backing triple store" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:France ;
     vl:focusArea         focus:Graph-visualization ;
@@ -2425,8 +2345,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Good query performance with reasoning enabled. Virtual graph feature avoids data duplication" ;
     vl:scaleNote         "Enterprise-proven, handles billions of triples in cluster deployments" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:large ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:Enterprise-AI ;
@@ -2462,8 +2380,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Very fast SPARQL processing through tensor-based storage and worst-case optimal join algorithms" ;
     vl:scaleNote         "Disk-based with persistent indexing; designed for large-scale RDF datasets" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Europe ;
     vl:country           country:Germany ;
     vl:focusArea         focus:SPARQL ;
@@ -2488,8 +2404,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Queries run against the underlying data platform (Snowflake, Spark, etc.) with ontological reasoning added on top" ;
     vl:scaleNote         "Inherits scale from the backing data platform. No data duplication needed" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Middle-East ;
     vl:country           country:Israel ;
     vl:focusArea         focus:Data-integration ;
@@ -2514,8 +2428,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Fast Java JSON-LD processing. Focused and optimized for the JSON-LD spec" ;
     vl:scaleNote         "Document-level processing - not a bulk data tool" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:Czech-Republic ;
     vl:focusArea         focus:Expansion-compaction-framing ;
@@ -2539,8 +2451,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Full-featured IDE with good performance for modeling tasks" ;
     vl:scaleNote         "Desktop tool - suited for ontology engineering, not large-scale data processing" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:Enterprise-modeling ;
@@ -2570,8 +2480,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Enterprise platform - performance tuned for governance workflows, not raw RDF processing" ;
     vl:scaleNote         "Enterprise-grade with support for large organizational vocabularies and metadata" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:large ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:Business-glossaries ;
@@ -2603,8 +2511,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Good Java performance for validation. Efficient for programmatic SHACL checking in pipelines" ;
     vl:scaleNote         "Scales with Jena - suitable for production validation workloads" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:Java-API ;
@@ -2632,8 +2538,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Optimized for linked data serving with SPARQL, REST, and ElasticSearch-based text search" ;
     vl:scaleNote         "Enterprise-grade. Handles the largest government linked data deployment in the Netherlands" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Europe ;
     vl:country           country:Netherlands ;
     vl:focusArea         focus:Data-publishing ;
@@ -2664,8 +2568,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Browser-based editor - responsive for typical Turtle files" ;
     vl:scaleNote         "Designed for editing, not processing large files" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:small ;
     vl:region            region:Europe ;
     vl:country           country:Germany ;
     vl:focusArea         focus:Prefix-autocompletion ;
@@ -2690,8 +2592,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      true ;
     vl:speedNote         "Fast ingestion and good query performance. Column store architecture helps analytical queries" ;
     vl:scaleNote         "Battle-tested at scale - powers DBpedia and many LOD endpoints. Handles billions of triples" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:large ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:Linked-Data-publishing ;
@@ -2719,8 +2619,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Web-based platform - responsive for ontology and thesaurus editing workflows" ;
     vl:scaleNote         "Designed for collaborative vocabulary management. Scales with the backing triple store (GraphDB, Jena, etc.)" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:Italy ;
     vl:focusArea         focus:Collaborative-editing ;
@@ -2750,8 +2648,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Simple web service - validates small RDF/XML documents quickly" ;
     vl:scaleNote         "Testing tool - paste or URL input only" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:small ;
     vl:region            region:Global ;
     vl:country           country:Global ;
     vl:focusArea         focus:Graph-visualization ;
@@ -2777,8 +2673,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Web-based - responsive for normal-sized ontologies. Simpler than desktop Protege" ;
     vl:scaleNote         "Designed for collaborative ontology development, not large data" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:small ;
     vl:region            region:North-America ;
     vl:country           country:USA ;
     vl:focusArea         focus:Change-tracking ;
@@ -2805,8 +2699,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Responsive for small-to-medium ontologies. Force-directed layout slows with many classes (>500)" ;
     vl:scaleNote         "Browser-based visualization - best for ontologies under a few hundred classes" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:small ;
     vl:region            region:Europe ;
     vl:country           country:Germany ;
     vl:focusArea         focus:Force-directed-layout ;
@@ -2832,8 +2724,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Runs directly on top of any SPARQL endpoint; performance depends on the underlying triple store" ;
     vl:scaleNote         "Designed for enterprise use; scales with the connected triple store" ;
-    vl:speedTier         speed:fast ;
-    vl:scaleTier         scale:large ;
     vl:region            region:Europe ;
     vl:country           country:Netherlands ;
     vl:focusArea         focus:Collaborative-editing ;
@@ -2863,8 +2753,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Browser-based editor - query speed depends entirely on the SPARQL endpoint, not YASGUI itself" ;
     vl:scaleNote         "Client-side tool - no data storage" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:varies ;
     vl:region            region:Europe ;
     vl:country           country:Netherlands ;
     vl:focusArea         focus:Autocomplete ;
@@ -2890,8 +2778,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Web-based editor - responsive for typical ontologies" ;
     vl:scaleNote         "Designed for ontology editing, not data processing" ;
-    vl:speedTier         speed:varies ;
-    vl:scaleTier         scale:small ;
     vl:region            region:Europe ;
     vl:country           country:Switzerland ;
     vl:focusArea         focus:Collaborative-editing ;
@@ -2917,8 +2803,6 @@ pricingm:Stardog-Free-1-year-renewable-license-plus-Commercial-Enterprise  a vl:
     vl:hasBenchmark      false ;
     vl:speedNote         "Lightweight Node.js server - fast for serving individual resources. Proxies to backend SPARQL store" ;
     vl:scaleNote         "Proxy architecture - scales with the backing triple store" ;
-    vl:speedTier         speed:moderate ;
-    vl:scaleTier         scale:medium ;
     vl:region            region:Europe ;
     vl:country           country:Switzerland ;
     vl:focusArea         focus:Content-negotiation ;
